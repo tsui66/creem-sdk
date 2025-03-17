@@ -1,0 +1,43 @@
+# OrderEntity
+
+## Example Usage
+
+```typescript
+import { OrderEntity } from "creem/models/components";
+
+let value: OrderEntity = {
+  id: "<id>",
+  mode: "test",
+  object: "<value>",
+  product: {},
+  amount: 2000,
+  currency: "EUR",
+  fxAmount: 15,
+  fxCurrency: "EUR",
+  fxRate: 1.2,
+  status: "pending",
+  type: "subscription",
+  createdAt: new Date("2023-09-13T00:00:00Z"),
+  updatedAt: new Date("2023-09-13T00:00:00Z"),
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | Unique identifier for the object.                                                             |                                                                                               |
+| `mode`                                                                                        | [components.OrderEntityMode](../../models/components/orderentitymode.md)                      | :heavy_check_mark:                                                                            | String representing the environment.                                                          |                                                                                               |
+| `object`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | String representing the object’s type. Objects of the same type share the same value.         |                                                                                               |
+| `customer`                                                                                    | [components.OrderEntityCustomer](../../models/components/orderentitycustomer.md)              | :heavy_minus_sign:                                                                            | The the customer who placed the order.                                                        |                                                                                               |
+| `product`                                                                                     | [components.OrderEntityProduct](../../models/components/orderentityproduct.md)                | :heavy_check_mark:                                                                            | The the product associated with the order.                                                    |                                                                                               |
+| `amount`                                                                                      | *number*                                                                                      | :heavy_check_mark:                                                                            | The total amount of the order in cents. 1000 = $10.00                                         | 2000                                                                                          |
+| `currency`                                                                                    | *string*                                                                                      | :heavy_check_mark:                                                                            | Three-letter ISO currency code, in uppercase. Must be a supported currency.                   | EUR                                                                                           |
+| `fxAmount`                                                                                    | *number*                                                                                      | :heavy_minus_sign:                                                                            | The amount in the foreign currency, if applicable.                                            | 15                                                                                            |
+| `fxCurrency`                                                                                  | *string*                                                                                      | :heavy_minus_sign:                                                                            | Three-letter ISO code of the foreign currency, if applicable.                                 | EUR                                                                                           |
+| `fxRate`                                                                                      | *number*                                                                                      | :heavy_minus_sign:                                                                            | The exchange rate used for converting between currencies, if applicable.                      | 1.2                                                                                           |
+| `status`                                                                                      | [components.OrderEntityStatus](../../models/components/orderentitystatus.md)                  | :heavy_check_mark:                                                                            | Current status of the order.                                                                  | pending                                                                                       |
+| `type`                                                                                        | [components.OrderEntityType](../../models/components/orderentitytype.md)                      | :heavy_check_mark:                                                                            | The type of order. This can specify whether it’s a regular purchase, subscription, etc.       | subscription                                                                                  |
+| `affiliate`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | T affiliate associated with the order, if applicable.                                         |                                                                                               |
+| `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | Creation date of the order                                                                    | 2023-09-13T00:00:00Z                                                                          |
+| `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | Last updated date of the order                                                                | 2023-09-13T00:00:00Z                                                                          |
