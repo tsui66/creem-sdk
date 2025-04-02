@@ -10,6 +10,9 @@ targets:
     creem:
         target: typescript
         source: Creem API
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/creem/engineering/creem-api-typescript-code-samples
