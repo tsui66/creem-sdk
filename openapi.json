@@ -763,7 +763,7 @@
             "example": "This is a sample product description."
           },
           "image_url": {
-            "type": "string",
+            "type": "object",
             "description": "URL of the product image. Only png as jpg are supported",
             "example": "https://example.com/image.jpg"
           },
