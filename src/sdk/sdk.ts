@@ -4,7 +4,7 @@
 
 import { checkoutsControllerV1CreateCheckout } from "../funcs/checkoutsControllerV1CreateCheckout.js";
 import { checkoutsControllerV1Retrieve } from "../funcs/checkoutsControllerV1Retrieve.js";
-import { customersBillingControllerV1Generate } from "../funcs/customersBillingControllerV1Generate.js";
+import { customerPortalGenerateLogin } from "../funcs/customerPortalGenerateLogin.js";
 import { customersControllerV1Retrieve } from "../funcs/customersControllerV1Retrieve.js";
 import { discountsControllerV1Create } from "../funcs/discountsControllerV1Create.js";
 import { discountsControllerV1Delete } from "../funcs/discountsControllerV1Delete.js";
@@ -84,11 +84,11 @@ export class Creem extends ClientSDK {
   /**
    * Generate Customer Links
    */
-  async customersBillingControllerV1Generate(
-    request: operations.CustomersBillingControllerV1GenerateRequest,
+  async customerPortalGenerateLogin(
+    request: operations.CustomerPortalGenerateLoginRequest,
     options?: RequestOptions,
   ): Promise<components.CustomerLinksEntity> {
-    return unwrapAsync(customersBillingControllerV1Generate(
+    return unwrapAsync(customerPortalGenerateLogin(
       this,
       request,
       options,

@@ -17,7 +17,7 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 <!-- Start Summary [summary] -->
 ## Summary
 
-Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today’s SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.
+Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -31,6 +31,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
   * [Standalone functions](#standalone-functions)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
@@ -42,34 +43,30 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add creem
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add creem
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add creem
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add creem zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -84,7 +81,7 @@ yarn add <UNSET> zod
 This SDK is also an installable MCP server where the various SDK methods are
 exposed as tools that can be invoked by AI applications.
 
-> Node.js v20 or greater is required to run the MCP server.
+> Node.js v20 or greater is required to run the MCP server from npm.
 
 <details>
 <summary>Claude installation steps</summary>
@@ -99,8 +96,7 @@ Add the following server definition to your `claude_desktop_config.json` file:
       "args": [
         "-y", "--package", "creem",
         "--",
-        "mcp", "start",
-        "--server-url", "..."
+        "mcp", "start"
       ]
     }
   }
@@ -112,16 +108,48 @@ Add the following server definition to your `claude_desktop_config.json` file:
 <details>
 <summary>Cursor installation steps</summary>
 
-Go to `Cursor Settings > Features > MCP Servers > Add new MCP server` and use the following settings:
+Create a `.cursor/mcp.json` file in your project root with the following content:
 
-- Name: Creem
-- Type: `command`
-- Command:
-```sh
-npx -y --package creem -- mcp start --server-url ... 
+```json
+{
+  "mcpServers": {
+    "Creem": {
+      "command": "npx",
+      "args": [
+        "-y", "--package", "creem",
+        "--",
+        "mcp", "start"
+      ]
+    }
+  }
+}
 ```
 
 </details>
+
+You can also run MCP servers as a standalone binary with no additional dependencies. You must pull these binaries from available Github releases:
+
+```bash
+curl -L -o mcp-server \
+    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+chmod +x mcp-server
+```
+
+If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
+
+
+```json
+{
+  "mcpServers": {
+    "Todos": {
+      "command": "./DOWNLOAD/PATH/mcp-server",
+      "args": [
+        "start"
+      ]
+    }
+  }
+}
+```
 
 For a full list of server arguments, run:
 
@@ -144,9 +172,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Retrieve({
@@ -175,7 +201,7 @@ run();
 * [productsControllerV1Create](docs/sdks/creem/README.md#productscontrollerv1create) - Creates a new product.
 * [productsControllerV1Search](docs/sdks/creem/README.md#productscontrollerv1search) - List all products
 * [customersControllerV1Retrieve](docs/sdks/creem/README.md#customerscontrollerv1retrieve) - Retrieve a customer
-* [customersBillingControllerV1Generate](docs/sdks/creem/README.md#customersbillingcontrollerv1generate) - Generate Customer Links
+* [customerPortalGenerateLogin](docs/sdks/creem/README.md#customerportalgeneratelogin) - Generate Customer Links
 * [subscriptionsControllerV1Retrieve](docs/sdks/creem/README.md#subscriptionscontrollerv1retrieve) - Retrieve a subscription
 * [subscriptionsControllerV1Cancel](docs/sdks/creem/README.md#subscriptionscontrollerv1cancel) - Cancel a subscription.
 * [subscriptionsControllerV1Update](docs/sdks/creem/README.md#subscriptionscontrollerv1update) - Update a subscription.
@@ -209,7 +235,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`checkoutsControllerV1CreateCheckout`](docs/sdks/creem/README.md#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
 - [`checkoutsControllerV1Retrieve`](docs/sdks/creem/README.md#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
-- [`customersBillingControllerV1Generate`](docs/sdks/creem/README.md#customersbillingcontrollerv1generate) - Generate Customer Links
+- [`customerPortalGenerateLogin`](docs/sdks/creem/README.md#customerportalgeneratelogin) - Generate Customer Links
 - [`customersControllerV1Retrieve`](docs/sdks/creem/README.md#customerscontrollerv1retrieve) - Retrieve a customer
 - [`discountsControllerV1Create`](docs/sdks/creem/README.md#discountscontrollerv1create) - Create a discount.
 - [`discountsControllerV1Delete`](docs/sdks/creem/README.md#discountscontrollerv1delete) - Delete a discount.
@@ -237,9 +263,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Retrieve({
@@ -271,7 +295,6 @@ If you'd like to override the default retry strategy for all operations that sup
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverURL: "https://api.example.com",
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -312,9 +335,7 @@ If the request fails due to, for example 4XX or 5XX status codes, it will throw 
 import { Creem } from "creem";
 import { SDKValidationError } from "creem/models/errors";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   let result;
@@ -368,6 +389,66 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 | InvalidRequestError                                  | Any input used to create a request is invalid        |
 | UnexpectedClientError                                | Unrecognised or unexpected error                     |
 <!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| #   | Server                      | Description |
+| --- | --------------------------- | ----------- |
+| 0   | `https://api.creem.io`      |             |
+| 1   | `https://test-api.creem.io` |             |
+
+#### Example
+
+```typescript
+import { Creem } from "creem";
+
+const creem = new Creem({
+  serverIdx: 1,
+});
+
+async function run() {
+  const result = await creem.productsControllerV1Retrieve({
+    productId: "<id>",
+    xApiKey: "<value>",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+```typescript
+import { Creem } from "creem";
+
+const creem = new Creem({
+  serverURL: "https://api.creem.io",
+});
+
+async function run() {
+  const result = await creem.productsControllerV1Retrieve({
+    productId: "<id>",
+    xApiKey: "<value>",
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client

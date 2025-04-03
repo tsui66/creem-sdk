@@ -15,7 +15,7 @@ import { MCPScope, mcpScopes } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
 import { tool$checkoutsControllerV1CreateCheckout } from "./tools/checkoutsControllerV1CreateCheckout.js";
 import { tool$checkoutsControllerV1Retrieve } from "./tools/checkoutsControllerV1Retrieve.js";
-import { tool$customersBillingControllerV1Generate } from "./tools/customersBillingControllerV1Generate.js";
+import { tool$customerPortalGenerateLogin } from "./tools/customerPortalGenerateLogin.js";
 import { tool$customersControllerV1Retrieve } from "./tools/customersControllerV1Retrieve.js";
 import { tool$discountsControllerV1Create } from "./tools/discountsControllerV1Create.js";
 import { tool$discountsControllerV1Delete } from "./tools/discountsControllerV1Delete.js";
@@ -35,12 +35,12 @@ export function createMCPServer(deps: {
   logger: ConsoleLogger;
   allowedTools?: string[] | undefined;
   scopes?: MCPScope[] | undefined;
-  serverURL: string;
+  serverURL?: string | undefined;
   serverIdx?: SDKOptions["serverIdx"] | undefined;
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.0.1",
+    version: "0.1.0",
   });
 
   const client = new CreemCore({
@@ -73,7 +73,7 @@ export function createMCPServer(deps: {
   tool(tool$productsControllerV1Create);
   tool(tool$productsControllerV1Search);
   tool(tool$customersControllerV1Retrieve);
-  tool(tool$customersBillingControllerV1Generate);
+  tool(tool$customerPortalGenerateLogin);
   tool(tool$subscriptionsControllerV1Retrieve);
   tool(tool$subscriptionsControllerV1Cancel);
   tool(tool$subscriptionsControllerV1Update);

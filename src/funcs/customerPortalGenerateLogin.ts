@@ -26,9 +26,9 @@ import { Result } from "../types/fp.js";
 /**
  * Generate Customer Links
  */
-export function customersBillingControllerV1Generate(
+export function customerPortalGenerateLogin(
   client: CreemCore,
-  request: operations.CustomersBillingControllerV1GenerateRequest,
+  request: operations.CustomerPortalGenerateLoginRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -51,7 +51,7 @@ export function customersBillingControllerV1Generate(
 
 async function $do(
   client: CreemCore,
-  request: operations.CustomersBillingControllerV1GenerateRequest,
+  request: operations.CustomerPortalGenerateLoginRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -71,8 +71,7 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.CustomersBillingControllerV1GenerateRequest$outboundSchema
-        .parse(value),
+      operations.CustomerPortalGenerateLoginRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -98,7 +97,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "CustomersBillingControllerV1_generate",
+    operationID: "customerPortalGenerateLogin",
     oAuth2Scopes: [],
 
     resolvedSecurity: null,

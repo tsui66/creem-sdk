@@ -19,7 +19,7 @@ interface StartCommandFlags {
   readonly port: number;
   readonly tool?: string[];
   readonly scope?: MCPScope[];
-  readonly "server-url": string;
+  readonly "server-url"?: string;
   readonly "server-index"?: SDKOptions["serverIdx"];
   readonly "log-level": ConsoleLoggerLevel;
   readonly env?: [string, string][];

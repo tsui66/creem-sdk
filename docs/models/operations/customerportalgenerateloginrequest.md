@@ -1,11 +1,11 @@
-# CustomersBillingControllerV1GenerateRequest
+# CustomerPortalGenerateLoginRequest
 
 ## Example Usage
 
 ```typescript
-import { CustomersBillingControllerV1GenerateRequest } from "creem/models/operations";
+import { CustomerPortalGenerateLoginRequest } from "creem/models/operations";
 
-let value: CustomersBillingControllerV1GenerateRequest = {
+let value: CustomerPortalGenerateLoginRequest = {
   xApiKey: "<value>",
   createCustomerPortalLinkRequestEntity: {
     customerId: "<id>",

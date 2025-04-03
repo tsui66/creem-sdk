@@ -86,8 +86,10 @@ async function $do(
 
   const query = encodeFormQuery({
     "customer_id": payload.customer_id,
+    "order_id": payload.order_id,
     "page_number": payload.page_number,
     "page_size": payload.page_size,
+    "product_id": payload.product_id,
   });
 
   const headers = new Headers(compactMap({

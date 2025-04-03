@@ -4,7 +4,7 @@
 
 export * from "./checkoutscontrollerv1createcheckout.js";
 export * from "./checkoutscontrollerv1retrieve.js";
-export * from "./customersbillingcontrollerv1generate.js";
+export * from "./customerportalgeneratelogin.js";
 export * from "./customerscontrollerv1retrieve.js";
 export * from "./discountscontrollerv1create.js";
 export * from "./discountscontrollerv1delete.js";

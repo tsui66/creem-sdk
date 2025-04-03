@@ -2,9 +2,7 @@
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Retrieve({

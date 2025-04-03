@@ -2,7 +2,7 @@
 
 ## Overview
 
-Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today’s SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.
+Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'
 
 ### Available Operations
 
@@ -10,7 +10,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 * [productsControllerV1Create](#productscontrollerv1create) - Creates a new product.
 * [productsControllerV1Search](#productscontrollerv1search) - List all products
 * [customersControllerV1Retrieve](#customerscontrollerv1retrieve) - Retrieve a customer
-* [customersBillingControllerV1Generate](#customersbillingcontrollerv1generate) - Generate Customer Links
+* [customerPortalGenerateLogin](#customerportalgeneratelogin) - Generate Customer Links
 * [subscriptionsControllerV1Retrieve](#subscriptionscontrollerv1retrieve) - Retrieve a subscription
 * [subscriptionsControllerV1Cancel](#subscriptionscontrollerv1cancel) - Cancel a subscription.
 * [subscriptionsControllerV1Update](#subscriptionscontrollerv1update) - Update a subscription.
@@ -33,9 +33,7 @@ Retrieve a product
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Retrieve({
@@ -60,9 +58,7 @@ import { productsControllerV1Retrieve } from "creem/funcs/productsControllerV1Re
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await productsControllerV1Retrieve(creem, {
@@ -111,9 +107,7 @@ Creates a new product.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Create({
@@ -182,9 +176,7 @@ import { productsControllerV1Create } from "creem/funcs/productsControllerV1Crea
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await productsControllerV1Create(creem, {
@@ -277,9 +269,7 @@ List all products
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.productsControllerV1Search({
@@ -303,9 +293,7 @@ import { productsControllerV1Search } from "creem/funcs/productsControllerV1Sear
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await productsControllerV1Search(creem, {
@@ -353,9 +341,7 @@ Retrieve a customer
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.customersControllerV1Retrieve({
@@ -379,9 +365,7 @@ import { customersControllerV1Retrieve } from "creem/funcs/customersControllerV1
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await customersControllerV1Retrieve(creem, {
@@ -420,7 +404,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## customersBillingControllerV1Generate
+## customerPortalGenerateLogin
 
 Generate Customer Links
 
@@ -429,12 +413,10 @@ Generate Customer Links
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
-  const result = await creem.customersBillingControllerV1Generate({
+  const result = await creem.customerPortalGenerateLogin({
     xApiKey: "<value>",
     createCustomerPortalLinkRequestEntity: {
       customerId: "<id>",
@@ -454,16 +436,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { customersBillingControllerV1Generate } from "creem/funcs/customersBillingControllerV1Generate.js";
+import { customerPortalGenerateLogin } from "creem/funcs/customerPortalGenerateLogin.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
-  const res = await customersBillingControllerV1Generate(creem, {
+  const res = await customerPortalGenerateLogin(creem, {
     xApiKey: "<value>",
     createCustomerPortalLinkRequestEntity: {
       customerId: "<id>",
@@ -487,7 +467,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CustomersBillingControllerV1GenerateRequest](../../models/operations/customersbillingcontrollerv1generaterequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CustomerPortalGenerateLoginRequest](../../models/operations/customerportalgenerateloginrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -511,9 +491,7 @@ Retrieve a subscription
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.subscriptionsControllerV1Retrieve({
@@ -538,9 +516,7 @@ import { subscriptionsControllerV1Retrieve } from "creem/funcs/subscriptionsCont
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await subscriptionsControllerV1Retrieve(creem, {
@@ -589,9 +565,7 @@ Cancel a subscription.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.subscriptionsControllerV1Cancel({
@@ -616,9 +590,7 @@ import { subscriptionsControllerV1Cancel } from "creem/funcs/subscriptionsContro
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await subscriptionsControllerV1Cancel(creem, {
@@ -667,9 +639,7 @@ Update a subscription.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.subscriptionsControllerV1Update({
@@ -695,9 +665,7 @@ import { subscriptionsControllerV1Update } from "creem/funcs/subscriptionsContro
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await subscriptionsControllerV1Update(creem, {
@@ -747,9 +715,7 @@ Retrieve a new checkout session.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.checkoutsControllerV1Retrieve({
@@ -774,9 +740,7 @@ import { checkoutsControllerV1Retrieve } from "creem/funcs/checkoutsControllerV1
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await checkoutsControllerV1Retrieve(creem, {
@@ -825,9 +789,7 @@ Creates a new checkout session.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.checkoutsControllerV1CreateCheckout({
@@ -870,9 +832,7 @@ import { checkoutsControllerV1CreateCheckout } from "creem/funcs/checkoutsContro
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await checkoutsControllerV1CreateCheckout(creem, {
@@ -939,9 +899,7 @@ Activates a license key.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.licensesControllerV1Activate({
@@ -969,9 +927,7 @@ import { licensesControllerV1Activate } from "creem/funcs/licensesControllerV1Ac
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await licensesControllerV1Activate(creem, {
@@ -1023,9 +979,7 @@ Deactivate a license key instance.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.licensesControllerV1Deactivate({
@@ -1053,9 +1007,7 @@ import { licensesControllerV1Deactivate } from "creem/funcs/licensesControllerV1
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await licensesControllerV1Deactivate(creem, {
@@ -1107,9 +1059,7 @@ Validates a license key or instance.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.licensesControllerV1Validate({
@@ -1137,9 +1087,7 @@ import { licensesControllerV1Validate } from "creem/funcs/licensesControllerV1Va
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await licensesControllerV1Validate(creem, {
@@ -1191,9 +1139,7 @@ Retrieve discount
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.discountsControllerV1Retrieve({
@@ -1217,9 +1163,7 @@ import { discountsControllerV1Retrieve } from "creem/funcs/discountsControllerV1
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await discountsControllerV1Retrieve(creem, {
@@ -1267,9 +1211,7 @@ Create a discount.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.discountsControllerV1Create({
@@ -1309,9 +1251,7 @@ import { discountsControllerV1Create } from "creem/funcs/discountsControllerV1Cr
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await discountsControllerV1Create(creem, {
@@ -1375,9 +1315,7 @@ Delete a discount.
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.discountsControllerV1Delete({
@@ -1402,9 +1340,7 @@ import { discountsControllerV1Delete } from "creem/funcs/discountsControllerV1De
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await discountsControllerV1Delete(creem, {
@@ -1453,9 +1389,7 @@ List all transactions
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem({
-  serverURL: "https://api.example.com",
-});
+const creem = new Creem();
 
 async function run() {
   const result = await creem.transactionsControllerV1Search({
@@ -1479,9 +1413,7 @@ import { transactionsControllerV1Search } from "creem/funcs/transactionsControll
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await transactionsControllerV1Search(creem, {

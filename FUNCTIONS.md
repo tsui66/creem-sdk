@@ -25,9 +25,7 @@ import { SDKValidationError } from "creem/models/errors/sdkvalidationerror.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore({
-  serverURL: "https://api.example.com",
-});
+const creem = new CreemCore();
 
 async function run() {
   const res = await productsControllerV1Retrieve(creem, {

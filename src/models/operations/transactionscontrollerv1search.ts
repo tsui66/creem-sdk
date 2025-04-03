@@ -14,6 +14,14 @@ export type TransactionsControllerV1SearchRequest = {
    */
   customerId?: string | undefined;
   /**
+   * The order id
+   */
+  orderId?: string | undefined;
+  /**
+   * The product id
+   */
+  productId?: string | undefined;
+  /**
    * The page number
    */
   pageNumber?: number | undefined;
@@ -31,12 +39,16 @@ export const TransactionsControllerV1SearchRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   customer_id: z.string().optional(),
+  order_id: z.string().optional(),
+  product_id: z.string().optional(),
   page_number: z.number().optional(),
   page_size: z.number().optional(),
   "x-api-key": z.string(),
 }).transform((v) => {
   return remap$(v, {
     "customer_id": "customerId",
+    "order_id": "orderId",
+    "product_id": "productId",
     "page_number": "pageNumber",
     "page_size": "pageSize",
     "x-api-key": "xApiKey",
@@ -46,6 +58,8 @@ export const TransactionsControllerV1SearchRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type TransactionsControllerV1SearchRequest$Outbound = {
   customer_id?: string | undefined;
+  order_id?: string | undefined;
+  product_id?: string | undefined;
   page_number?: number | undefined;
   page_size?: number | undefined;
   "x-api-key": string;
@@ -58,12 +72,16 @@ export const TransactionsControllerV1SearchRequest$outboundSchema: z.ZodType<
   TransactionsControllerV1SearchRequest
 > = z.object({
   customerId: z.string().optional(),
+  orderId: z.string().optional(),
+  productId: z.string().optional(),
   pageNumber: z.number().optional(),
   pageSize: z.number().optional(),
   xApiKey: z.string(),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",
+    orderId: "order_id",
+    productId: "product_id",
     pageNumber: "page_number",
     pageSize: "page_size",
     xApiKey: "x-api-key",

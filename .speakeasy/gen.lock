@@ -1,12 +1,13 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: aac88d3af991cb2e3fce4d69aeae1e04
+  docChecksum: 829b75b8ccb914a051368d81b23ec643
   docVersion: v1
-  speakeasyVersion: 1.519.0
-  generationVersion: 2.552.1
-  releaseVersion: 0.0.1
-  configChecksum: 549fbc48529c86b57a05f8618ec9e411
+  speakeasyVersion: 1.528.1
+  generationVersion: 2.565.1
+  releaseVersion: 0.1.0
+  configChecksum: f356d84052dd38fe61f9c9cd6f06da5d
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -17,7 +18,7 @@ features:
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
-    mcpServer: 0.8.0
+    mcpServer: 0.9.0
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -101,7 +102,7 @@ generatedFiles:
   - docs/models/components/validatelicenserequestentity.md
   - docs/models/operations/checkoutscontrollerv1createcheckoutrequest.md
   - docs/models/operations/checkoutscontrollerv1retrieverequest.md
-  - docs/models/operations/customersbillingcontrollerv1generaterequest.md
+  - docs/models/operations/customerportalgenerateloginrequest.md
   - docs/models/operations/customerscontrollerv1retrieverequest.md
   - docs/models/operations/discountscontrollerv1createrequest.md
   - docs/models/operations/discountscontrollerv1deleterequest.md
@@ -123,7 +124,7 @@ generatedFiles:
   - src/core.ts
   - src/funcs/checkoutsControllerV1CreateCheckout.ts
   - src/funcs/checkoutsControllerV1Retrieve.ts
-  - src/funcs/customersBillingControllerV1Generate.ts
+  - src/funcs/customerPortalGenerateLogin.ts
   - src/funcs/customersControllerV1Retrieve.ts
   - src/funcs/discountsControllerV1Create.ts
   - src/funcs/discountsControllerV1Delete.ts
@@ -173,7 +174,7 @@ generatedFiles:
   - src/mcp-server/tools.ts
   - src/mcp-server/tools/checkoutsControllerV1CreateCheckout.ts
   - src/mcp-server/tools/checkoutsControllerV1Retrieve.ts
-  - src/mcp-server/tools/customersBillingControllerV1Generate.ts
+  - src/mcp-server/tools/customerPortalGenerateLogin.ts
   - src/mcp-server/tools/customersControllerV1Retrieve.ts
   - src/mcp-server/tools/discountsControllerV1Create.ts
   - src/mcp-server/tools/discountsControllerV1Delete.ts
@@ -225,7 +226,7 @@ generatedFiles:
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/checkoutscontrollerv1createcheckout.ts
   - src/models/operations/checkoutscontrollerv1retrieve.ts
-  - src/models/operations/customersbillingcontrollerv1generate.ts
+  - src/models/operations/customerportalgeneratelogin.ts
   - src/models/operations/customerscontrollerv1retrieve.ts
   - src/models/operations/discountscontrollerv1create.ts
   - src/models/operations/discountscontrollerv1delete.ts
@@ -277,6 +278,7 @@ examples:
   ProductsControllerV1_search:
     speakeasy-default-products-controller-v1-search:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -285,6 +287,7 @@ examples:
   CustomersControllerV1_retrieve:
     speakeasy-default-customers-controller-v1-retrieve:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -385,6 +388,7 @@ examples:
   DiscountsControllerV1_retrieve:
     speakeasy-default-discounts-controller-v1-retrieve:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -413,10 +417,21 @@ examples:
   TransactionsControllerV1_search:
     speakeasy-default-transactions-controller-v1-search:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
         "200":
           application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 184.97}, {"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 1876.86}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
+  customerPortalGenerateLogin:
+    speakeasy-default-customer-portal-generate-login:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"customer_id": "<id>"}
+      responses:
+        "200":
+          application/json: {"customer_portal_link": "<value>"}
 examplesVersion: 1.0.0
 generatedTests: {}
