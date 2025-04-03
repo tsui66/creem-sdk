@@ -40,7 +40,7 @@ export type ProductEntity = {
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
-  object?: string | undefined;
+  object: string | null;
   /**
    * The name of the product
    */
@@ -131,7 +131,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$inboundSchema,
-  object: z.string().optional(),
+  object: z.nullable(z.string()),
   name: z.string(),
   description: z.string(),
   image_url: z.nullable(z.string()).optional(),
@@ -165,7 +165,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 export type ProductEntity$Outbound = {
   id: string;
   mode: string;
-  object?: string | undefined;
+  object: string | null;
   name: string;
   description: string;
   image_url?: string | null | undefined;
@@ -191,7 +191,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$outboundSchema,
-  object: z.string().optional(),
+  object: z.nullable(z.string()),
   name: z.string(),
   description: z.string(),
   imageUrl: z.nullable(z.string()).optional(),

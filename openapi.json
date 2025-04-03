@@ -751,7 +751,8 @@
           },
           "object": {
             "type": "string",
-            "description": "String representing the object’s type. Objects of the same type share the same value."
+            "description": "String representing the object’s type. Objects of the same type share the same value.",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -764,9 +765,9 @@
           },
           "image_url": {
             "type": "string",
-            "nullable": true,
             "description": "URL of the product image. Only png as jpg are supported",
-            "example": "https://example.com/image.jpg"
+            "example": "https://example.com/image.jpg",
+            "nullable": true
           },
           "features": {
             "description": "Features of the product.",
@@ -835,6 +836,7 @@
         "required": [
           "id",
           "mode",
+          "object",
           "name",
           "description",
           "price",
