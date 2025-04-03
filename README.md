@@ -175,7 +175,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.getProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });
@@ -197,22 +197,22 @@ run();
 
 ### [Creem SDK](docs/sdks/creem/README.md)
 
-* [productsControllerV1Retrieve](docs/sdks/creem/README.md#productscontrollerv1retrieve) - Retrieve a product
-* [productsControllerV1Create](docs/sdks/creem/README.md#productscontrollerv1create) - Creates a new product.
-* [productsControllerV1Search](docs/sdks/creem/README.md#productscontrollerv1search) - List all products
-* [customersControllerV1Retrieve](docs/sdks/creem/README.md#customerscontrollerv1retrieve) - Retrieve a customer
+* [getProduct](docs/sdks/creem/README.md#getproduct) - Retrieve a product
+* [createProduct](docs/sdks/creem/README.md#createproduct) - Creates a new product.
+* [listProducts](docs/sdks/creem/README.md#listproducts) - List all products
+* [getCustomer](docs/sdks/creem/README.md#getcustomer) - Retrieve a customer
 * [customerPortalGenerateLogin](docs/sdks/creem/README.md#customerportalgeneratelogin) - Generate Customer Links
-* [subscriptionsControllerV1Retrieve](docs/sdks/creem/README.md#subscriptionscontrollerv1retrieve) - Retrieve a subscription
-* [subscriptionsControllerV1Cancel](docs/sdks/creem/README.md#subscriptionscontrollerv1cancel) - Cancel a subscription.
-* [subscriptionsControllerV1Update](docs/sdks/creem/README.md#subscriptionscontrollerv1update) - Update a subscription.
-* [checkoutsControllerV1Retrieve](docs/sdks/creem/README.md#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
-* [checkoutsControllerV1CreateCheckout](docs/sdks/creem/README.md#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
-* [licensesControllerV1Activate](docs/sdks/creem/README.md#licensescontrollerv1activate) - Activates a license key.
-* [licensesControllerV1Deactivate](docs/sdks/creem/README.md#licensescontrollerv1deactivate) - Deactivate a license key instance.
-* [licensesControllerV1Validate](docs/sdks/creem/README.md#licensescontrollerv1validate) - Validates a license key or instance.
-* [discountsControllerV1Retrieve](docs/sdks/creem/README.md#discountscontrollerv1retrieve) - Retrieve discount
-* [discountsControllerV1Create](docs/sdks/creem/README.md#discountscontrollerv1create) - Create a discount.
-* [discountsControllerV1Delete](docs/sdks/creem/README.md#discountscontrollerv1delete) - Delete a discount.
+* [getSubscription](docs/sdks/creem/README.md#getsubscription) - Retrieve a subscription
+* [cancelSubscription](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
+* [updateSubscription](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
+* [getCheckout](docs/sdks/creem/README.md#getcheckout) - Retrieve a new checkout session.
+* [createCheckout](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
+* [activateLicense](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
+* [deactivateLicense](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
+* [validateLicense](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
+* [getDiscount](docs/sdks/creem/README.md#getdiscount) - Retrieve discount
+* [createDiscount](docs/sdks/creem/README.md#creatediscount) - Create a discount.
+* [deleteDiscount](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
 * [listTransactions](docs/sdks/creem/README.md#listtransactions) - List all transactions
 
 </details>
@@ -233,23 +233,23 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`checkoutsControllerV1CreateCheckout`](docs/sdks/creem/README.md#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
-- [`checkoutsControllerV1Retrieve`](docs/sdks/creem/README.md#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
+- [`activateLicense`](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
+- [`cancelSubscription`](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
+- [`createCheckout`](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
+- [`createDiscount`](docs/sdks/creem/README.md#creatediscount) - Create a discount.
+- [`createProduct`](docs/sdks/creem/README.md#createproduct) - Creates a new product.
 - [`customerPortalGenerateLogin`](docs/sdks/creem/README.md#customerportalgeneratelogin) - Generate Customer Links
-- [`customersControllerV1Retrieve`](docs/sdks/creem/README.md#customerscontrollerv1retrieve) - Retrieve a customer
-- [`discountsControllerV1Create`](docs/sdks/creem/README.md#discountscontrollerv1create) - Create a discount.
-- [`discountsControllerV1Delete`](docs/sdks/creem/README.md#discountscontrollerv1delete) - Delete a discount.
-- [`discountsControllerV1Retrieve`](docs/sdks/creem/README.md#discountscontrollerv1retrieve) - Retrieve discount
-- [`licensesControllerV1Activate`](docs/sdks/creem/README.md#licensescontrollerv1activate) - Activates a license key.
-- [`licensesControllerV1Deactivate`](docs/sdks/creem/README.md#licensescontrollerv1deactivate) - Deactivate a license key instance.
-- [`licensesControllerV1Validate`](docs/sdks/creem/README.md#licensescontrollerv1validate) - Validates a license key or instance.
+- [`deactivateLicense`](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
+- [`deleteDiscount`](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
+- [`getCheckout`](docs/sdks/creem/README.md#getcheckout) - Retrieve a new checkout session.
+- [`getCustomer`](docs/sdks/creem/README.md#getcustomer) - Retrieve a customer
+- [`getDiscount`](docs/sdks/creem/README.md#getdiscount) - Retrieve discount
+- [`getProduct`](docs/sdks/creem/README.md#getproduct) - Retrieve a product
+- [`getSubscription`](docs/sdks/creem/README.md#getsubscription) - Retrieve a subscription
+- [`listProducts`](docs/sdks/creem/README.md#listproducts) - List all products
 - [`listTransactions`](docs/sdks/creem/README.md#listtransactions) - List all transactions
-- [`productsControllerV1Create`](docs/sdks/creem/README.md#productscontrollerv1create) - Creates a new product.
-- [`productsControllerV1Retrieve`](docs/sdks/creem/README.md#productscontrollerv1retrieve) - Retrieve a product
-- [`productsControllerV1Search`](docs/sdks/creem/README.md#productscontrollerv1search) - List all products
-- [`subscriptionsControllerV1Cancel`](docs/sdks/creem/README.md#subscriptionscontrollerv1cancel) - Cancel a subscription.
-- [`subscriptionsControllerV1Retrieve`](docs/sdks/creem/README.md#subscriptionscontrollerv1retrieve) - Retrieve a subscription
-- [`subscriptionsControllerV1Update`](docs/sdks/creem/README.md#subscriptionscontrollerv1update) - Update a subscription.
+- [`updateSubscription`](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
+- [`validateLicense`](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -266,7 +266,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.getProduct({
     productId: "<id>",
     xApiKey: "<value>",
   }, {
@@ -308,7 +308,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.getProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });
@@ -340,7 +340,7 @@ const creem = new Creem();
 async function run() {
   let result;
   try {
-    result = await creem.productsControllerV1Retrieve({
+    result = await creem.getProduct({
       productId: "<id>",
       xApiKey: "<value>",
     });
@@ -412,7 +412,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.getProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });
@@ -436,7 +436,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.getProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });
