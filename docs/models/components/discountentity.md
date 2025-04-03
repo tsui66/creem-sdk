@@ -7,7 +7,7 @@ import { DiscountEntity } from "creem/models/components";
 
 let value: DiscountEntity = {
   id: "<id>",
-  mode: "live",
+  mode: "sandbox",
   object: "discount",
   status: "active",
   name: "Holiday Sale",

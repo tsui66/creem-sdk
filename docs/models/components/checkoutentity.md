@@ -10,10 +10,12 @@ let value: CheckoutEntity = {
   mode: "sandbox",
   object: "<value>",
   status: "<value>",
-  product: {},
+  product: [
+    "Licensed Metal Towels",
+  ],
   order: {
     id: "<id>",
-    mode: "live",
+    mode: "test",
     object: "<value>",
     product: {},
     amount: 2000,
@@ -26,13 +28,13 @@ let value: CheckoutEntity = {
     createdAt: new Date("2023-09-13T00:00:00Z"),
     updatedAt: new Date("2023-09-13T00:00:00Z"),
   },
-  checkoutUrl: "https://valuable-behest.com",
+  checkoutUrl: "https://ajar-sonnet.net/",
   successUrl: "https://example.com/return",
   feature: [
     {
       license: {
         id: "<id>",
-        mode: "test",
+        mode: "sandbox",
         object: "<value>",
         status: "active",
         key: "ABC123-XYZ456-XYZ456-XYZ456",
@@ -65,7 +67,7 @@ let value: CheckoutEntity = {
 | `object`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | String representing the object’s type. Objects of the same type share the same value.       |                                                                                             |
 | `status`                                                                                    | *string*                                                                                    | :heavy_check_mark:                                                                          | Status of the checkout.                                                                     |                                                                                             |
 | `requestId`                                                                                 | *string*                                                                                    | :heavy_minus_sign:                                                                          | Identify and track each checkout request.                                                   |                                                                                             |
-| `product`                                                                                   | [components.CheckoutEntityProduct](../../models/components/checkoutentityproduct.md)        | :heavy_check_mark:                                                                          | The product associated with the checkout session.                                           |                                                                                             |
+| `product`                                                                                   | *string*[]                                                                                  | :heavy_check_mark:                                                                          | The product associated with the checkout session.                                           |                                                                                             |
 | `units`                                                                                     | *number*                                                                                    | :heavy_minus_sign:                                                                          | The number of units for the of the product.                                                 |                                                                                             |
 | `order`                                                                                     | [components.OrderEntity](../../models/components/orderentity.md)                            | :heavy_minus_sign:                                                                          | The order associated with the checkout session.                                             |                                                                                             |
 | `subscription`                                                                              | [components.Subscription](../../models/components/subscription.md)                          | :heavy_minus_sign:                                                                          | The subscription associated with the checkout session.                                      |                                                                                             |

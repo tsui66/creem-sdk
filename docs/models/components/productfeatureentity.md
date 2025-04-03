@@ -19,7 +19,7 @@ let value: ProductFeatureEntity = {
     instance: [
       {
         id: "<id>",
-        mode: "sandbox",
+        mode: "live",
         object: "license-instance",
         name: "My Customer License Instance",
         status: "active",

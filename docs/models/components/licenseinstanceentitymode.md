@@ -7,7 +7,7 @@ String representing the environment.
 ```typescript
 import { LicenseInstanceEntityMode } from "creem/models/components";
 
-let value: LicenseInstanceEntityMode = "sandbox";
+let value: LicenseInstanceEntityMode = "test";
 ```
 
 ## Values

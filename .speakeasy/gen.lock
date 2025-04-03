@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: cb5a8c08c487d69cc9627d2ee606c9cc
+  docChecksum: f0bc0bd3b1755d936b2c9f9890bf8307
   docVersion: v1
   speakeasyVersion: 1.528.1
   generationVersion: 2.565.1
-  releaseVersion: 0.1.9
-  configChecksum: e302bd94a78d58c199fa30cd96b5b21c
+  releaseVersion: 0.1.10
+  configChecksum: 21ecbbca0f3b24c2ddd060e2ba997b54
   published: true
 features:
   typescript:
@@ -38,7 +38,6 @@ generatedFiles:
   - docs/models/components/checkoutentity.md
   - docs/models/components/checkoutentitycustomer.md
   - docs/models/components/checkoutentitymode.md
-  - docs/models/components/checkoutentityproduct.md
   - docs/models/components/createcheckoutrequestentity.md
   - docs/models/components/createcustomerportallinkrequestentity.md
   - docs/models/components/creatediscountrequestentity.md
@@ -521,7 +520,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "<value>", "product": {}, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://white-ecliptic.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "<value>", "product": ["{}"], "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://white-ecliptic.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
   createCheckout:
     speakeasy-default-create-checkout:
       parameters:
@@ -531,7 +530,7 @@ examples:
         application/json: {"product_id": "<id>", "customer": {"id": "<id>", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}]}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": {}, "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://equatorial-meatloaf.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
+          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": ["{}"], "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://equatorial-meatloaf.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
   activateLicense:
     speakeasy-default-activate-license:
       parameters:

@@ -1532,8 +1532,11 @@
             "description": "Identify and track each checkout request."
           },
           "product": {
-            "type": "object",
-            "description": "The product associated with the checkout session."
+            "description": "The product associated with the checkout session.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "units": {
             "type": "number",

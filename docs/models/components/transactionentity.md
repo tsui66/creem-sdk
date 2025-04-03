@@ -7,7 +7,7 @@ import { TransactionEntity } from "creem/models/components";
 
 let value: TransactionEntity = {
   id: "<id>",
-  mode: "test",
+  mode: "live",
   object: "<value>",
   amount: 2000,
   amountPaid: 2000,
@@ -17,7 +17,7 @@ let value: TransactionEntity = {
   taxAmount: 2000,
   status: "<value>",
   refundedAmount: 2000,
-  createdAt: 6176.36,
+  createdAt: 9437.49,
 };
 ```
 
