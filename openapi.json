@@ -750,7 +750,7 @@
             "description": "String representing the environment."
           },
           "object": {
-            "type": "string",
+            "type": "object",
             "description": "String representing the object’s type. Objects of the same type share the same value."
           },
           "name": {

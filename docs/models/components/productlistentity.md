@@ -10,7 +10,7 @@ let value: ProductListEntity = {
     {
       id: "<id>",
       mode: "live",
-      object: "<value>",
+      object: {},
       name: "<value>",
       description: "This is a sample product description.",
       imageUrl: {},

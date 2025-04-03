@@ -29,6 +29,11 @@ export const Mode = {
 export type Mode = ClosedEnum<typeof Mode>;
 
 /**
+ * String representing the object’s type. Objects of the same type share the same value.
+ */
+export type ObjectT = {};
+
+/**
  * URL of the product image. Only png as jpg are supported
  */
 export type ImageUrl = {};
@@ -45,7 +50,7 @@ export type ProductEntity = {
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
-  object: string;
+  object: ObjectT;
   /**
    * The name of the product
    */
@@ -129,6 +134,47 @@ export namespace Mode$ {
 }
 
 /** @internal */
+export const ObjectT$inboundSchema: z.ZodType<ObjectT, z.ZodTypeDef, unknown> =
+  z.object({});
+
+/** @internal */
+export type ObjectT$Outbound = {};
+
+/** @internal */
+export const ObjectT$outboundSchema: z.ZodType<
+  ObjectT$Outbound,
+  z.ZodTypeDef,
+  ObjectT
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ObjectT$ {
+  /** @deprecated use `ObjectT$inboundSchema` instead. */
+  export const inboundSchema = ObjectT$inboundSchema;
+  /** @deprecated use `ObjectT$outboundSchema` instead. */
+  export const outboundSchema = ObjectT$outboundSchema;
+  /** @deprecated use `ObjectT$Outbound` instead. */
+  export type Outbound = ObjectT$Outbound;
+}
+
+export function objectToJSON(objectT: ObjectT): string {
+  return JSON.stringify(ObjectT$outboundSchema.parse(objectT));
+}
+
+export function objectFromJSON(
+  jsonString: string,
+): SafeParseResult<ObjectT, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ObjectT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ObjectT' from JSON`,
+  );
+}
+
+/** @internal */
 export const ImageUrl$inboundSchema: z.ZodType<
   ImageUrl,
   z.ZodTypeDef,
@@ -180,7 +226,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$inboundSchema,
-  object: z.string(),
+  object: z.lazy(() => ObjectT$inboundSchema),
   name: z.string(),
   description: z.string(),
   image_url: z.lazy(() => ImageUrl$inboundSchema).optional(),
@@ -214,7 +260,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 export type ProductEntity$Outbound = {
   id: string;
   mode: string;
-  object: string;
+  object: ObjectT$Outbound;
   name: string;
   description: string;
   image_url?: ImageUrl$Outbound | undefined;
@@ -240,7 +286,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$outboundSchema,
-  object: z.string(),
+  object: z.lazy(() => ObjectT$outboundSchema),
   name: z.string(),
   description: z.string(),
   imageUrl: z.lazy(() => ImageUrl$outboundSchema).optional(),
