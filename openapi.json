@@ -834,7 +834,6 @@
         "required": [
           "id",
           "mode",
-          "object",
           "name",
           "description",
           "price",

@@ -50,7 +50,7 @@ export type ProductEntity = {
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
-  object: ObjectT;
+  object?: ObjectT | undefined;
   /**
    * The name of the product
    */
@@ -226,7 +226,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$inboundSchema,
-  object: z.lazy(() => ObjectT$inboundSchema),
+  object: z.lazy(() => ObjectT$inboundSchema).optional(),
   name: z.string(),
   description: z.string(),
   image_url: z.lazy(() => ImageUrl$inboundSchema).optional(),
@@ -260,7 +260,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
 export type ProductEntity$Outbound = {
   id: string;
   mode: string;
-  object: ObjectT$Outbound;
+  object?: ObjectT$Outbound | undefined;
   name: string;
   description: string;
   image_url?: ImageUrl$Outbound | undefined;
@@ -286,7 +286,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$outboundSchema,
-  object: z.lazy(() => ObjectT$outboundSchema),
+  object: z.lazy(() => ObjectT$outboundSchema).optional(),
   name: z.string(),
   description: z.string(),
   imageUrl: z.lazy(() => ImageUrl$outboundSchema).optional(),
