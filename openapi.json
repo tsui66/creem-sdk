@@ -764,6 +764,7 @@
           },
           "image_url": {
             "type": "string",
+            "nullable": true,
             "description": "URL of the product image. Only png as jpg are supported",
             "example": "https://example.com/image.jpg"
           },

@@ -52,7 +52,7 @@ export type ProductEntity = {
   /**
    * URL of the product image. Only png as jpg are supported
    */
-  imageUrl?: string | undefined;
+  imageUrl?: string | null | undefined;
   /**
    * Features of the product.
    */
@@ -134,7 +134,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
   object: z.string().optional(),
   name: z.string(),
   description: z.string(),
-  image_url: z.string().optional(),
+  image_url: z.nullable(z.string()).optional(),
   features: z.array(FeatureEntity$inboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
@@ -168,7 +168,7 @@ export type ProductEntity$Outbound = {
   object?: string | undefined;
   name: string;
   description: string;
-  image_url?: string | undefined;
+  image_url?: string | null | undefined;
   features?: Array<FeatureEntity$Outbound> | undefined;
   price: number;
   currency: string;
@@ -194,7 +194,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
   object: z.string().optional(),
   name: z.string(),
   description: z.string(),
-  imageUrl: z.string().optional(),
+  imageUrl: z.nullable(z.string()).optional(),
   features: z.array(FeatureEntity$outboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
