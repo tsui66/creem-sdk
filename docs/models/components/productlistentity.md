@@ -12,7 +12,7 @@ let value: ProductListEntity = {
       mode: "live",
       name: "<value>",
       description: "This is a sample product description.",
-      imageUrl: {},
+      imageUrl: "https://example.com/image.jpg",
       features: [
         {
           id: "<id>",

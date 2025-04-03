@@ -33,11 +33,6 @@ export type Mode = ClosedEnum<typeof Mode>;
  */
 export type ObjectT = {};
 
-/**
- * URL of the product image. Only png as jpg are supported
- */
-export type ImageUrl = {};
-
 export type ProductEntity = {
   /**
    * Unique identifier for the object.
@@ -62,7 +57,7 @@ export type ProductEntity = {
   /**
    * URL of the product image. Only png as jpg are supported
    */
-  imageUrl?: ImageUrl | undefined;
+  imageUrl?: string | undefined;
   /**
    * Features of the product.
    */
@@ -175,50 +170,6 @@ export function objectFromJSON(
 }
 
 /** @internal */
-export const ImageUrl$inboundSchema: z.ZodType<
-  ImageUrl,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type ImageUrl$Outbound = {};
-
-/** @internal */
-export const ImageUrl$outboundSchema: z.ZodType<
-  ImageUrl$Outbound,
-  z.ZodTypeDef,
-  ImageUrl
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ImageUrl$ {
-  /** @deprecated use `ImageUrl$inboundSchema` instead. */
-  export const inboundSchema = ImageUrl$inboundSchema;
-  /** @deprecated use `ImageUrl$outboundSchema` instead. */
-  export const outboundSchema = ImageUrl$outboundSchema;
-  /** @deprecated use `ImageUrl$Outbound` instead. */
-  export type Outbound = ImageUrl$Outbound;
-}
-
-export function imageUrlToJSON(imageUrl: ImageUrl): string {
-  return JSON.stringify(ImageUrl$outboundSchema.parse(imageUrl));
-}
-
-export function imageUrlFromJSON(
-  jsonString: string,
-): SafeParseResult<ImageUrl, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ImageUrl$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ImageUrl' from JSON`,
-  );
-}
-
-/** @internal */
 export const ProductEntity$inboundSchema: z.ZodType<
   ProductEntity,
   z.ZodTypeDef,
@@ -229,7 +180,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
   object: z.lazy(() => ObjectT$inboundSchema).optional(),
   name: z.string(),
   description: z.string(),
-  image_url: z.lazy(() => ImageUrl$inboundSchema).optional(),
+  image_url: z.string().optional(),
   features: z.array(FeatureEntity$inboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
@@ -263,7 +214,7 @@ export type ProductEntity$Outbound = {
   object?: ObjectT$Outbound | undefined;
   name: string;
   description: string;
-  image_url?: ImageUrl$Outbound | undefined;
+  image_url?: string | undefined;
   features?: Array<FeatureEntity$Outbound> | undefined;
   price: number;
   currency: string;
@@ -289,7 +240,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
   object: z.lazy(() => ObjectT$outboundSchema).optional(),
   name: z.string(),
   description: z.string(),
-  imageUrl: z.lazy(() => ImageUrl$outboundSchema).optional(),
+  imageUrl: z.string().optional(),
   features: z.array(FeatureEntity$outboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
