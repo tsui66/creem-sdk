@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: d4bffc944e2639cac3518ff97159aeab
+  docChecksum: 39966d6093da5b0a2ec7fcb413184895
   docVersion: v1
   speakeasyVersion: 1.528.1
   generationVersion: 2.565.1
-  releaseVersion: 0.1.6
-  configChecksum: 50e2b7ec2d42f0624bfa403edb3a1e07
+  releaseVersion: 0.1.7
+  configChecksum: d155559b6c941af07894298add7b7046
   published: true
 features:
   typescript:
@@ -71,7 +71,6 @@ generatedFiles:
   - docs/models/components/metadataentity.md
   - docs/models/components/mode.md
   - docs/models/components/nextpage.md
-  - docs/models/components/objectt.md
   - docs/models/components/order.md
   - docs/models/components/orderentity.md
   - docs/models/components/orderentitycustomer.md
@@ -452,7 +451,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "test", "object": {}, "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+          application/json: {"id": "<id>", "mode": "test", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
   createProduct:
     speakeasy-default-create-product:
       parameters:
@@ -462,7 +461,7 @@ examples:
         application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "tax_mode": "inclusive", "tax_category": "saas", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}]}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": {}, "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
   listProducts:
     speakeasy-default-list-products:
       parameters:
@@ -471,7 +470,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": {}, "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": {}, "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": {}, "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
+          application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
   getCustomer:
     speakeasy-default-get-customer:
       parameters:
