@@ -629,7 +629,7 @@
     },
     "/v1/transactions/search": {
       "get": {
-        "operationId": "TransactionsControllerV1_search",
+        "operationId": "listTransactions",
         "summary": "List all transactions",
         "parameters": [
           {

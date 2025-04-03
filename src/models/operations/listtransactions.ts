@@ -8,7 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type TransactionsControllerV1SearchRequest = {
+export type ListTransactionsRequest = {
   /**
    * The customer id
    */
@@ -33,8 +33,8 @@ export type TransactionsControllerV1SearchRequest = {
 };
 
 /** @internal */
-export const TransactionsControllerV1SearchRequest$inboundSchema: z.ZodType<
-  TransactionsControllerV1SearchRequest,
+export const ListTransactionsRequest$inboundSchema: z.ZodType<
+  ListTransactionsRequest,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -56,7 +56,7 @@ export const TransactionsControllerV1SearchRequest$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type TransactionsControllerV1SearchRequest$Outbound = {
+export type ListTransactionsRequest$Outbound = {
   customer_id?: string | undefined;
   order_id?: string | undefined;
   product_id?: string | undefined;
@@ -66,10 +66,10 @@ export type TransactionsControllerV1SearchRequest$Outbound = {
 };
 
 /** @internal */
-export const TransactionsControllerV1SearchRequest$outboundSchema: z.ZodType<
-  TransactionsControllerV1SearchRequest$Outbound,
+export const ListTransactionsRequest$outboundSchema: z.ZodType<
+  ListTransactionsRequest$Outbound,
   z.ZodTypeDef,
-  TransactionsControllerV1SearchRequest
+  ListTransactionsRequest
 > = z.object({
   customerId: z.string().optional(),
   orderId: z.string().optional(),
@@ -92,34 +92,29 @@ export const TransactionsControllerV1SearchRequest$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionsControllerV1SearchRequest$ {
-  /** @deprecated use `TransactionsControllerV1SearchRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    TransactionsControllerV1SearchRequest$inboundSchema;
-  /** @deprecated use `TransactionsControllerV1SearchRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    TransactionsControllerV1SearchRequest$outboundSchema;
-  /** @deprecated use `TransactionsControllerV1SearchRequest$Outbound` instead. */
-  export type Outbound = TransactionsControllerV1SearchRequest$Outbound;
+export namespace ListTransactionsRequest$ {
+  /** @deprecated use `ListTransactionsRequest$inboundSchema` instead. */
+  export const inboundSchema = ListTransactionsRequest$inboundSchema;
+  /** @deprecated use `ListTransactionsRequest$outboundSchema` instead. */
+  export const outboundSchema = ListTransactionsRequest$outboundSchema;
+  /** @deprecated use `ListTransactionsRequest$Outbound` instead. */
+  export type Outbound = ListTransactionsRequest$Outbound;
 }
 
-export function transactionsControllerV1SearchRequestToJSON(
-  transactionsControllerV1SearchRequest: TransactionsControllerV1SearchRequest,
+export function listTransactionsRequestToJSON(
+  listTransactionsRequest: ListTransactionsRequest,
 ): string {
   return JSON.stringify(
-    TransactionsControllerV1SearchRequest$outboundSchema.parse(
-      transactionsControllerV1SearchRequest,
-    ),
+    ListTransactionsRequest$outboundSchema.parse(listTransactionsRequest),
   );
 }
 
-export function transactionsControllerV1SearchRequestFromJSON(
+export function listTransactionsRequestFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionsControllerV1SearchRequest, SDKValidationError> {
+): SafeParseResult<ListTransactionsRequest, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      TransactionsControllerV1SearchRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionsControllerV1SearchRequest' from JSON`,
+    (x) => ListTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionsRequest' from JSON`,
   );
 }

@@ -1,11 +1,11 @@
-# TransactionsControllerV1SearchRequest
+# ListTransactionsRequest
 
 ## Example Usage
 
 ```typescript
-import { TransactionsControllerV1SearchRequest } from "creem/models/operations";
+import { ListTransactionsRequest } from "creem/models/operations";
 
-let value: TransactionsControllerV1SearchRequest = {
+let value: ListTransactionsRequest = {
   xApiKey: "<value>",
 };
 ```

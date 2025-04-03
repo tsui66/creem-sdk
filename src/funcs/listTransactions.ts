@@ -26,9 +26,9 @@ import { Result } from "../types/fp.js";
 /**
  * List all transactions
  */
-export function transactionsControllerV1Search(
+export function listTransactions(
   client: CreemCore,
-  request: operations.TransactionsControllerV1SearchRequest,
+  request: operations.ListTransactionsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -51,7 +51,7 @@ export function transactionsControllerV1Search(
 
 async function $do(
   client: CreemCore,
-  request: operations.TransactionsControllerV1SearchRequest,
+  request: operations.ListTransactionsRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -70,10 +70,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) =>
-      operations.TransactionsControllerV1SearchRequest$outboundSchema.parse(
-        value,
-      ),
+    (value) => operations.ListTransactionsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -102,7 +99,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "TransactionsControllerV1_search",
+    operationID: "listTransactions",
     oAuth2Scopes: [],
 
     resolvedSecurity: null,

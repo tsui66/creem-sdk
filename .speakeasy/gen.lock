@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 829b75b8ccb914a051368d81b23ec643
+  docChecksum: 3f078df85aeec962dad1f9e331cc86da
   docVersion: v1
   speakeasyVersion: 1.528.1
   generationVersion: 2.565.1
-  releaseVersion: 0.1.0
-  configChecksum: f356d84052dd38fe61f9c9cd6f06da5d
+  releaseVersion: 0.1.1
+  configChecksum: 68f186c77b87a0d701e4ac4066aa344b
   published: true
 features:
   typescript:
@@ -110,13 +110,13 @@ generatedFiles:
   - docs/models/operations/licensescontrollerv1activaterequest.md
   - docs/models/operations/licensescontrollerv1deactivaterequest.md
   - docs/models/operations/licensescontrollerv1validaterequest.md
+  - docs/models/operations/listtransactionsrequest.md
   - docs/models/operations/productscontrollerv1createrequest.md
   - docs/models/operations/productscontrollerv1retrieverequest.md
   - docs/models/operations/productscontrollerv1searchrequest.md
   - docs/models/operations/subscriptionscontrollerv1cancelrequest.md
   - docs/models/operations/subscriptionscontrollerv1retrieverequest.md
   - docs/models/operations/subscriptionscontrollerv1updaterequest.md
-  - docs/models/operations/transactionscontrollerv1searchrequest.md
   - docs/sdks/creem/README.md
   - eslint.config.mjs
   - jsr.json
@@ -132,13 +132,13 @@ generatedFiles:
   - src/funcs/licensesControllerV1Activate.ts
   - src/funcs/licensesControllerV1Deactivate.ts
   - src/funcs/licensesControllerV1Validate.ts
+  - src/funcs/listTransactions.ts
   - src/funcs/productsControllerV1Create.ts
   - src/funcs/productsControllerV1Retrieve.ts
   - src/funcs/productsControllerV1Search.ts
   - src/funcs/subscriptionsControllerV1Cancel.ts
   - src/funcs/subscriptionsControllerV1Retrieve.ts
   - src/funcs/subscriptionsControllerV1Update.ts
-  - src/funcs/transactionsControllerV1Search.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -182,13 +182,13 @@ generatedFiles:
   - src/mcp-server/tools/licensesControllerV1Activate.ts
   - src/mcp-server/tools/licensesControllerV1Deactivate.ts
   - src/mcp-server/tools/licensesControllerV1Validate.ts
+  - src/mcp-server/tools/listTransactions.ts
   - src/mcp-server/tools/productsControllerV1Create.ts
   - src/mcp-server/tools/productsControllerV1Retrieve.ts
   - src/mcp-server/tools/productsControllerV1Search.ts
   - src/mcp-server/tools/subscriptionsControllerV1Cancel.ts
   - src/mcp-server/tools/subscriptionsControllerV1Retrieve.ts
   - src/mcp-server/tools/subscriptionsControllerV1Update.ts
-  - src/mcp-server/tools/transactionsControllerV1Search.ts
   - src/models/components/activatelicenserequestentity.ts
   - src/models/components/checkoutentity.ts
   - src/models/components/createcheckoutrequestentity.ts
@@ -235,13 +235,13 @@ generatedFiles:
   - src/models/operations/licensescontrollerv1activate.ts
   - src/models/operations/licensescontrollerv1deactivate.ts
   - src/models/operations/licensescontrollerv1validate.ts
+  - src/models/operations/listtransactions.ts
   - src/models/operations/productscontrollerv1create.ts
   - src/models/operations/productscontrollerv1retrieve.ts
   - src/models/operations/productscontrollerv1search.ts
   - src/models/operations/subscriptionscontrollerv1cancel.ts
   - src/models/operations/subscriptionscontrollerv1retrieve.ts
   - src/models/operations/subscriptionscontrollerv1update.ts
-  - src/models/operations/transactionscontrollerv1search.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
   - src/types/async.ts
@@ -433,5 +433,13 @@ examples:
       responses:
         "200":
           application/json: {"customer_portal_link": "<value>"}
+  listTransactions:
+    speakeasy-default-list-transactions:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"items": [{"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 710.07}, {"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9758.89}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
 examplesVersion: 1.0.0
 generatedTests: {}

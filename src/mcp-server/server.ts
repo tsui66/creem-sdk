@@ -23,13 +23,13 @@ import { tool$discountsControllerV1Retrieve } from "./tools/discountsControllerV
 import { tool$licensesControllerV1Activate } from "./tools/licensesControllerV1Activate.js";
 import { tool$licensesControllerV1Deactivate } from "./tools/licensesControllerV1Deactivate.js";
 import { tool$licensesControllerV1Validate } from "./tools/licensesControllerV1Validate.js";
+import { tool$listTransactions } from "./tools/listTransactions.js";
 import { tool$productsControllerV1Create } from "./tools/productsControllerV1Create.js";
 import { tool$productsControllerV1Retrieve } from "./tools/productsControllerV1Retrieve.js";
 import { tool$productsControllerV1Search } from "./tools/productsControllerV1Search.js";
 import { tool$subscriptionsControllerV1Cancel } from "./tools/subscriptionsControllerV1Cancel.js";
 import { tool$subscriptionsControllerV1Retrieve } from "./tools/subscriptionsControllerV1Retrieve.js";
 import { tool$subscriptionsControllerV1Update } from "./tools/subscriptionsControllerV1Update.js";
-import { tool$transactionsControllerV1Search } from "./tools/transactionsControllerV1Search.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -40,7 +40,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.1.0",
+    version: "0.1.1",
   });
 
   const client = new CreemCore({
@@ -85,7 +85,7 @@ export function createMCPServer(deps: {
   tool(tool$discountsControllerV1Retrieve);
   tool(tool$discountsControllerV1Create);
   tool(tool$discountsControllerV1Delete);
-  tool(tool$transactionsControllerV1Search);
+  tool(tool$listTransactions);
 
   return server;
 }

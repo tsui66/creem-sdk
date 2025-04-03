@@ -22,7 +22,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 * [discountsControllerV1Retrieve](#discountscontrollerv1retrieve) - Retrieve discount
 * [discountsControllerV1Create](#discountscontrollerv1create) - Create a discount.
 * [discountsControllerV1Delete](#discountscontrollerv1delete) - Delete a discount.
-* [transactionsControllerV1Search](#transactionscontrollerv1search) - List all transactions
+* [listTransactions](#listtransactions) - List all transactions
 
 ## productsControllerV1Retrieve
 
@@ -1380,7 +1380,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## transactionsControllerV1Search
+## listTransactions
 
 List all transactions
 
@@ -1392,7 +1392,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.transactionsControllerV1Search({
+  const result = await creem.listTransactions({
     xApiKey: "<value>",
   });
 
@@ -1409,14 +1409,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { transactionsControllerV1Search } from "creem/funcs/transactionsControllerV1Search.js";
+import { listTransactions } from "creem/funcs/listTransactions.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await transactionsControllerV1Search(creem, {
+  const res = await listTransactions(creem, {
     xApiKey: "<value>",
   });
 
@@ -1437,7 +1437,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.TransactionsControllerV1SearchRequest](../../models/operations/transactionscontrollerv1searchrequest.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.ListTransactionsRequest](../../models/operations/listtransactionsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

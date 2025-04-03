@@ -213,7 +213,7 @@ run();
 * [discountsControllerV1Retrieve](docs/sdks/creem/README.md#discountscontrollerv1retrieve) - Retrieve discount
 * [discountsControllerV1Create](docs/sdks/creem/README.md#discountscontrollerv1create) - Create a discount.
 * [discountsControllerV1Delete](docs/sdks/creem/README.md#discountscontrollerv1delete) - Delete a discount.
-* [transactionsControllerV1Search](docs/sdks/creem/README.md#transactionscontrollerv1search) - List all transactions
+* [listTransactions](docs/sdks/creem/README.md#listtransactions) - List all transactions
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -243,13 +243,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`licensesControllerV1Activate`](docs/sdks/creem/README.md#licensescontrollerv1activate) - Activates a license key.
 - [`licensesControllerV1Deactivate`](docs/sdks/creem/README.md#licensescontrollerv1deactivate) - Deactivate a license key instance.
 - [`licensesControllerV1Validate`](docs/sdks/creem/README.md#licensescontrollerv1validate) - Validates a license key or instance.
+- [`listTransactions`](docs/sdks/creem/README.md#listtransactions) - List all transactions
 - [`productsControllerV1Create`](docs/sdks/creem/README.md#productscontrollerv1create) - Creates a new product.
 - [`productsControllerV1Retrieve`](docs/sdks/creem/README.md#productscontrollerv1retrieve) - Retrieve a product
 - [`productsControllerV1Search`](docs/sdks/creem/README.md#productscontrollerv1search) - List all products
 - [`subscriptionsControllerV1Cancel`](docs/sdks/creem/README.md#subscriptionscontrollerv1cancel) - Cancel a subscription.
 - [`subscriptionsControllerV1Retrieve`](docs/sdks/creem/README.md#subscriptionscontrollerv1retrieve) - Retrieve a subscription
 - [`subscriptionsControllerV1Update`](docs/sdks/creem/README.md#subscriptionscontrollerv1update) - Update a subscription.
-- [`transactionsControllerV1Search`](docs/sdks/creem/README.md#transactionscontrollerv1search) - List all transactions
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

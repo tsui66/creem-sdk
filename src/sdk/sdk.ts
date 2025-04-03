@@ -12,13 +12,13 @@ import { discountsControllerV1Retrieve } from "../funcs/discountsControllerV1Ret
 import { licensesControllerV1Activate } from "../funcs/licensesControllerV1Activate.js";
 import { licensesControllerV1Deactivate } from "../funcs/licensesControllerV1Deactivate.js";
 import { licensesControllerV1Validate } from "../funcs/licensesControllerV1Validate.js";
+import { listTransactions } from "../funcs/listTransactions.js";
 import { productsControllerV1Create } from "../funcs/productsControllerV1Create.js";
 import { productsControllerV1Retrieve } from "../funcs/productsControllerV1Retrieve.js";
 import { productsControllerV1Search } from "../funcs/productsControllerV1Search.js";
 import { subscriptionsControllerV1Cancel } from "../funcs/subscriptionsControllerV1Cancel.js";
 import { subscriptionsControllerV1Retrieve } from "../funcs/subscriptionsControllerV1Retrieve.js";
 import { subscriptionsControllerV1Update } from "../funcs/subscriptionsControllerV1Update.js";
-import { transactionsControllerV1Search } from "../funcs/transactionsControllerV1Search.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -252,11 +252,11 @@ export class Creem extends ClientSDK {
   /**
    * List all transactions
    */
-  async transactionsControllerV1Search(
-    request: operations.TransactionsControllerV1SearchRequest,
+  async listTransactions(
+    request: operations.ListTransactionsRequest,
     options?: RequestOptions,
   ): Promise<components.TransactionListEntity> {
-    return unwrapAsync(transactionsControllerV1Search(
+    return unwrapAsync(listTransactions(
       this,
       request,
       options,
