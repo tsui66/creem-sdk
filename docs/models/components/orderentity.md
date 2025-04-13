@@ -7,7 +7,7 @@ import { OrderEntity } from "creem/models/components";
 
 let value: OrderEntity = {
   id: "<id>",
-  mode: "live",
+  mode: "test",
   object: "<value>",
   product: {},
   amount: 2000,

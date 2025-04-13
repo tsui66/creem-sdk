@@ -7,7 +7,7 @@ The type of the discount, either "percentage" or "fixed".
 ```typescript
 import { CreateDiscountRequestEntityType } from "creem/models/components";
 
-let value: CreateDiscountRequestEntityType = "percentage";
+let value: CreateDiscountRequestEntityType = "fixed";
 ```
 
 ## Values

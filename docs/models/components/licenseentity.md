@@ -7,7 +7,7 @@ import { LicenseEntity } from "creem/models/components";
 
 let value: LicenseEntity = {
   id: "<id>",
-  mode: "test",
+  mode: "sandbox",
   object: "<value>",
   status: "active",
   key: "ABC123-XYZ456-XYZ456-XYZ456",
@@ -18,7 +18,7 @@ let value: LicenseEntity = {
   instance: [
     {
       id: "<id>",
-      mode: "live",
+      mode: "test",
       object: "license-instance",
       name: "My Customer License Instance",
       status: "active",

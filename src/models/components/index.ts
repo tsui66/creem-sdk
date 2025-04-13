@@ -30,5 +30,6 @@ export * from "./text.js";
 export * from "./transactionentity.js";
 export * from "./transactionlistentity.js";
 export * from "./updatesubscriptionrequestentity.js";
+export * from "./upgradesubscriptionrequestentity.js";
 export * from "./upsertsubscriptionitementity.js";
 export * from "./validatelicenserequestentity.js";

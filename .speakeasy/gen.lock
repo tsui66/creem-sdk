@@ -1,24 +1,25 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: f0bc0bd3b1755d936b2c9f9890bf8307
+  docChecksum: 311ba43c266ed4a18dfd50ffac6ba7b8
   docVersion: v1
-  speakeasyVersion: 1.528.1
-  generationVersion: 2.565.1
-  releaseVersion: 0.1.10
-  configChecksum: 21ecbbca0f3b24c2ddd060e2ba997b54
+  speakeasyVersion: 1.531.4
+  generationVersion: 2.570.4
+  releaseVersion: 0.2.0
+  configChecksum: 5629f2be1078696278ae3250afece2ac
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.21.4
+    constsAndDefaults: 0.1.11
+    core: 3.21.6
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
-    mcpServer: 0.9.0
+    mcpServer: 0.9.1
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
@@ -38,6 +39,7 @@ generatedFiles:
   - docs/models/components/checkoutentity.md
   - docs/models/components/checkoutentitycustomer.md
   - docs/models/components/checkoutentitymode.md
+  - docs/models/components/checkoutentityproduct.md
   - docs/models/components/createcheckoutrequestentity.md
   - docs/models/components/createcustomerportallinkrequestentity.md
   - docs/models/components/creatediscountrequestentity.md
@@ -96,48 +98,53 @@ generatedFiles:
   - docs/models/components/transactionentitysubscription.md
   - docs/models/components/transactionlistentity.md
   - docs/models/components/type.md
+  - docs/models/components/updatebehavior.md
   - docs/models/components/updatesubscriptionrequestentity.md
+  - docs/models/components/upgradesubscriptionrequestentity.md
+  - docs/models/components/upgradesubscriptionrequestentityupdatebehavior.md
   - docs/models/components/upsertsubscriptionitementity.md
   - docs/models/components/validatelicenserequestentity.md
-  - docs/models/operations/activatelicenserequest.md
-  - docs/models/operations/cancelsubscriptionrequest.md
-  - docs/models/operations/createcheckoutrequest.md
-  - docs/models/operations/creatediscountrequest.md
-  - docs/models/operations/createproductrequest.md
-  - docs/models/operations/customerportalgenerateloginrequest.md
-  - docs/models/operations/deactivatelicenserequest.md
-  - docs/models/operations/deletediscountrequest.md
-  - docs/models/operations/getcheckoutrequest.md
-  - docs/models/operations/getcustomerrequest.md
-  - docs/models/operations/getdiscountrequest.md
-  - docs/models/operations/getproductrequest.md
-  - docs/models/operations/getsubscriptionrequest.md
-  - docs/models/operations/listproductsrequest.md
-  - docs/models/operations/listtransactionsrequest.md
-  - docs/models/operations/updatesubscriptionrequest.md
-  - docs/models/operations/validatelicenserequest.md
+  - docs/models/operations/checkoutscontrollerv1createcheckoutrequest.md
+  - docs/models/operations/checkoutscontrollerv1retrieverequest.md
+  - docs/models/operations/customersbillingcontrollerv1generaterequest.md
+  - docs/models/operations/customerscontrollerv1retrieverequest.md
+  - docs/models/operations/discountscontrollerv1createrequest.md
+  - docs/models/operations/discountscontrollerv1deleterequest.md
+  - docs/models/operations/discountscontrollerv1retrieverequest.md
+  - docs/models/operations/licensescontrollerv1activaterequest.md
+  - docs/models/operations/licensescontrollerv1deactivaterequest.md
+  - docs/models/operations/licensescontrollerv1validaterequest.md
+  - docs/models/operations/productscontrollerv1createrequest.md
+  - docs/models/operations/productscontrollerv1retrieverequest.md
+  - docs/models/operations/productscontrollerv1searchrequest.md
+  - docs/models/operations/subscriptionscontrollerv1cancelrequest.md
+  - docs/models/operations/subscriptionscontrollerv1retrieverequest.md
+  - docs/models/operations/subscriptionscontrollerv1updaterequest.md
+  - docs/models/operations/subscriptionscontrollerv1upgraderequest.md
+  - docs/models/operations/transactionscontrollerv1searchrequest.md
   - docs/sdks/creem/README.md
   - eslint.config.mjs
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/activateLicense.ts
-  - src/funcs/cancelSubscription.ts
-  - src/funcs/createCheckout.ts
-  - src/funcs/createDiscount.ts
-  - src/funcs/createProduct.ts
-  - src/funcs/customerPortalGenerateLogin.ts
-  - src/funcs/deactivateLicense.ts
-  - src/funcs/deleteDiscount.ts
-  - src/funcs/getCheckout.ts
-  - src/funcs/getCustomer.ts
-  - src/funcs/getDiscount.ts
-  - src/funcs/getProduct.ts
-  - src/funcs/getSubscription.ts
-  - src/funcs/listProducts.ts
-  - src/funcs/listTransactions.ts
-  - src/funcs/updateSubscription.ts
-  - src/funcs/validateLicense.ts
+  - src/funcs/checkoutsControllerV1CreateCheckout.ts
+  - src/funcs/checkoutsControllerV1Retrieve.ts
+  - src/funcs/customersBillingControllerV1Generate.ts
+  - src/funcs/customersControllerV1Retrieve.ts
+  - src/funcs/discountsControllerV1Create.ts
+  - src/funcs/discountsControllerV1Delete.ts
+  - src/funcs/discountsControllerV1Retrieve.ts
+  - src/funcs/licensesControllerV1Activate.ts
+  - src/funcs/licensesControllerV1Deactivate.ts
+  - src/funcs/licensesControllerV1Validate.ts
+  - src/funcs/productsControllerV1Create.ts
+  - src/funcs/productsControllerV1Retrieve.ts
+  - src/funcs/productsControllerV1Search.ts
+  - src/funcs/subscriptionsControllerV1Cancel.ts
+  - src/funcs/subscriptionsControllerV1Retrieve.ts
+  - src/funcs/subscriptionsControllerV1Update.ts
+  - src/funcs/subscriptionsControllerV1Upgrade.ts
+  - src/funcs/transactionsControllerV1Search.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts
@@ -171,23 +178,24 @@ generatedFiles:
   - src/mcp-server/server.ts
   - src/mcp-server/shared.ts
   - src/mcp-server/tools.ts
-  - src/mcp-server/tools/activateLicense.ts
-  - src/mcp-server/tools/cancelSubscription.ts
-  - src/mcp-server/tools/createCheckout.ts
-  - src/mcp-server/tools/createDiscount.ts
-  - src/mcp-server/tools/createProduct.ts
-  - src/mcp-server/tools/customerPortalGenerateLogin.ts
-  - src/mcp-server/tools/deactivateLicense.ts
-  - src/mcp-server/tools/deleteDiscount.ts
-  - src/mcp-server/tools/getCheckout.ts
-  - src/mcp-server/tools/getCustomer.ts
-  - src/mcp-server/tools/getDiscount.ts
-  - src/mcp-server/tools/getProduct.ts
-  - src/mcp-server/tools/getSubscription.ts
-  - src/mcp-server/tools/listProducts.ts
-  - src/mcp-server/tools/listTransactions.ts
-  - src/mcp-server/tools/updateSubscription.ts
-  - src/mcp-server/tools/validateLicense.ts
+  - src/mcp-server/tools/checkoutsControllerV1CreateCheckout.ts
+  - src/mcp-server/tools/checkoutsControllerV1Retrieve.ts
+  - src/mcp-server/tools/customersBillingControllerV1Generate.ts
+  - src/mcp-server/tools/customersControllerV1Retrieve.ts
+  - src/mcp-server/tools/discountsControllerV1Create.ts
+  - src/mcp-server/tools/discountsControllerV1Delete.ts
+  - src/mcp-server/tools/discountsControllerV1Retrieve.ts
+  - src/mcp-server/tools/licensesControllerV1Activate.ts
+  - src/mcp-server/tools/licensesControllerV1Deactivate.ts
+  - src/mcp-server/tools/licensesControllerV1Validate.ts
+  - src/mcp-server/tools/productsControllerV1Create.ts
+  - src/mcp-server/tools/productsControllerV1Retrieve.ts
+  - src/mcp-server/tools/productsControllerV1Search.ts
+  - src/mcp-server/tools/subscriptionsControllerV1Cancel.ts
+  - src/mcp-server/tools/subscriptionsControllerV1Retrieve.ts
+  - src/mcp-server/tools/subscriptionsControllerV1Update.ts
+  - src/mcp-server/tools/subscriptionsControllerV1Upgrade.ts
+  - src/mcp-server/tools/transactionsControllerV1Search.ts
   - src/models/components/activatelicenserequestentity.ts
   - src/models/components/checkoutentity.ts
   - src/models/components/createcheckoutrequestentity.ts
@@ -217,30 +225,32 @@ generatedFiles:
   - src/models/components/transactionentity.ts
   - src/models/components/transactionlistentity.ts
   - src/models/components/updatesubscriptionrequestentity.ts
+  - src/models/components/upgradesubscriptionrequestentity.ts
   - src/models/components/upsertsubscriptionitementity.ts
   - src/models/components/validatelicenserequestentity.ts
   - src/models/errors/apierror.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/operations/activatelicense.ts
-  - src/models/operations/cancelsubscription.ts
-  - src/models/operations/createcheckout.ts
-  - src/models/operations/creatediscount.ts
-  - src/models/operations/createproduct.ts
-  - src/models/operations/customerportalgeneratelogin.ts
-  - src/models/operations/deactivatelicense.ts
-  - src/models/operations/deletediscount.ts
-  - src/models/operations/getcheckout.ts
-  - src/models/operations/getcustomer.ts
-  - src/models/operations/getdiscount.ts
-  - src/models/operations/getproduct.ts
-  - src/models/operations/getsubscription.ts
+  - src/models/operations/checkoutscontrollerv1createcheckout.ts
+  - src/models/operations/checkoutscontrollerv1retrieve.ts
+  - src/models/operations/customersbillingcontrollerv1generate.ts
+  - src/models/operations/customerscontrollerv1retrieve.ts
+  - src/models/operations/discountscontrollerv1create.ts
+  - src/models/operations/discountscontrollerv1delete.ts
+  - src/models/operations/discountscontrollerv1retrieve.ts
   - src/models/operations/index.ts
-  - src/models/operations/listproducts.ts
-  - src/models/operations/listtransactions.ts
-  - src/models/operations/updatesubscription.ts
-  - src/models/operations/validatelicense.ts
+  - src/models/operations/licensescontrollerv1activate.ts
+  - src/models/operations/licensescontrollerv1deactivate.ts
+  - src/models/operations/licensescontrollerv1validate.ts
+  - src/models/operations/productscontrollerv1create.ts
+  - src/models/operations/productscontrollerv1retrieve.ts
+  - src/models/operations/productscontrollerv1search.ts
+  - src/models/operations/subscriptionscontrollerv1cancel.ts
+  - src/models/operations/subscriptionscontrollerv1retrieve.ts
+  - src/models/operations/subscriptionscontrollerv1update.ts
+  - src/models/operations/subscriptionscontrollerv1upgrade.ts
+  - src/models/operations/transactionscontrollerv1search.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
   - src/types/async.ts
@@ -277,7 +287,6 @@ examples:
   ProductsControllerV1_search:
     speakeasy-default-products-controller-v1-search:
       parameters:
-        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -286,7 +295,6 @@ examples:
   CustomersControllerV1_retrieve:
     speakeasy-default-customers-controller-v1-retrieve:
       parameters:
-        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -330,7 +338,19 @@ examples:
         header:
           x-api-key: "<value>"
       requestBody:
-        application/json: {}
+        application/json: {"update_behavior": "proration-charge"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "product": {}, "customer": {}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  SubscriptionsControllerV1_upgrade:
+    speakeasy-default-subscriptions-controller-v1-upgrade:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"product_id": "prod_123", "update_behavior": "proration-charge-immediately"}
       responses:
         "200":
           application/json: {"id": "<id>", "mode": "live", "object": "<value>", "product": {}, "customer": {}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
@@ -387,7 +407,6 @@ examples:
   DiscountsControllerV1_retrieve:
     speakeasy-default-discounts-controller-v1-retrieve:
       parameters:
-        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -416,179 +435,10 @@ examples:
   TransactionsControllerV1_search:
     speakeasy-default-transactions-controller-v1-search:
       parameters:
-        query: {}
         header:
           x-api-key: "<value>"
       responses:
         "200":
           application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 184.97}, {"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 1876.86}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
-  customerPortalGenerateLogin:
-    speakeasy-default-customer-portal-generate-login:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"customer_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"customer_portal_link": "<value>"}
-  listTransactions:
-    speakeasy-default-list-transactions:
-      parameters:
-        query: {}
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"items": [{"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 710.07}, {"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9758.89}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
-  getProduct:
-    speakeasy-default-get-product:
-      parameters:
-        query:
-          product_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  createProduct:
-    speakeasy-default-create-product:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "tax_mode": "inclusive", "tax_category": "saas", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}]}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  listProducts:
-    speakeasy-default-list-products:
-      parameters:
-        query: {}
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "{}", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
-  getCustomer:
-    speakeasy-default-get-customer:
-      parameters:
-        query: {}
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  getSubscription:
-    speakeasy-default-get-subscription:
-      parameters:
-        query:
-          subscription_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "product": {}, "customer": {}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  cancelSubscription:
-    speakeasy-default-cancel-subscription:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": {}, "customer": {}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  updateSubscription:
-    speakeasy-default-update-subscription:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": {}, "customer": {}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  getCheckout:
-    speakeasy-default-get-checkout:
-      parameters:
-        query:
-          checkout_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "<value>", "product": ["{}"], "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://white-ecliptic.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
-  createCheckout:
-    speakeasy-default-create-checkout:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"product_id": "<id>", "customer": {"id": "<id>", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}]}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": ["{}"], "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": {}, "amount": 2000, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://equatorial-meatloaf.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}]}
-  activateLicense:
-    speakeasy-default-activate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_name": "<value>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
-  deactivateLicense:
-    speakeasy-default-deactivate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
-  validateLicense:
-    speakeasy-default-validate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
-  getDiscount:
-    speakeasy-default-get-discount:
-      parameters:
-        query: {}
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
-  createDiscount:
-    speakeasy-default-create-discount:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"name": "Holiday Sale", "code": "HOLIDAY2024", "type": "fixed", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
-  deleteDiscount:
-    speakeasy-default-delete-discount:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
-examplesVersion: 1.0.0
+examplesVersion: 1.0.1
 generatedTests: {}

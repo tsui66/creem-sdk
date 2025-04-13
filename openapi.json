@@ -3,7 +3,7 @@
   "paths": {
     "/v1/products": {
       "get": {
-        "operationId": "getProduct",
+        "operationId": "ProductsControllerV1_retrieve",
         "summary": "Retrieve a product",
         "parameters": [
           {
@@ -38,7 +38,7 @@
         }
       },
       "post": {
-        "operationId": "createProduct",
+        "operationId": "ProductsControllerV1_create",
         "summary": "Creates a new product.",
         "parameters": [
           {
@@ -76,7 +76,7 @@
     },
     "/v1/products/search": {
       "get": {
-        "operationId": "listProducts",
+        "operationId": "ProductsControllerV1_search",
         "summary": "List all products",
         "parameters": [
           {
@@ -122,7 +122,7 @@
     },
     "/v1/customers": {
       "get": {
-        "operationId": "getCustomer",
+        "operationId": "CustomersControllerV1_retrieve",
         "summary": "Retrieve a customer",
         "parameters": [
           {
@@ -168,7 +168,7 @@
     },
     "/v1/customers/billing": {
       "post": {
-        "operationId": "customerPortalGenerateLogin",
+        "operationId": "CustomersBillingControllerV1_generate",
         "summary": "Generate Customer Links",
         "parameters": [
           {
@@ -206,7 +206,7 @@
     },
     "/v1/subscriptions": {
       "get": {
-        "operationId": "getSubscription",
+        "operationId": "SubscriptionsControllerV1_retrieve",
         "summary": "Retrieve a subscription",
         "parameters": [
           {
@@ -243,7 +243,7 @@
     },
     "/v1/subscriptions/{id}/cancel": {
       "post": {
-        "operationId": "cancelSubscription",
+        "operationId": "SubscriptionsControllerV1_cancel",
         "summary": "Cancel a subscription.",
         "parameters": [
           {
@@ -279,7 +279,7 @@
     },
     "/v1/subscriptions/{id}": {
       "post": {
-        "operationId": "updateSubscription",
+        "operationId": "SubscriptionsControllerV1_update",
         "summary": "Update a subscription.",
         "parameters": [
           {
@@ -323,9 +323,55 @@
         }
       }
     },
+    "/v1/subscriptions/{id}/upgrade": {
+      "post": {
+        "operationId": "SubscriptionsControllerV1_upgrade",
+        "summary": "Upgrade a subscription to a different product",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpgradeSubscriptionRequestEntity"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully upgraded the subscription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionEntity"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/checkouts": {
       "get": {
-        "operationId": "getCheckout",
+        "operationId": "CheckoutsControllerV1_retrieve",
         "summary": "Retrieve a new checkout session.",
         "parameters": [
           {
@@ -359,7 +405,7 @@
         }
       },
       "post": {
-        "operationId": "createCheckout",
+        "operationId": "CheckoutsControllerV1_createCheckout",
         "summary": "Creates a new checkout session.",
         "parameters": [
           {
@@ -397,7 +443,7 @@
     },
     "/v1/licenses/activate": {
       "post": {
-        "operationId": "activateLicense",
+        "operationId": "LicensesControllerV1_activate",
         "summary": "Activates a license key.",
         "parameters": [
           {
@@ -435,7 +481,7 @@
     },
     "/v1/licenses/deactivate": {
       "post": {
-        "operationId": "deactivateLicense",
+        "operationId": "LicensesControllerV1_deactivate",
         "summary": "Deactivate a license key instance.",
         "parameters": [
           {
@@ -473,7 +519,7 @@
     },
     "/v1/licenses/validate": {
       "post": {
-        "operationId": "validateLicense",
+        "operationId": "LicensesControllerV1_validate",
         "summary": "Validates a license key or instance.",
         "parameters": [
           {
@@ -511,7 +557,7 @@
     },
     "/v1/discounts": {
       "get": {
-        "operationId": "getDiscount",
+        "operationId": "DiscountsControllerV1_retrieve",
         "summary": "Retrieve discount",
         "parameters": [
           {
@@ -555,7 +601,7 @@
         }
       },
       "post": {
-        "operationId": "createDiscount",
+        "operationId": "DiscountsControllerV1_create",
         "summary": "Create a discount.",
         "parameters": [
           {
@@ -593,7 +639,7 @@
     },
     "/v1/discounts/{id}/delete": {
       "delete": {
-        "operationId": "deleteDiscount",
+        "operationId": "DiscountsControllerV1_delete",
         "summary": "Delete a discount.",
         "parameters": [
           {
@@ -629,7 +675,7 @@
     },
     "/v1/transactions/search": {
       "get": {
-        "operationId": "listTransactions",
+        "operationId": "TransactionsControllerV1_search",
         "summary": "List all transactions",
         "parameters": [
           {
@@ -751,8 +797,7 @@
           },
           "object": {
             "type": "string",
-            "description": "String representing the object’s type. Objects of the same type share the same value.",
-            "nullable": true
+            "description": "String representing the object’s type. Objects of the same type share the same value."
           },
           "name": {
             "type": "string",
@@ -766,8 +811,7 @@
           "image_url": {
             "type": "string",
             "description": "URL of the product image. Only png as jpg are supported",
-            "example": "https://example.com/image.jpg",
-            "nullable": true
+            "example": "https://example.com/image.jpg"
           },
           "features": {
             "description": "Features of the product.",
@@ -1257,8 +1301,39 @@
             "items": {
               "$ref": "#/components/schemas/UpsertSubscriptionItemEntity"
             }
+          },
+          "update_behavior": {
+            "type": "string",
+            "description": "The update behavior for the subscription (defaults to proration)",
+            "enum": [
+              "proration-charge-immediately",
+              "proration-charge",
+              "proration-none"
+            ],
+            "default": "proration-charge"
           }
         }
+      },
+      "UpgradeSubscriptionRequestEntity": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "description": "The ID of the product to upgrade to",
+            "example": "prod_123"
+          },
+          "update_behavior": {
+            "type": "string",
+            "description": "The update behavior for the subscription (defaults to proration-charge-immediately)",
+            "enum": [
+              "proration-charge-immediately",
+              "proration-charge",
+              "proration-none"
+            ],
+            "default": "proration-charge-immediately"
+          }
+        },
+        "required": ["product_id"]
       },
       "OrderEntity": {
         "type": "object",
@@ -1532,11 +1607,8 @@
             "description": "Identify and track each checkout request."
           },
           "product": {
-            "description": "The product associated with the checkout session.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "object",
+            "description": "The product associated with the checkout session."
           },
           "units": {
             "type": "number",

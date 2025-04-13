@@ -8,7 +8,7 @@ import { CreateDiscountRequestEntity } from "creem/models/components";
 let value: CreateDiscountRequestEntity = {
   name: "Holiday Sale",
   code: "HOLIDAY2024",
-  type: "fixed",
+  type: "percentage",
   amount: 20,
   currency: "USD",
   percentage: 15,

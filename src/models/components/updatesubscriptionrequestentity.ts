@@ -3,7 +3,9 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -13,12 +15,50 @@ import {
   UpsertSubscriptionItemEntity$outboundSchema,
 } from "./upsertsubscriptionitementity.js";
 
+/**
+ * The update behavior for the subscription (defaults to proration)
+ */
+export const UpdateBehavior = {
+  ProrationChargeImmediately: "proration-charge-immediately",
+  ProrationCharge: "proration-charge",
+  ProrationNone: "proration-none",
+} as const;
+/**
+ * The update behavior for the subscription (defaults to proration)
+ */
+export type UpdateBehavior = ClosedEnum<typeof UpdateBehavior>;
+
 export type UpdateSubscriptionRequestEntity = {
   /**
    * List of subscription items to update/create. If no item ID is provided, the item will be created.
    */
   items?: Array<UpsertSubscriptionItemEntity> | undefined;
+  /**
+   * The update behavior for the subscription (defaults to proration)
+   */
+  updateBehavior?: UpdateBehavior | undefined;
 };
+
+/** @internal */
+export const UpdateBehavior$inboundSchema: z.ZodNativeEnum<
+  typeof UpdateBehavior
+> = z.nativeEnum(UpdateBehavior);
+
+/** @internal */
+export const UpdateBehavior$outboundSchema: z.ZodNativeEnum<
+  typeof UpdateBehavior
+> = UpdateBehavior$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UpdateBehavior$ {
+  /** @deprecated use `UpdateBehavior$inboundSchema` instead. */
+  export const inboundSchema = UpdateBehavior$inboundSchema;
+  /** @deprecated use `UpdateBehavior$outboundSchema` instead. */
+  export const outboundSchema = UpdateBehavior$outboundSchema;
+}
 
 /** @internal */
 export const UpdateSubscriptionRequestEntity$inboundSchema: z.ZodType<
@@ -27,11 +67,17 @@ export const UpdateSubscriptionRequestEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   items: z.array(UpsertSubscriptionItemEntity$inboundSchema).optional(),
+  update_behavior: UpdateBehavior$inboundSchema.default("proration-charge"),
+}).transform((v) => {
+  return remap$(v, {
+    "update_behavior": "updateBehavior",
+  });
 });
 
 /** @internal */
 export type UpdateSubscriptionRequestEntity$Outbound = {
   items?: Array<UpsertSubscriptionItemEntity$Outbound> | undefined;
+  update_behavior: string;
 };
 
 /** @internal */
@@ -41,6 +87,11 @@ export const UpdateSubscriptionRequestEntity$outboundSchema: z.ZodType<
   UpdateSubscriptionRequestEntity
 > = z.object({
   items: z.array(UpsertSubscriptionItemEntity$outboundSchema).optional(),
+  updateBehavior: UpdateBehavior$outboundSchema.default("proration-charge"),
+}).transform((v) => {
+  return remap$(v, {
+    updateBehavior: "update_behavior",
+  });
 });
 
 /**

@@ -17,7 +17,7 @@ let value: TransactionEntity = {
   taxAmount: 2000,
   status: "<value>",
   refundedAmount: 2000,
-  createdAt: 9437.49,
+  createdAt: 719.45,
 };
 ```
 

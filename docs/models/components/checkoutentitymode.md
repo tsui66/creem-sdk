@@ -7,7 +7,7 @@ String representing the environment.
 ```typescript
 import { CheckoutEntityMode } from "creem/models/components";
 
-let value: CheckoutEntityMode = "live";
+let value: CheckoutEntityMode = "sandbox";
 ```
 
 ## Values

@@ -7,7 +7,7 @@ import { ProductEntity } from "creem/models/components";
 
 let value: ProductEntity = {
   id: "<id>",
-  mode: "sandbox",
+  mode: "test",
   object: "<value>",
   name: "<value>",
   description: "This is a sample product description.",

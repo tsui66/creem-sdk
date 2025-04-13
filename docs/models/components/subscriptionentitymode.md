@@ -7,7 +7,7 @@ String representing the environment.
 ```typescript
 import { SubscriptionEntityMode } from "creem/models/components";
 
-let value: SubscriptionEntityMode = "live";
+let value: SubscriptionEntityMode = "test";
 ```
 
 ## Values

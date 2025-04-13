@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { getProduct } from "creem/funcs/getProduct.js";
+import { productsControllerV1Retrieve } from "creem/funcs/productsControllerV1Retrieve.js";
 import { SDKValidationError } from "creem/models/errors/sdkvalidationerror.js";
 
 // Use `CreemCore` for best tree-shaking performance.
@@ -28,7 +28,7 @@ import { SDKValidationError } from "creem/models/errors/sdkvalidationerror.js";
 const creem = new CreemCore();
 
 async function run() {
-  const res = await getProduct(creem, {
+  const res = await productsControllerV1Retrieve(creem, {
     productId: "<id>",
     xApiKey: "<value>",
   });

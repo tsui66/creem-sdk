@@ -47,6 +47,11 @@ export const CheckoutEntityMode = {
 export type CheckoutEntityMode = ClosedEnum<typeof CheckoutEntityMode>;
 
 /**
+ * The product associated with the checkout session.
+ */
+export type CheckoutEntityProduct = {};
+
+/**
  * The subscription associated with the checkout session.
  */
 export type Subscription = {};
@@ -80,7 +85,7 @@ export type CheckoutEntity = {
   /**
    * The product associated with the checkout session.
    */
-  product: Array<string>;
+  product: CheckoutEntityProduct;
   /**
    * The number of units for the of the product.
    */
@@ -138,6 +143,54 @@ export namespace CheckoutEntityMode$ {
   export const inboundSchema = CheckoutEntityMode$inboundSchema;
   /** @deprecated use `CheckoutEntityMode$outboundSchema` instead. */
   export const outboundSchema = CheckoutEntityMode$outboundSchema;
+}
+
+/** @internal */
+export const CheckoutEntityProduct$inboundSchema: z.ZodType<
+  CheckoutEntityProduct,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type CheckoutEntityProduct$Outbound = {};
+
+/** @internal */
+export const CheckoutEntityProduct$outboundSchema: z.ZodType<
+  CheckoutEntityProduct$Outbound,
+  z.ZodTypeDef,
+  CheckoutEntityProduct
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CheckoutEntityProduct$ {
+  /** @deprecated use `CheckoutEntityProduct$inboundSchema` instead. */
+  export const inboundSchema = CheckoutEntityProduct$inboundSchema;
+  /** @deprecated use `CheckoutEntityProduct$outboundSchema` instead. */
+  export const outboundSchema = CheckoutEntityProduct$outboundSchema;
+  /** @deprecated use `CheckoutEntityProduct$Outbound` instead. */
+  export type Outbound = CheckoutEntityProduct$Outbound;
+}
+
+export function checkoutEntityProductToJSON(
+  checkoutEntityProduct: CheckoutEntityProduct,
+): string {
+  return JSON.stringify(
+    CheckoutEntityProduct$outboundSchema.parse(checkoutEntityProduct),
+  );
+}
+
+export function checkoutEntityProductFromJSON(
+  jsonString: string,
+): SafeParseResult<CheckoutEntityProduct, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CheckoutEntityProduct$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutEntityProduct' from JSON`,
+  );
 }
 
 /** @internal */
@@ -243,7 +296,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   object: z.string(),
   status: z.string(),
   request_id: z.string().optional(),
-  product: z.array(z.string()),
+  product: z.lazy(() => CheckoutEntityProduct$inboundSchema),
   units: z.number().optional(),
   order: OrderEntity$inboundSchema.optional(),
   subscription: z.lazy(() => Subscription$inboundSchema).optional(),
@@ -269,7 +322,7 @@ export type CheckoutEntity$Outbound = {
   object: string;
   status: string;
   request_id?: string | undefined;
-  product: Array<string>;
+  product: CheckoutEntityProduct$Outbound;
   units?: number | undefined;
   order?: OrderEntity$Outbound | undefined;
   subscription?: Subscription$Outbound | undefined;
@@ -292,7 +345,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   object: z.string(),
   status: z.string(),
   requestId: z.string().optional(),
-  product: z.array(z.string()),
+  product: z.lazy(() => CheckoutEntityProduct$outboundSchema),
   units: z.number().optional(),
   order: OrderEntity$outboundSchema.optional(),
   subscription: z.lazy(() => Subscription$outboundSchema).optional(),

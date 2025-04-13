@@ -40,7 +40,7 @@ export type ProductEntity = {
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
-  object: string | null;
+  object: string;
   /**
    * The name of the product
    */
@@ -52,7 +52,7 @@ export type ProductEntity = {
   /**
    * URL of the product image. Only png as jpg are supported
    */
-  imageUrl?: string | null | undefined;
+  imageUrl?: string | undefined;
   /**
    * Features of the product.
    */
@@ -131,10 +131,10 @@ export const ProductEntity$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$inboundSchema,
-  object: z.nullable(z.string()),
+  object: z.string(),
   name: z.string(),
   description: z.string(),
-  image_url: z.nullable(z.string()).optional(),
+  image_url: z.string().optional(),
   features: z.array(FeatureEntity$inboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
@@ -165,10 +165,10 @@ export const ProductEntity$inboundSchema: z.ZodType<
 export type ProductEntity$Outbound = {
   id: string;
   mode: string;
-  object: string | null;
+  object: string;
   name: string;
   description: string;
-  image_url?: string | null | undefined;
+  image_url?: string | undefined;
   features?: Array<FeatureEntity$Outbound> | undefined;
   price: number;
   currency: string;
@@ -191,10 +191,10 @@ export const ProductEntity$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   mode: Mode$outboundSchema,
-  object: z.nullable(z.string()),
+  object: z.string(),
   name: z.string(),
   description: z.string(),
-  imageUrl: z.nullable(z.string()).optional(),
+  imageUrl: z.string().optional(),
   features: z.array(FeatureEntity$outboundSchema).optional(),
   price: z.number(),
   currency: z.string(),

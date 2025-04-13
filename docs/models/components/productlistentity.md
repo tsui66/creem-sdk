@@ -9,7 +9,7 @@ let value: ProductListEntity = {
   items: [
     {
       id: "<id>",
-      mode: "live",
+      mode: "test",
       object: "<value>",
       name: "<value>",
       description: "This is a sample product description.",

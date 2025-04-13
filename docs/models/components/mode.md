@@ -7,7 +7,7 @@ String representing the environment.
 ```typescript
 import { Mode } from "creem/models/components";
 
-let value: Mode = "live";
+let value: Mode = "sandbox";
 ```
 
 ## Values

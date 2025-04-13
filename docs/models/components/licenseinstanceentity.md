@@ -7,7 +7,7 @@ import { LicenseInstanceEntity } from "creem/models/components";
 
 let value: LicenseInstanceEntity = {
   id: "<id>",
-  mode: "sandbox",
+  mode: "test",
   object: "license-instance",
   name: "My Customer License Instance",
   status: "active",

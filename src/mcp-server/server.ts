@@ -11,25 +11,26 @@ import {
   createRegisterResource,
   createRegisterResourceTemplate,
 } from "./resources.js";
-import { MCPScope, mcpScopes } from "./scopes.js";
+import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
-import { tool$activateLicense } from "./tools/activateLicense.js";
-import { tool$cancelSubscription } from "./tools/cancelSubscription.js";
-import { tool$createCheckout } from "./tools/createCheckout.js";
-import { tool$createDiscount } from "./tools/createDiscount.js";
-import { tool$createProduct } from "./tools/createProduct.js";
-import { tool$customerPortalGenerateLogin } from "./tools/customerPortalGenerateLogin.js";
-import { tool$deactivateLicense } from "./tools/deactivateLicense.js";
-import { tool$deleteDiscount } from "./tools/deleteDiscount.js";
-import { tool$getCheckout } from "./tools/getCheckout.js";
-import { tool$getCustomer } from "./tools/getCustomer.js";
-import { tool$getDiscount } from "./tools/getDiscount.js";
-import { tool$getProduct } from "./tools/getProduct.js";
-import { tool$getSubscription } from "./tools/getSubscription.js";
-import { tool$listProducts } from "./tools/listProducts.js";
-import { tool$listTransactions } from "./tools/listTransactions.js";
-import { tool$updateSubscription } from "./tools/updateSubscription.js";
-import { tool$validateLicense } from "./tools/validateLicense.js";
+import { tool$checkoutsControllerV1CreateCheckout } from "./tools/checkoutsControllerV1CreateCheckout.js";
+import { tool$checkoutsControllerV1Retrieve } from "./tools/checkoutsControllerV1Retrieve.js";
+import { tool$customersBillingControllerV1Generate } from "./tools/customersBillingControllerV1Generate.js";
+import { tool$customersControllerV1Retrieve } from "./tools/customersControllerV1Retrieve.js";
+import { tool$discountsControllerV1Create } from "./tools/discountsControllerV1Create.js";
+import { tool$discountsControllerV1Delete } from "./tools/discountsControllerV1Delete.js";
+import { tool$discountsControllerV1Retrieve } from "./tools/discountsControllerV1Retrieve.js";
+import { tool$licensesControllerV1Activate } from "./tools/licensesControllerV1Activate.js";
+import { tool$licensesControllerV1Deactivate } from "./tools/licensesControllerV1Deactivate.js";
+import { tool$licensesControllerV1Validate } from "./tools/licensesControllerV1Validate.js";
+import { tool$productsControllerV1Create } from "./tools/productsControllerV1Create.js";
+import { tool$productsControllerV1Retrieve } from "./tools/productsControllerV1Retrieve.js";
+import { tool$productsControllerV1Search } from "./tools/productsControllerV1Search.js";
+import { tool$subscriptionsControllerV1Cancel } from "./tools/subscriptionsControllerV1Cancel.js";
+import { tool$subscriptionsControllerV1Retrieve } from "./tools/subscriptionsControllerV1Retrieve.js";
+import { tool$subscriptionsControllerV1Update } from "./tools/subscriptionsControllerV1Update.js";
+import { tool$subscriptionsControllerV1Upgrade } from "./tools/subscriptionsControllerV1Upgrade.js";
+import { tool$transactionsControllerV1Search } from "./tools/transactionsControllerV1Search.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -40,7 +41,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.1.10",
+    version: "0.2.0",
   });
 
   const client = new CreemCore({
@@ -48,7 +49,7 @@ export function createMCPServer(deps: {
     serverIdx: deps.serverIdx,
   });
 
-  const scopes = new Set(deps.scopes ?? mcpScopes);
+  const scopes = new Set(deps.scopes);
 
   const allowedTools = deps.allowedTools && new Set(deps.allowedTools);
   const tool = createRegisterTool(
@@ -69,23 +70,24 @@ export function createMCPServer(deps: {
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
-  tool(tool$getProduct);
-  tool(tool$createProduct);
-  tool(tool$listProducts);
-  tool(tool$getCustomer);
-  tool(tool$customerPortalGenerateLogin);
-  tool(tool$getSubscription);
-  tool(tool$cancelSubscription);
-  tool(tool$updateSubscription);
-  tool(tool$getCheckout);
-  tool(tool$createCheckout);
-  tool(tool$activateLicense);
-  tool(tool$deactivateLicense);
-  tool(tool$validateLicense);
-  tool(tool$getDiscount);
-  tool(tool$createDiscount);
-  tool(tool$deleteDiscount);
-  tool(tool$listTransactions);
+  tool(tool$productsControllerV1Retrieve);
+  tool(tool$productsControllerV1Create);
+  tool(tool$productsControllerV1Search);
+  tool(tool$customersControllerV1Retrieve);
+  tool(tool$customersBillingControllerV1Generate);
+  tool(tool$subscriptionsControllerV1Retrieve);
+  tool(tool$subscriptionsControllerV1Cancel);
+  tool(tool$subscriptionsControllerV1Update);
+  tool(tool$subscriptionsControllerV1Upgrade);
+  tool(tool$checkoutsControllerV1Retrieve);
+  tool(tool$checkoutsControllerV1CreateCheckout);
+  tool(tool$licensesControllerV1Activate);
+  tool(tool$licensesControllerV1Deactivate);
+  tool(tool$licensesControllerV1Validate);
+  tool(tool$discountsControllerV1Retrieve);
+  tool(tool$discountsControllerV1Create);
+  tool(tool$discountsControllerV1Delete);
+  tool(tool$transactionsControllerV1Search);
 
   return server;
 }
