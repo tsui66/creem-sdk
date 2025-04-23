@@ -1880,7 +1880,7 @@
           "units": {
             "type": "number",
             "description": "The number of units for the of the product.",
-            "default": 0
+            "default": 1
           },
           "order": {
             "description": "The order associated with the checkout session.",
@@ -1944,17 +1944,15 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier of the customer. You may specify only one of these parameters: id or email."
+            "description": "Unique identifier of the customer. You may specify only one of these parameters: id or email.",
+            "example": "cust_1234567890"
           },
           "email": {
             "type": "string",
             "description": "Customer email address. You may only specify one of these parameters: id, email.",
             "example": "user@example.com"
           }
-        },
-        "required": [
-          "id"
-        ]
+        }
       },
       "CreateCheckoutRequestEntity": {
         "type": "object",

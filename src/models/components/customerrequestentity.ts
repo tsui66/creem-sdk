@@ -11,7 +11,7 @@ export type CustomerRequestEntity = {
   /**
    * Unique identifier of the customer. You may specify only one of these parameters: id or email.
    */
-  id: string;
+  id?: string | undefined;
   /**
    * Customer email address. You may only specify one of these parameters: id, email.
    */
@@ -24,13 +24,13 @@ export const CustomerRequestEntity$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   email: z.string().optional(),
 });
 
 /** @internal */
 export type CustomerRequestEntity$Outbound = {
-  id: string;
+  id?: string | undefined;
   email?: string | undefined;
 };
 
@@ -40,7 +40,7 @@ export const CustomerRequestEntity$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomerRequestEntity
 > = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   email: z.string().optional(),
 });
 

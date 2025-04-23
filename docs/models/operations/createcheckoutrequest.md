@@ -10,7 +10,7 @@ let value: CreateCheckoutRequest = {
   createCheckoutRequestEntity: {
     productId: "<id>",
     customer: {
-      id: "<id>",
+      id: "cust_1234567890",
       email: "user@example.com",
     },
     customField: [

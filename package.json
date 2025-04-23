@@ -1,7 +1,14 @@
 {
   "name": "creem",
-  "version": "0.3.0",
+  "version": "0.3.6",
   "author": "Speakeasy",
+  "scripts": {
+    "lint": "eslint --cache --max-warnings=0 src",
+    "build:mcp": "bun src/mcp-server/build.mts",
+    "build": "npm run build:mcp && tshy",
+    "prepublishOnly": "npm run build",
+     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
   "type": "module",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -22,13 +29,6 @@
     }
   },
   "sideEffects": false,
-  "scripts": {
-    "lint": "eslint --cache --max-warnings=0 src",
-    "build:mcp": "bun src/mcp-server/build.mts",
-    "build": "npm run build:mcp && tshy",
-    "prepublishOnly": "npm run build",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
-  },
   "peerDependencies": {
     "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
     "zod": ">= 3"
@@ -57,6 +57,7 @@
     "typescript-eslint": "^8.22.0",
     "zod": "^3.23.4"
   },
+  "dependencies": {},
   "exports": {
     ".": {
       "import": {

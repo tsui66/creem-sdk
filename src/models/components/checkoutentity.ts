@@ -307,7 +307,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   status: z.string(),
   request_id: z.string().optional(),
   product: z.union([ProductEntity$inboundSchema, z.string()]),
-  units: z.number().default(0),
+  units: z.number().default(1),
   order: OrderEntity$inboundSchema.optional(),
   subscription: z.lazy(() => CheckoutEntitySubscription$inboundSchema)
     .optional(),
@@ -357,7 +357,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   status: z.string(),
   requestId: z.string().optional(),
   product: z.union([ProductEntity$outboundSchema, z.string()]),
-  units: z.number().default(0),
+  units: z.number().default(1),
   order: OrderEntity$outboundSchema.optional(),
   subscription: z.lazy(() => CheckoutEntitySubscription$outboundSchema)
     .optional(),
