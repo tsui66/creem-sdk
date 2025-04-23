@@ -1832,12 +1832,6 @@
           "license"
         ]
       },
-      "MetadataEntity": {
-        "type": "object",
-        "properties": {
-
-        }
-      },
       "CheckoutEntity": {
         "type": "object",
         "properties": {
@@ -1923,11 +1917,14 @@
             }
           },
           "metadata": {
-            "description": "A key-value pair where the key is a string, and the value can be a string, number, or null.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetadataEntity"
-            }
+            "type": "object",
+            "description": "Metadata for the checkout in the form of key-value pairs",
+            "example": {
+              "userId": "user_123",
+              "visitCount": 42,
+              "lastVisit": "2023-04-01"
+            },
+            "additionalProperties": true
           }
         },
         "required": [
@@ -1963,15 +1960,18 @@
           },
           "product_id": {
             "type": "string",
-            "description": "The ID of the product associated with the checkout session."
+            "description": "The ID of the product associated with the checkout session.",
+            "example": "prod_1234567890"
           },
           "units": {
             "type": "number",
-            "description": "The number of units for the order."
+            "description": "The number of units for the order.",
+            "example": 1
           },
           "discount_code": {
             "type": "string",
-            "description": "Prefill the checkout session with a discount code."
+            "description": "Prefill the checkout session with a discount code.",
+            "example": "SUMMER2024"
           },
           "customer": {
             "description": "Customer data for checkout session. This will prefill the customer info on the checkout page",
@@ -1993,11 +1993,14 @@
             "description": "The URL to which the user will be redirected after the checkout process is completed."
           },
           "metadata": {
-            "description": "A key-value pair where the key is a string, and the value can be a string, number, or null. This metadata will be propagated across all related objects, such as subscriptions and customers.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetadataEntity"
-            }
+            "type": "object",
+            "description": "Metadata for the checkout in the form of key-value pairs",
+            "example": {
+              "userId": "user_123",
+              "visitCount": 42,
+              "lastVisit": "2023-04-01"
+            },
+            "additionalProperties": true
           }
         },
         "required": [

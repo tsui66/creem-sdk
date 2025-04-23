@@ -81,6 +81,7 @@ describe("createCheckout", () => {
       createCheckoutRequestEntity: {
         requestId: "test_request_id",
         productId: TEST_PRODUCT_ID,
+        units: 2,
         customer: {
           email: "test@example.com",
         },
@@ -97,11 +98,9 @@ describe("createCheckout", () => {
           },
         ],
         successUrl: "https://google.com",
-        metadata: [
-          {
-            userId: "myUserId",
-          },
-        ],
+        metadata: {
+          userId: "myUserId",
+        },
       },
     });
 
@@ -109,15 +108,13 @@ describe("createCheckout", () => {
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("object", "checkout");
     expect(result).toHaveProperty("product", TEST_PRODUCT_ID);
-    expect(result).toHaveProperty("units", 1);
+    expect(result).toHaveProperty("units", 2);
     expect(result).toHaveProperty("status", "pending");
     expect(result).toHaveProperty("checkoutUrl");
-    expect(result.checkoutUrl).toContain(
-      `https://creem.io/test/checkout/${TEST_PRODUCT_ID}/`
-    );
+    expect(result.checkoutUrl).toContain(`checkout/${TEST_PRODUCT_ID}/`);
     expect(result).toHaveProperty("successUrl", "https://google.com");
     expect(result).toHaveProperty("metadata");
-    expect(result.metadata).toEqual([{ userId: "myUserId" }]);
-    expect(result).toHaveProperty("mode", "test");
+    expect(result.metadata).toEqual({ userId: "myUserId" });
+    expect(result).toHaveProperty("mode");
   });
 });

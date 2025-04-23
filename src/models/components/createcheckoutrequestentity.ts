@@ -19,12 +19,6 @@ import {
   CustomFieldRequestEntity$Outbound,
   CustomFieldRequestEntity$outboundSchema,
 } from "./customfieldrequestentity.js";
-import {
-  MetadataEntity,
-  MetadataEntity$inboundSchema,
-  MetadataEntity$Outbound,
-  MetadataEntity$outboundSchema,
-} from "./metadataentity.js";
 
 export type CreateCheckoutRequestEntity = {
   /**
@@ -56,9 +50,9 @@ export type CreateCheckoutRequestEntity = {
    */
   successUrl?: string | undefined;
   /**
-   * A key-value pair where the key is a string, and the value can be a string, number, or null. This metadata will be propagated across all related objects, such as subscriptions and customers.
+   * Metadata for the checkout in the form of key-value pairs
    */
-  metadata?: Array<MetadataEntity> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -74,7 +68,7 @@ export const CreateCheckoutRequestEntity$inboundSchema: z.ZodType<
   customer: CustomerRequestEntity$inboundSchema.optional(),
   custom_field: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
   success_url: z.string().optional(),
-  metadata: z.array(MetadataEntity$inboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "request_id": "requestId",
@@ -94,7 +88,7 @@ export type CreateCheckoutRequestEntity$Outbound = {
   customer?: CustomerRequestEntity$Outbound | undefined;
   custom_field?: Array<CustomFieldRequestEntity$Outbound> | undefined;
   success_url?: string | undefined;
-  metadata?: Array<MetadataEntity$Outbound> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -110,7 +104,7 @@ export const CreateCheckoutRequestEntity$outboundSchema: z.ZodType<
   customer: CustomerRequestEntity$outboundSchema.optional(),
   customField: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
   successUrl: z.string().optional(),
-  metadata: z.array(MetadataEntity$outboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     requestId: "request_id",

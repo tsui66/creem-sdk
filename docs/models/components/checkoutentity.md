@@ -85,6 +85,11 @@ let value: CheckoutEntity = {
       },
     },
   ],
+  metadata: {
+    "userId": "user_123",
+    "visitCount": 42,
+    "lastVisit": "2023-04-01",
+  },
 };
 ```
 
@@ -106,4 +111,4 @@ let value: CheckoutEntity = {
 | `checkoutUrl`                                                                                  | *string*                                                                                       | :heavy_check_mark:                                                                             | The URL to which the customer will be redirected to complete the payment.                      |                                                                                                |
 | `successUrl`                                                                                   | *string*                                                                                       | :heavy_minus_sign:                                                                             | The URL to which the user will be redirected after the checkout process is completed.          | https://example.com/return                                                                     |
 | `feature`                                                                                      | [components.ProductFeatureEntity](../../models/components/productfeatureentity.md)[]           | :heavy_minus_sign:                                                                             | Features issued for the order.                                                                 |                                                                                                |
-| `metadata`                                                                                     | [components.MetadataEntity](../../models/components/metadataentity.md)[]                       | :heavy_minus_sign:                                                                             | A key-value pair where the key is a string, and the value can be a string, number, or null.    |                                                                                                |
+| `metadata`                                                                                     | Record<string, *any*>                                                                          | :heavy_minus_sign:                                                                             | Metadata for the checkout in the form of key-value pairs                                       | {<br/>"userId": "user_123",<br/>"visitCount": 42,<br/>"lastVisit": "2023-04-01"<br/>}          |

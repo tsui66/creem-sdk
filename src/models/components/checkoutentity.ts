@@ -15,12 +15,6 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  MetadataEntity,
-  MetadataEntity$inboundSchema,
-  MetadataEntity$Outbound,
-  MetadataEntity$outboundSchema,
-} from "./metadataentity.js";
-import {
   OrderEntity,
   OrderEntity$inboundSchema,
   OrderEntity$Outbound,
@@ -125,9 +119,9 @@ export type CheckoutEntity = {
    */
   feature?: Array<ProductFeatureEntity> | undefined;
   /**
-   * A key-value pair where the key is a string, and the value can be a string, number, or null.
+   * Metadata for the checkout in the form of key-value pairs
    */
-  metadata?: Array<MetadataEntity> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -316,7 +310,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   checkout_url: z.string(),
   success_url: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$inboundSchema).optional(),
-  metadata: z.array(MetadataEntity$inboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "request_id": "requestId",
@@ -342,7 +336,7 @@ export type CheckoutEntity$Outbound = {
   checkout_url: string;
   success_url?: string | null | undefined;
   feature?: Array<ProductFeatureEntity$Outbound> | undefined;
-  metadata?: Array<MetadataEntity$Outbound> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -366,7 +360,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   checkoutUrl: z.string(),
   successUrl: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$outboundSchema).optional(),
-  metadata: z.array(MetadataEntity$outboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     requestId: "request_id",

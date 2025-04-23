@@ -876,7 +876,9 @@ async function run() {
   const result = await creem.createCheckout({
     xApiKey: "<value>",
     createCheckoutRequestEntity: {
-      productId: "<id>",
+      productId: "prod_1234567890",
+      units: 1,
+      discountCode: "SUMMER2024",
       customer: {
         id: "cust_1234567890",
         email: "user@example.com",
@@ -898,6 +900,11 @@ async function run() {
           label: "<value>",
         },
       ],
+      metadata: {
+        "userId": "user_123",
+        "visitCount": 42,
+        "lastVisit": "2023-04-01",
+      },
     },
   });
 
@@ -924,7 +931,9 @@ async function run() {
   const res = await createCheckout(creem, {
     xApiKey: "<value>",
     createCheckoutRequestEntity: {
-      productId: "<id>",
+      productId: "prod_1234567890",
+      units: 1,
+      discountCode: "SUMMER2024",
       customer: {
         id: "cust_1234567890",
         email: "user@example.com",
@@ -946,6 +955,11 @@ async function run() {
           label: "<value>",
         },
       ],
+      metadata: {
+        "userId": "user_123",
+        "visitCount": 42,
+        "lastVisit": "2023-04-01",
+      },
     },
   });
 
