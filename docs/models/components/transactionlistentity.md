@@ -13,6 +13,7 @@ let value: TransactionListEntity = {
       object: "<value>",
       amount: 2000,
       amountPaid: 2000,
+      discountAmount: 2000,
       currency: "EUR",
       type: "<value>",
       taxCountry: "US",

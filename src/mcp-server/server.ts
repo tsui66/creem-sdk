@@ -13,8 +13,8 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
-import { tool$checkoutsControllerV1CreateCheckout } from "./tools/checkoutsControllerV1CreateCheckout.js";
 import { tool$checkoutsControllerV1Retrieve } from "./tools/checkoutsControllerV1Retrieve.js";
+import { tool$createCheckout } from "./tools/createCheckout.js";
 import { tool$customersBillingControllerV1Generate } from "./tools/customersBillingControllerV1Generate.js";
 import { tool$customersControllerV1Retrieve } from "./tools/customersControllerV1Retrieve.js";
 import { tool$discountsControllerV1Create } from "./tools/discountsControllerV1Create.js";
@@ -41,7 +41,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.2.0",
+    version: "0.3.0",
   });
 
   const client = new CreemCore({
@@ -80,7 +80,7 @@ export function createMCPServer(deps: {
   tool(tool$subscriptionsControllerV1Update);
   tool(tool$subscriptionsControllerV1Upgrade);
   tool(tool$checkoutsControllerV1Retrieve);
-  tool(tool$checkoutsControllerV1CreateCheckout);
+  tool(tool$createCheckout);
   tool(tool$licensesControllerV1Activate);
   tool(tool$licensesControllerV1Deactivate);
   tool(tool$licensesControllerV1Validate);

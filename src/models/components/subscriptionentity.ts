@@ -14,6 +14,12 @@ import {
   SubscriptionItemEntity$Outbound,
   SubscriptionItemEntity$outboundSchema,
 } from "./subscriptionitementity.js";
+import {
+  TransactionEntity,
+  TransactionEntity$inboundSchema,
+  TransactionEntity$Outbound,
+  TransactionEntity$outboundSchema,
+} from "./transactionentity.js";
 
 /**
  * String representing the environment.
@@ -90,6 +96,10 @@ export type SubscriptionEntity = {
    * The ID of the last paid transaction.
    */
   lastTransactionId?: string | undefined;
+  /**
+   * The last paid transaction.
+   */
+  lastTransaction?: TransactionEntity | undefined;
   /**
    * The date of the last paid transaction.
    */
@@ -260,6 +270,7 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   collection_method: z.string(),
   status: Status$inboundSchema,
   last_transaction_id: z.string().optional(),
+  last_transaction: TransactionEntity$inboundSchema.optional(),
   last_transaction_date: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
@@ -280,6 +291,7 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   return remap$(v, {
     "collection_method": "collectionMethod",
     "last_transaction_id": "lastTransactionId",
+    "last_transaction": "lastTransaction",
     "last_transaction_date": "lastTransactionDate",
     "next_transaction_date": "nextTransactionDate",
     "current_period_start_date": "currentPeriodStartDate",
@@ -301,6 +313,7 @@ export type SubscriptionEntity$Outbound = {
   collection_method: string;
   status: string;
   last_transaction_id?: string | undefined;
+  last_transaction?: TransactionEntity$Outbound | undefined;
   last_transaction_date?: string | undefined;
   next_transaction_date?: string | undefined;
   current_period_start_date?: string | undefined;
@@ -325,6 +338,7 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   collectionMethod: z.string(),
   status: Status$outboundSchema,
   lastTransactionId: z.string().optional(),
+  lastTransaction: TransactionEntity$outboundSchema.optional(),
   lastTransactionDate: z.date().transform(v => v.toISOString()).optional(),
   nextTransactionDate: z.date().transform(v => v.toISOString()).optional(),
   currentPeriodStartDate: z.date().transform(v => v.toISOString()).optional(),
@@ -336,6 +350,7 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   return remap$(v, {
     collectionMethod: "collection_method",
     lastTransactionId: "last_transaction_id",
+    lastTransaction: "last_transaction",
     lastTransactionDate: "last_transaction_date",
     nextTransactionDate: "next_transaction_date",
     currentPeriodStartDate: "current_period_start_date",

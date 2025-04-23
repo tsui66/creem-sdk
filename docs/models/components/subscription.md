@@ -1,6 +1,6 @@
 # Subscription
 
-The subscription associated with the checkout session.
+The subscription associated with the transaction.
 
 ## Example Usage
 

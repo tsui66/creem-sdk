@@ -26,9 +26,9 @@ import { Result } from "../types/fp.js";
 /**
  * Creates a new checkout session.
  */
-export function checkoutsControllerV1CreateCheckout(
+export function createCheckout(
   client: CreemCore,
-  request: operations.CheckoutsControllerV1CreateCheckoutRequest,
+  request: operations.CreateCheckoutRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -51,7 +51,7 @@ export function checkoutsControllerV1CreateCheckout(
 
 async function $do(
   client: CreemCore,
-  request: operations.CheckoutsControllerV1CreateCheckoutRequest,
+  request: operations.CreateCheckoutRequest,
   options?: RequestOptions,
 ): Promise<
   [
@@ -70,9 +70,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) =>
-      operations.CheckoutsControllerV1CreateCheckoutRequest$outboundSchema
-        .parse(value),
+    (value) => operations.CreateCheckoutRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -96,7 +94,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "CheckoutsControllerV1_createCheckout",
+    operationID: "createCheckout",
     oAuth2Scopes: [],
 
     resolvedSecurity: null,

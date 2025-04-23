@@ -23,16 +23,6 @@ export const OrderEntityMode = {
 export type OrderEntityMode = ClosedEnum<typeof OrderEntityMode>;
 
 /**
- * The the customer who placed the order.
- */
-export type OrderEntityCustomer = {};
-
-/**
- * The the product associated with the order.
- */
-export type OrderEntityProduct = {};
-
-/**
  * Current status of the order.
  */
 export const OrderEntityStatus = {
@@ -45,14 +35,14 @@ export const OrderEntityStatus = {
 export type OrderEntityStatus = ClosedEnum<typeof OrderEntityStatus>;
 
 /**
- * The type of order. This can specify whether it’s a regular purchase, subscription, etc.
+ * The type of order. This can specify whether it's a regular purchase, subscription, etc.
  */
 export const OrderEntityType = {
   Subscription: "subscription",
   Purchase: "purchase",
 } as const;
 /**
- * The type of order. This can specify whether it’s a regular purchase, subscription, etc.
+ * The type of order. This can specify whether it's a regular purchase, subscription, etc.
  */
 export type OrderEntityType = ClosedEnum<typeof OrderEntityType>;
 
@@ -66,21 +56,49 @@ export type OrderEntity = {
    */
   mode: OrderEntityMode;
   /**
-   * String representing the object’s type. Objects of the same type share the same value.
+   * String representing the object's type. Objects of the same type share the same value.
    */
   object: string;
   /**
-   * The the customer who placed the order.
+   * The customer who placed the order.
    */
-  customer?: OrderEntityCustomer | undefined;
+  customer?: string | undefined;
   /**
-   * The the product associated with the order.
+   * The product associated with the order.
    */
-  product: OrderEntityProduct;
+  product: string;
+  /**
+   * The transaction ID of the order
+   */
+  transaction?: string | undefined;
+  /**
+   * The discount ID of the order
+   */
+  discount?: string | undefined;
   /**
    * The total amount of the order in cents. 1000 = $10.00
    */
   amount: number;
+  /**
+   * The subtotal of the order in cents. 1000 = $10.00
+   */
+  subTotal?: number | undefined;
+  /**
+   * The tax amount of the order in cents. 1000 = $10.00
+   */
+  taxAmount?: number | undefined;
+  /**
+   * The discount amount of the order in cents. 1000 = $10.00
+   */
+  discountAmount?: number | undefined;
+  /**
+   * The amount due for the order in cents. 1000 = $10.00
+   */
+  amountDue?: number | undefined;
+  /**
+   * The amount paid for the order in cents. 1000 = $10.00
+   */
+  amountPaid?: number | undefined;
   /**
    * Three-letter ISO currency code, in uppercase. Must be a supported currency.
    */
@@ -102,11 +120,11 @@ export type OrderEntity = {
    */
   status: OrderEntityStatus;
   /**
-   * The type of order. This can specify whether it’s a regular purchase, subscription, etc.
+   * The type of order. This can specify whether it's a regular purchase, subscription, etc.
    */
   type: OrderEntityType;
   /**
-   * T affiliate associated with the order, if applicable.
+   * The affiliate associated with the order, if applicable.
    */
   affiliate?: string | undefined;
   /**
@@ -138,102 +156,6 @@ export namespace OrderEntityMode$ {
   export const inboundSchema = OrderEntityMode$inboundSchema;
   /** @deprecated use `OrderEntityMode$outboundSchema` instead. */
   export const outboundSchema = OrderEntityMode$outboundSchema;
-}
-
-/** @internal */
-export const OrderEntityCustomer$inboundSchema: z.ZodType<
-  OrderEntityCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type OrderEntityCustomer$Outbound = {};
-
-/** @internal */
-export const OrderEntityCustomer$outboundSchema: z.ZodType<
-  OrderEntityCustomer$Outbound,
-  z.ZodTypeDef,
-  OrderEntityCustomer
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OrderEntityCustomer$ {
-  /** @deprecated use `OrderEntityCustomer$inboundSchema` instead. */
-  export const inboundSchema = OrderEntityCustomer$inboundSchema;
-  /** @deprecated use `OrderEntityCustomer$outboundSchema` instead. */
-  export const outboundSchema = OrderEntityCustomer$outboundSchema;
-  /** @deprecated use `OrderEntityCustomer$Outbound` instead. */
-  export type Outbound = OrderEntityCustomer$Outbound;
-}
-
-export function orderEntityCustomerToJSON(
-  orderEntityCustomer: OrderEntityCustomer,
-): string {
-  return JSON.stringify(
-    OrderEntityCustomer$outboundSchema.parse(orderEntityCustomer),
-  );
-}
-
-export function orderEntityCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<OrderEntityCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OrderEntityCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OrderEntityCustomer' from JSON`,
-  );
-}
-
-/** @internal */
-export const OrderEntityProduct$inboundSchema: z.ZodType<
-  OrderEntityProduct,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type OrderEntityProduct$Outbound = {};
-
-/** @internal */
-export const OrderEntityProduct$outboundSchema: z.ZodType<
-  OrderEntityProduct$Outbound,
-  z.ZodTypeDef,
-  OrderEntityProduct
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OrderEntityProduct$ {
-  /** @deprecated use `OrderEntityProduct$inboundSchema` instead. */
-  export const inboundSchema = OrderEntityProduct$inboundSchema;
-  /** @deprecated use `OrderEntityProduct$outboundSchema` instead. */
-  export const outboundSchema = OrderEntityProduct$outboundSchema;
-  /** @deprecated use `OrderEntityProduct$Outbound` instead. */
-  export type Outbound = OrderEntityProduct$Outbound;
-}
-
-export function orderEntityProductToJSON(
-  orderEntityProduct: OrderEntityProduct,
-): string {
-  return JSON.stringify(
-    OrderEntityProduct$outboundSchema.parse(orderEntityProduct),
-  );
-}
-
-export function orderEntityProductFromJSON(
-  jsonString: string,
-): SafeParseResult<OrderEntityProduct, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => OrderEntityProduct$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'OrderEntityProduct' from JSON`,
-  );
 }
 
 /** @internal */
@@ -287,9 +209,16 @@ export const OrderEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: OrderEntityMode$inboundSchema,
   object: z.string(),
-  customer: z.lazy(() => OrderEntityCustomer$inboundSchema).optional(),
-  product: z.lazy(() => OrderEntityProduct$inboundSchema),
+  customer: z.string().optional(),
+  product: z.string(),
+  transaction: z.string().optional(),
+  discount: z.string().optional(),
   amount: z.number(),
+  sub_total: z.number().optional(),
+  tax_amount: z.number().optional(),
+  discount_amount: z.number().optional(),
+  amount_due: z.number().optional(),
+  amount_paid: z.number().optional(),
   currency: z.string(),
   fx_amount: z.number().optional(),
   fx_currency: z.string().optional(),
@@ -301,6 +230,11 @@ export const OrderEntity$inboundSchema: z.ZodType<
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
+    "sub_total": "subTotal",
+    "tax_amount": "taxAmount",
+    "discount_amount": "discountAmount",
+    "amount_due": "amountDue",
+    "amount_paid": "amountPaid",
     "fx_amount": "fxAmount",
     "fx_currency": "fxCurrency",
     "fx_rate": "fxRate",
@@ -314,9 +248,16 @@ export type OrderEntity$Outbound = {
   id: string;
   mode: string;
   object: string;
-  customer?: OrderEntityCustomer$Outbound | undefined;
-  product: OrderEntityProduct$Outbound;
+  customer?: string | undefined;
+  product: string;
+  transaction?: string | undefined;
+  discount?: string | undefined;
   amount: number;
+  sub_total?: number | undefined;
+  tax_amount?: number | undefined;
+  discount_amount?: number | undefined;
+  amount_due?: number | undefined;
+  amount_paid?: number | undefined;
   currency: string;
   fx_amount?: number | undefined;
   fx_currency?: string | undefined;
@@ -337,9 +278,16 @@ export const OrderEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: OrderEntityMode$outboundSchema,
   object: z.string(),
-  customer: z.lazy(() => OrderEntityCustomer$outboundSchema).optional(),
-  product: z.lazy(() => OrderEntityProduct$outboundSchema),
+  customer: z.string().optional(),
+  product: z.string(),
+  transaction: z.string().optional(),
+  discount: z.string().optional(),
   amount: z.number(),
+  subTotal: z.number().optional(),
+  taxAmount: z.number().optional(),
+  discountAmount: z.number().optional(),
+  amountDue: z.number().optional(),
+  amountPaid: z.number().optional(),
   currency: z.string(),
   fxAmount: z.number().optional(),
   fxCurrency: z.string().optional(),
@@ -351,6 +299,11 @@ export const OrderEntity$outboundSchema: z.ZodType<
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
   return remap$(v, {
+    subTotal: "sub_total",
+    taxAmount: "tax_amount",
+    discountAmount: "discount_amount",
+    amountDue: "amount_due",
+    amountPaid: "amount_paid",
     fxAmount: "fx_amount",
     fxCurrency: "fx_currency",
     fxRate: "fx_rate",

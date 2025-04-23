@@ -30,7 +30,7 @@ export type Order = {};
 /**
  * The subscription associated with the transaction.
  */
-export type TransactionEntitySubscription = {};
+export type Subscription = {};
 
 /**
  * The customer associated with the transaction.
@@ -58,6 +58,10 @@ export type TransactionEntity = {
    * The amount the customer paid in cents. 1000 = $10.00
    */
   amountPaid: number;
+  /**
+   * The discount amount in cents. 1000 = $10.00
+   */
+  discountAmount?: number | undefined;
   /**
    * Three-letter ISO currency code, in uppercase. Must be a supported currency.
    */
@@ -89,7 +93,7 @@ export type TransactionEntity = {
   /**
    * The subscription associated with the transaction.
    */
-  subscription?: TransactionEntitySubscription | undefined;
+  subscription?: Subscription | undefined;
   /**
    * The customer associated with the transaction.
    */
@@ -175,52 +179,46 @@ export function orderFromJSON(
 }
 
 /** @internal */
-export const TransactionEntitySubscription$inboundSchema: z.ZodType<
-  TransactionEntitySubscription,
+export const Subscription$inboundSchema: z.ZodType<
+  Subscription,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type TransactionEntitySubscription$Outbound = {};
+export type Subscription$Outbound = {};
 
 /** @internal */
-export const TransactionEntitySubscription$outboundSchema: z.ZodType<
-  TransactionEntitySubscription$Outbound,
+export const Subscription$outboundSchema: z.ZodType<
+  Subscription$Outbound,
   z.ZodTypeDef,
-  TransactionEntitySubscription
+  Subscription
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TransactionEntitySubscription$ {
-  /** @deprecated use `TransactionEntitySubscription$inboundSchema` instead. */
-  export const inboundSchema = TransactionEntitySubscription$inboundSchema;
-  /** @deprecated use `TransactionEntitySubscription$outboundSchema` instead. */
-  export const outboundSchema = TransactionEntitySubscription$outboundSchema;
-  /** @deprecated use `TransactionEntitySubscription$Outbound` instead. */
-  export type Outbound = TransactionEntitySubscription$Outbound;
+export namespace Subscription$ {
+  /** @deprecated use `Subscription$inboundSchema` instead. */
+  export const inboundSchema = Subscription$inboundSchema;
+  /** @deprecated use `Subscription$outboundSchema` instead. */
+  export const outboundSchema = Subscription$outboundSchema;
+  /** @deprecated use `Subscription$Outbound` instead. */
+  export type Outbound = Subscription$Outbound;
 }
 
-export function transactionEntitySubscriptionToJSON(
-  transactionEntitySubscription: TransactionEntitySubscription,
-): string {
-  return JSON.stringify(
-    TransactionEntitySubscription$outboundSchema.parse(
-      transactionEntitySubscription,
-    ),
-  );
+export function subscriptionToJSON(subscription: Subscription): string {
+  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
 }
 
-export function transactionEntitySubscriptionFromJSON(
+export function subscriptionFromJSON(
   jsonString: string,
-): SafeParseResult<TransactionEntitySubscription, SDKValidationError> {
+): SafeParseResult<Subscription, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TransactionEntitySubscription$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionEntitySubscription' from JSON`,
+    (x) => Subscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subscription' from JSON`,
   );
 }
 
@@ -283,6 +281,7 @@ export const TransactionEntity$inboundSchema: z.ZodType<
   object: z.string(),
   amount: z.number(),
   amount_paid: z.number(),
+  discount_amount: z.number().optional(),
   currency: z.string(),
   type: z.string(),
   tax_country: z.string(),
@@ -290,8 +289,7 @@ export const TransactionEntity$inboundSchema: z.ZodType<
   status: z.string(),
   refunded_amount: z.number(),
   order: z.lazy(() => Order$inboundSchema).optional(),
-  subscription: z.lazy(() => TransactionEntitySubscription$inboundSchema)
-    .optional(),
+  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
   customer: z.lazy(() => TransactionEntityCustomer$inboundSchema).optional(),
   description: z.string().optional(),
   period_start: z.number().optional(),
@@ -300,6 +298,7 @@ export const TransactionEntity$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "amount_paid": "amountPaid",
+    "discount_amount": "discountAmount",
     "tax_country": "taxCountry",
     "tax_amount": "taxAmount",
     "refunded_amount": "refundedAmount",
@@ -316,6 +315,7 @@ export type TransactionEntity$Outbound = {
   object: string;
   amount: number;
   amount_paid: number;
+  discount_amount?: number | undefined;
   currency: string;
   type: string;
   tax_country: string;
@@ -323,7 +323,7 @@ export type TransactionEntity$Outbound = {
   status: string;
   refunded_amount: number;
   order?: Order$Outbound | undefined;
-  subscription?: TransactionEntitySubscription$Outbound | undefined;
+  subscription?: Subscription$Outbound | undefined;
   customer?: TransactionEntityCustomer$Outbound | undefined;
   description?: string | undefined;
   period_start?: number | undefined;
@@ -342,6 +342,7 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   object: z.string(),
   amount: z.number(),
   amountPaid: z.number(),
+  discountAmount: z.number().optional(),
   currency: z.string(),
   type: z.string(),
   taxCountry: z.string(),
@@ -349,8 +350,7 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   status: z.string(),
   refundedAmount: z.number(),
   order: z.lazy(() => Order$outboundSchema).optional(),
-  subscription: z.lazy(() => TransactionEntitySubscription$outboundSchema)
-    .optional(),
+  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
   customer: z.lazy(() => TransactionEntityCustomer$outboundSchema).optional(),
   description: z.string().optional(),
   periodStart: z.number().optional(),
@@ -359,6 +359,7 @@ export const TransactionEntity$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     amountPaid: "amount_paid",
+    discountAmount: "discount_amount",
     taxCountry: "tax_country",
     taxAmount: "tax_amount",
     refundedAmount: "refunded_amount",

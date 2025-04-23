@@ -1,11 +1,11 @@
-# CheckoutsControllerV1CreateCheckoutRequest
+# CreateCheckoutRequest
 
 ## Example Usage
 
 ```typescript
-import { CheckoutsControllerV1CreateCheckoutRequest } from "creem/models/operations";
+import { CreateCheckoutRequest } from "creem/models/operations";
 
-let value: CheckoutsControllerV1CreateCheckoutRequest = {
+let value: CreateCheckoutRequest = {
   xApiKey: "<value>",
   createCheckoutRequestEntity: {
     productId: "<id>",
@@ -29,4 +29,4 @@ let value: CheckoutsControllerV1CreateCheckoutRequest = {
 | Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `xApiKey`                                                                                        | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
-| `createCheckoutRequestEntity`                                                                    | [components.CreateCheckoutRequestEntity](../../models/components/createcheckoutrequestentity.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `createCheckoutRequestEntity`                                                                    | [components.CreateCheckoutRequestEntity](../../models/components/createcheckoutrequestentity.md) | :heavy_check_mark:                                                                               | Create checkout request payload                                                                  |

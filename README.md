@@ -1,6 +1,6 @@
 # creem
 
-Developer-friendly & type-safe Typescript SDK specifically catered to leverage *creem* API.
+Developer-friendly & type-safe Typescript SDK specifically catered to leverage _creem_ API.
 
 <div align="left">
     <a href="https://www.speakeasy.com/?utm_source=creem&utm_campaign=typescript"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
@@ -9,8 +9,8 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
     </a>
 </div>
 
-
 <br /><br />
+
 > [!IMPORTANT]
 > This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/creem/engineering). Delete this section before > publishing to a package manager.
 
@@ -207,7 +207,7 @@ run();
 * [subscriptionsControllerV1Update](docs/sdks/creem/README.md#subscriptionscontrollerv1update) - Update a subscription.
 * [subscriptionsControllerV1Upgrade](docs/sdks/creem/README.md#subscriptionscontrollerv1upgrade) - Upgrade a subscription to a different product
 * [checkoutsControllerV1Retrieve](docs/sdks/creem/README.md#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
-* [checkoutsControllerV1CreateCheckout](docs/sdks/creem/README.md#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
+* [createCheckout](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
 * [licensesControllerV1Activate](docs/sdks/creem/README.md#licensescontrollerv1activate) - Activates a license key.
 * [licensesControllerV1Deactivate](docs/sdks/creem/README.md#licensescontrollerv1deactivate) - Deactivate a license key instance.
 * [licensesControllerV1Validate](docs/sdks/creem/README.md#licensescontrollerv1validate) - Validates a license key or instance.
@@ -234,8 +234,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`checkoutsControllerV1CreateCheckout`](docs/sdks/creem/README.md#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
 - [`checkoutsControllerV1Retrieve`](docs/sdks/creem/README.md#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
+- [`createCheckout`](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
 - [`customersBillingControllerV1Generate`](docs/sdks/creem/README.md#customersbillingcontrollerv1generate) - Generate Customer Links
 - [`customersControllerV1Retrieve`](docs/sdks/creem/README.md#customerscontrollerv1retrieve) - Retrieve a customer
 - [`discountsControllerV1Create`](docs/sdks/creem/README.md#discountscontrollerv1create) - Create a discount.
@@ -403,6 +403,7 @@ You can override the default server globally by passing a server index to the `s
 | --- | --------------------------- | ----------- |
 | 0   | `https://api.creem.io`      |             |
 | 1   | `https://test-api.creem.io` |             |
+| 2   | `http://localhost:8000`     |             |
 
 #### Example
 
@@ -410,7 +411,7 @@ You can override the default server globally by passing a server index to the `s
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverIdx: 1,
+  serverIdx: 2,
 });
 
 async function run() {
@@ -532,7 +533,7 @@ looking for the latest version.
 
 ## Contributions
 
-While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
-We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
+While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation.
+We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release.
 
 ### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=creem&utm_campaign=typescript)

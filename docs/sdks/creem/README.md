@@ -16,7 +16,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 * [subscriptionsControllerV1Update](#subscriptionscontrollerv1update) - Update a subscription.
 * [subscriptionsControllerV1Upgrade](#subscriptionscontrollerv1upgrade) - Upgrade a subscription to a different product
 * [checkoutsControllerV1Retrieve](#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
-* [checkoutsControllerV1CreateCheckout](#checkoutscontrollerv1createcheckout) - Creates a new checkout session.
+* [createCheckout](#createcheckout) - Creates a new checkout session.
 * [licensesControllerV1Activate](#licensescontrollerv1activate) - Activates a license key.
 * [licensesControllerV1Deactivate](#licensescontrollerv1deactivate) - Deactivate a license key instance.
 * [licensesControllerV1Validate](#licensescontrollerv1validate) - Validates a license key or instance.
@@ -861,7 +861,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## checkoutsControllerV1CreateCheckout
+## createCheckout
 
 Creates a new checkout session.
 
@@ -873,7 +873,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.checkoutsControllerV1CreateCheckout({
+  const result = await creem.createCheckout({
     xApiKey: "<value>",
     createCheckoutRequestEntity: {
       productId: "<id>",
@@ -882,6 +882,11 @@ async function run() {
         email: "user@example.com",
       },
       customField: [
+        {
+          type: "text",
+          key: "<key>",
+          label: "<value>",
+        },
         {
           type: "text",
           key: "<key>",
@@ -909,14 +914,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { checkoutsControllerV1CreateCheckout } from "creem/funcs/checkoutsControllerV1CreateCheckout.js";
+import { createCheckout } from "creem/funcs/createCheckout.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await checkoutsControllerV1CreateCheckout(creem, {
+  const res = await createCheckout(creem, {
     xApiKey: "<value>",
     createCheckoutRequestEntity: {
       productId: "<id>",
@@ -925,6 +930,11 @@ async function run() {
         email: "user@example.com",
       },
       customField: [
+        {
+          type: "text",
+          key: "<key>",
+          label: "<value>",
+        },
         {
           type: "text",
           key: "<key>",
@@ -956,7 +966,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CheckoutsControllerV1CreateCheckoutRequest](../../models/operations/checkoutscontrollerv1createcheckoutrequest.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateCheckoutRequest](../../models/operations/createcheckoutrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
