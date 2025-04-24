@@ -5,7 +5,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.retrieveProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });

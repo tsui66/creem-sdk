@@ -1,6 +1,6 @@
 {
   "name": "creem",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "author": "Speakeasy",
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",

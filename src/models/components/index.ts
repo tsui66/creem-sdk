@@ -4,7 +4,7 @@
 
 export * from "./activatelicenserequestentity.js";
 export * from "./checkoutentity.js";
-export * from "./createcheckoutrequestentity.js";
+export * from "./createcheckoutrequest.js";
 export * from "./createcustomerportallinkrequestentity.js";
 export * from "./creatediscountrequestentity.js";
 export * from "./createproductrequestentity.js";

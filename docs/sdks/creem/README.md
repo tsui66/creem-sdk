@@ -6,26 +6,26 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 
 ### Available Operations
 
-* [productsControllerV1Retrieve](#productscontrollerv1retrieve) - Retrieve a product
-* [productsControllerV1Create](#productscontrollerv1create) - Creates a new product.
-* [productsControllerV1Search](#productscontrollerv1search) - List all products
-* [customersControllerV1Retrieve](#customerscontrollerv1retrieve) - Retrieve a customer
-* [customersBillingControllerV1Generate](#customersbillingcontrollerv1generate) - Generate Customer Links
-* [subscriptionsControllerV1Retrieve](#subscriptionscontrollerv1retrieve) - Retrieve a subscription
-* [subscriptionsControllerV1Cancel](#subscriptionscontrollerv1cancel) - Cancel a subscription.
-* [subscriptionsControllerV1Update](#subscriptionscontrollerv1update) - Update a subscription.
-* [subscriptionsControllerV1Upgrade](#subscriptionscontrollerv1upgrade) - Upgrade a subscription to a different product
-* [checkoutsControllerV1Retrieve](#checkoutscontrollerv1retrieve) - Retrieve a new checkout session.
+* [retrieveProduct](#retrieveproduct) - Retrieve a product
+* [createProduct](#createproduct) - Creates a new product.
+* [searchProducts](#searchproducts) - List all products
+* [retrieveCustomer](#retrievecustomer) - Retrieve a customer
+* [generateCustomerLinks](#generatecustomerlinks) - Generate Customer Links
+* [retrieveSubscription](#retrievesubscription) - Retrieve a subscription
+* [cancelSubscription](#cancelsubscription) - Cancel a subscription.
+* [updateSubscription](#updatesubscription) - Update a subscription.
+* [upgradeSubscription](#upgradesubscription) - Upgrade a subscription to a different product
+* [retrieveCheckout](#retrievecheckout) - Retrieve a new checkout session.
 * [createCheckout](#createcheckout) - Creates a new checkout session.
-* [licensesControllerV1Activate](#licensescontrollerv1activate) - Activates a license key.
-* [licensesControllerV1Deactivate](#licensescontrollerv1deactivate) - Deactivate a license key instance.
-* [licensesControllerV1Validate](#licensescontrollerv1validate) - Validates a license key or instance.
-* [discountsControllerV1Retrieve](#discountscontrollerv1retrieve) - Retrieve discount
-* [discountsControllerV1Create](#discountscontrollerv1create) - Create a discount.
-* [discountsControllerV1Delete](#discountscontrollerv1delete) - Delete a discount.
-* [transactionsControllerV1Search](#transactionscontrollerv1search) - List all transactions
+* [activateLicense](#activatelicense) - Activates a license key.
+* [deactivateLicense](#deactivatelicense) - Deactivate a license key instance.
+* [validateLicense](#validatelicense) - Validates a license key or instance.
+* [retrieveDiscount](#retrievediscount) - Retrieve discount
+* [createDiscount](#creatediscount) - Create a discount.
+* [deleteDiscount](#deletediscount) - Delete a discount.
+* [searchTransactions](#searchtransactions) - List all transactions
 
-## productsControllerV1Retrieve
+## retrieveProduct
 
 Retrieve a product
 
@@ -37,7 +37,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Retrieve({
+  const result = await creem.retrieveProduct({
     productId: "<id>",
     xApiKey: "<value>",
   });
@@ -55,14 +55,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { productsControllerV1Retrieve } from "creem/funcs/productsControllerV1Retrieve.js";
+import { retrieveProduct } from "creem/funcs/retrieveProduct.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await productsControllerV1Retrieve(creem, {
+  const res = await retrieveProduct(creem, {
     productId: "<id>",
     xApiKey: "<value>",
   });
@@ -84,7 +84,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ProductsControllerV1RetrieveRequest](../../models/operations/productscontrollerv1retrieverequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveProductRequest](../../models/operations/retrieveproductrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -99,7 +99,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## productsControllerV1Create
+## createProduct
 
 Creates a new product.
 
@@ -111,7 +111,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Create({
+  const result = await creem.createProduct({
     xApiKey: "<value>",
     createProductRequestEntity: {
       name: "<value>",
@@ -126,31 +126,11 @@ async function run() {
           type: "<value>",
           description: "Get access to discord server.",
         },
-        {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
-        },
-        {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
-        },
       ],
       taxMode: "inclusive",
       taxCategory: "saas",
       defaultSuccessUrl: "https://example.com/?status=successful",
       customField: [
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
         {
           type: "text",
           key: "<key>",
@@ -173,14 +153,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { productsControllerV1Create } from "creem/funcs/productsControllerV1Create.js";
+import { createProduct } from "creem/funcs/createProduct.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await productsControllerV1Create(creem, {
+  const res = await createProduct(creem, {
     xApiKey: "<value>",
     createProductRequestEntity: {
       name: "<value>",
@@ -195,31 +175,11 @@ async function run() {
           type: "<value>",
           description: "Get access to discord server.",
         },
-        {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
-        },
-        {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
-        },
       ],
       taxMode: "inclusive",
       taxCategory: "saas",
       defaultSuccessUrl: "https://example.com/?status=successful",
       customField: [
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
         {
           type: "text",
           key: "<key>",
@@ -246,7 +206,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ProductsControllerV1CreateRequest](../../models/operations/productscontrollerv1createrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateProductRequest](../../models/operations/createproductrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -261,7 +221,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## productsControllerV1Search
+## searchProducts
 
 List all products
 
@@ -273,7 +233,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.productsControllerV1Search({
+  const result = await creem.searchProducts({
     xApiKey: "<value>",
   });
 
@@ -290,14 +250,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { productsControllerV1Search } from "creem/funcs/productsControllerV1Search.js";
+import { searchProducts } from "creem/funcs/searchProducts.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await productsControllerV1Search(creem, {
+  const res = await searchProducts(creem, {
     xApiKey: "<value>",
   });
 
@@ -318,7 +278,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.ProductsControllerV1SearchRequest](../../models/operations/productscontrollerv1searchrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.SearchProductsRequest](../../models/operations/searchproductsrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -333,7 +293,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## customersControllerV1Retrieve
+## retrieveCustomer
 
 Retrieve a customer
 
@@ -345,7 +305,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.customersControllerV1Retrieve({
+  const result = await creem.retrieveCustomer({
     xApiKey: "<value>",
   });
 
@@ -362,14 +322,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { customersControllerV1Retrieve } from "creem/funcs/customersControllerV1Retrieve.js";
+import { retrieveCustomer } from "creem/funcs/retrieveCustomer.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await customersControllerV1Retrieve(creem, {
+  const res = await retrieveCustomer(creem, {
     xApiKey: "<value>",
   });
 
@@ -390,7 +350,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CustomersControllerV1RetrieveRequest](../../models/operations/customerscontrollerv1retrieverequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveCustomerRequest](../../models/operations/retrievecustomerrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -405,7 +365,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## customersBillingControllerV1Generate
+## generateCustomerLinks
 
 Generate Customer Links
 
@@ -417,7 +377,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.customersBillingControllerV1Generate({
+  const result = await creem.generateCustomerLinks({
     xApiKey: "<value>",
     createCustomerPortalLinkRequestEntity: {
       customerId: "<id>",
@@ -437,14 +397,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { customersBillingControllerV1Generate } from "creem/funcs/customersBillingControllerV1Generate.js";
+import { generateCustomerLinks } from "creem/funcs/generateCustomerLinks.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await customersBillingControllerV1Generate(creem, {
+  const res = await generateCustomerLinks(creem, {
     xApiKey: "<value>",
     createCustomerPortalLinkRequestEntity: {
       customerId: "<id>",
@@ -468,7 +428,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CustomersBillingControllerV1GenerateRequest](../../models/operations/customersbillingcontrollerv1generaterequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GenerateCustomerLinksRequest](../../models/operations/generatecustomerlinksrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -483,7 +443,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## subscriptionsControllerV1Retrieve
+## retrieveSubscription
 
 Retrieve a subscription
 
@@ -495,7 +455,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.subscriptionsControllerV1Retrieve({
+  const result = await creem.retrieveSubscription({
     subscriptionId: "<id>",
     xApiKey: "<value>",
   });
@@ -513,14 +473,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { subscriptionsControllerV1Retrieve } from "creem/funcs/subscriptionsControllerV1Retrieve.js";
+import { retrieveSubscription } from "creem/funcs/retrieveSubscription.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await subscriptionsControllerV1Retrieve(creem, {
+  const res = await retrieveSubscription(creem, {
     subscriptionId: "<id>",
     xApiKey: "<value>",
   });
@@ -542,7 +502,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscriptionsControllerV1RetrieveRequest](../../models/operations/subscriptionscontrollerv1retrieverequest.md)                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveSubscriptionRequest](../../models/operations/retrievesubscriptionrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -557,7 +517,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## subscriptionsControllerV1Cancel
+## cancelSubscription
 
 Cancel a subscription.
 
@@ -569,7 +529,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.subscriptionsControllerV1Cancel({
+  const result = await creem.cancelSubscription({
     id: "<id>",
     xApiKey: "<value>",
   });
@@ -587,14 +547,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { subscriptionsControllerV1Cancel } from "creem/funcs/subscriptionsControllerV1Cancel.js";
+import { cancelSubscription } from "creem/funcs/cancelSubscription.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await subscriptionsControllerV1Cancel(creem, {
+  const res = await cancelSubscription(creem, {
     id: "<id>",
     xApiKey: "<value>",
   });
@@ -616,7 +576,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscriptionsControllerV1CancelRequest](../../models/operations/subscriptionscontrollerv1cancelrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CancelSubscriptionRequest](../../models/operations/cancelsubscriptionrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -631,7 +591,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## subscriptionsControllerV1Update
+## updateSubscription
 
 Update a subscription.
 
@@ -643,7 +603,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.subscriptionsControllerV1Update({
+  const result = await creem.updateSubscription({
     id: "<id>",
     xApiKey: "<value>",
     updateSubscriptionRequestEntity: {},
@@ -662,14 +622,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { subscriptionsControllerV1Update } from "creem/funcs/subscriptionsControllerV1Update.js";
+import { updateSubscription } from "creem/funcs/updateSubscription.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await subscriptionsControllerV1Update(creem, {
+  const res = await updateSubscription(creem, {
     id: "<id>",
     xApiKey: "<value>",
     updateSubscriptionRequestEntity: {},
@@ -692,7 +652,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscriptionsControllerV1UpdateRequest](../../models/operations/subscriptionscontrollerv1updaterequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.UpdateSubscriptionRequest](../../models/operations/updatesubscriptionrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -707,7 +667,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## subscriptionsControllerV1Upgrade
+## upgradeSubscription
 
 Upgrade a subscription to a different product
 
@@ -719,7 +679,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.subscriptionsControllerV1Upgrade({
+  const result = await creem.upgradeSubscription({
     id: "<id>",
     xApiKey: "<value>",
     upgradeSubscriptionRequestEntity: {
@@ -740,14 +700,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { subscriptionsControllerV1Upgrade } from "creem/funcs/subscriptionsControllerV1Upgrade.js";
+import { upgradeSubscription } from "creem/funcs/upgradeSubscription.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await subscriptionsControllerV1Upgrade(creem, {
+  const res = await upgradeSubscription(creem, {
     id: "<id>",
     xApiKey: "<value>",
     upgradeSubscriptionRequestEntity: {
@@ -772,7 +732,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.SubscriptionsControllerV1UpgradeRequest](../../models/operations/subscriptionscontrollerv1upgraderequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.UpgradeSubscriptionRequest](../../models/operations/upgradesubscriptionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -787,7 +747,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## checkoutsControllerV1Retrieve
+## retrieveCheckout
 
 Retrieve a new checkout session.
 
@@ -799,7 +759,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.checkoutsControllerV1Retrieve({
+  const result = await creem.retrieveCheckout({
     checkoutId: "<id>",
     xApiKey: "<value>",
   });
@@ -817,14 +777,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { checkoutsControllerV1Retrieve } from "creem/funcs/checkoutsControllerV1Retrieve.js";
+import { retrieveCheckout } from "creem/funcs/retrieveCheckout.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await checkoutsControllerV1Retrieve(creem, {
+  const res = await retrieveCheckout(creem, {
     checkoutId: "<id>",
     xApiKey: "<value>",
   });
@@ -846,7 +806,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CheckoutsControllerV1RetrieveRequest](../../models/operations/checkoutscontrollerv1retrieverequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveCheckoutRequest](../../models/operations/retrievecheckoutrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -875,7 +835,7 @@ const creem = new Creem();
 async function run() {
   const result = await creem.createCheckout({
     xApiKey: "<value>",
-    createCheckoutRequestEntity: {
+    createCheckoutRequest: {
       productId: "prod_1234567890",
       units: 1,
       discountCode: "SUMMER2024",
@@ -930,7 +890,7 @@ const creem = new CreemCore();
 async function run() {
   const res = await createCheckout(creem, {
     xApiKey: "<value>",
-    createCheckoutRequestEntity: {
+    createCheckoutRequest: {
       productId: "prod_1234567890",
       units: 1,
       discountCode: "SUMMER2024",
@@ -995,7 +955,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## licensesControllerV1Activate
+## activateLicense
 
 Activates a license key.
 
@@ -1007,7 +967,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.licensesControllerV1Activate({
+  const result = await creem.activateLicense({
     xApiKey: "<value>",
     activateLicenseRequestEntity: {
       key: "<key>",
@@ -1028,14 +988,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { licensesControllerV1Activate } from "creem/funcs/licensesControllerV1Activate.js";
+import { activateLicense } from "creem/funcs/activateLicense.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await licensesControllerV1Activate(creem, {
+  const res = await activateLicense(creem, {
     xApiKey: "<value>",
     activateLicenseRequestEntity: {
       key: "<key>",
@@ -1060,7 +1020,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.LicensesControllerV1ActivateRequest](../../models/operations/licensescontrollerv1activaterequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.ActivateLicenseRequest](../../models/operations/activatelicenserequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1075,7 +1035,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## licensesControllerV1Deactivate
+## deactivateLicense
 
 Deactivate a license key instance.
 
@@ -1087,7 +1047,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.licensesControllerV1Deactivate({
+  const result = await creem.deactivateLicense({
     xApiKey: "<value>",
     deactivateLicenseRequestEntity: {
       key: "<key>",
@@ -1108,14 +1068,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { licensesControllerV1Deactivate } from "creem/funcs/licensesControllerV1Deactivate.js";
+import { deactivateLicense } from "creem/funcs/deactivateLicense.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await licensesControllerV1Deactivate(creem, {
+  const res = await deactivateLicense(creem, {
     xApiKey: "<value>",
     deactivateLicenseRequestEntity: {
       key: "<key>",
@@ -1140,7 +1100,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.LicensesControllerV1DeactivateRequest](../../models/operations/licensescontrollerv1deactivaterequest.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.DeactivateLicenseRequest](../../models/operations/deactivatelicenserequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1155,7 +1115,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## licensesControllerV1Validate
+## validateLicense
 
 Validates a license key or instance.
 
@@ -1167,7 +1127,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.licensesControllerV1Validate({
+  const result = await creem.validateLicense({
     xApiKey: "<value>",
     validateLicenseRequestEntity: {
       key: "<key>",
@@ -1188,14 +1148,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { licensesControllerV1Validate } from "creem/funcs/licensesControllerV1Validate.js";
+import { validateLicense } from "creem/funcs/validateLicense.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await licensesControllerV1Validate(creem, {
+  const res = await validateLicense(creem, {
     xApiKey: "<value>",
     validateLicenseRequestEntity: {
       key: "<key>",
@@ -1220,7 +1180,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.LicensesControllerV1ValidateRequest](../../models/operations/licensescontrollerv1validaterequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.ValidateLicenseRequest](../../models/operations/validatelicenserequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1235,7 +1195,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## discountsControllerV1Retrieve
+## retrieveDiscount
 
 Retrieve discount
 
@@ -1247,7 +1207,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.discountsControllerV1Retrieve({
+  const result = await creem.retrieveDiscount({
     xApiKey: "<value>",
   });
 
@@ -1264,14 +1224,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { discountsControllerV1Retrieve } from "creem/funcs/discountsControllerV1Retrieve.js";
+import { retrieveDiscount } from "creem/funcs/retrieveDiscount.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await discountsControllerV1Retrieve(creem, {
+  const res = await retrieveDiscount(creem, {
     xApiKey: "<value>",
   });
 
@@ -1292,7 +1252,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DiscountsControllerV1RetrieveRequest](../../models/operations/discountscontrollerv1retrieverequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RetrieveDiscountRequest](../../models/operations/retrievediscountrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1307,7 +1267,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## discountsControllerV1Create
+## createDiscount
 
 Create a discount.
 
@@ -1319,7 +1279,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.discountsControllerV1Create({
+  const result = await creem.createDiscount({
     xApiKey: "<value>",
     createDiscountRequestEntity: {
       name: "Holiday Sale",
@@ -1352,14 +1312,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { discountsControllerV1Create } from "creem/funcs/discountsControllerV1Create.js";
+import { createDiscount } from "creem/funcs/createDiscount.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await discountsControllerV1Create(creem, {
+  const res = await createDiscount(creem, {
     xApiKey: "<value>",
     createDiscountRequestEntity: {
       name: "Holiday Sale",
@@ -1396,7 +1356,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DiscountsControllerV1CreateRequest](../../models/operations/discountscontrollerv1createrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateDiscountRequest](../../models/operations/creatediscountrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1411,7 +1371,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## discountsControllerV1Delete
+## deleteDiscount
 
 Delete a discount.
 
@@ -1423,7 +1383,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.discountsControllerV1Delete({
+  const result = await creem.deleteDiscount({
     id: "<id>",
     xApiKey: "<value>",
   });
@@ -1441,14 +1401,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { discountsControllerV1Delete } from "creem/funcs/discountsControllerV1Delete.js";
+import { deleteDiscount } from "creem/funcs/deleteDiscount.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await discountsControllerV1Delete(creem, {
+  const res = await deleteDiscount(creem, {
     id: "<id>",
     xApiKey: "<value>",
   });
@@ -1470,7 +1430,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.DiscountsControllerV1DeleteRequest](../../models/operations/discountscontrollerv1deleterequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.DeleteDiscountRequest](../../models/operations/deletediscountrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -1485,7 +1445,7 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## transactionsControllerV1Search
+## searchTransactions
 
 List all transactions
 
@@ -1497,7 +1457,7 @@ import { Creem } from "creem";
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.transactionsControllerV1Search({
+  const result = await creem.searchTransactions({
     xApiKey: "<value>",
   });
 
@@ -1514,14 +1474,14 @@ The standalone function version of this method:
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { transactionsControllerV1Search } from "creem/funcs/transactionsControllerV1Search.js";
+import { searchTransactions } from "creem/funcs/searchTransactions.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const creem = new CreemCore();
 
 async function run() {
-  const res = await transactionsControllerV1Search(creem, {
+  const res = await searchTransactions(creem, {
     xApiKey: "<value>",
   });
 
@@ -1542,7 +1502,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.TransactionsControllerV1SearchRequest](../../models/operations/transactionscontrollerv1searchrequest.md)                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.SearchTransactionsRequest](../../models/operations/searchtransactionsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

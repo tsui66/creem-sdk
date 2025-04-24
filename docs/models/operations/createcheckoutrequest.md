@@ -7,7 +7,7 @@ import { CreateCheckoutRequest } from "creem/models/operations";
 
 let value: CreateCheckoutRequest = {
   xApiKey: "<value>",
-  createCheckoutRequestEntity: {
+  createCheckoutRequest: {
     productId: "prod_1234567890",
     units: 1,
     discountCode: "SUMMER2024",
@@ -33,7 +33,7 @@ let value: CreateCheckoutRequest = {
 
 ## Fields
 
-| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `xApiKey`                                                                                        | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
-| `createCheckoutRequestEntity`                                                                    | [components.CreateCheckoutRequestEntity](../../models/components/createcheckoutrequestentity.md) | :heavy_check_mark:                                                                               | Create checkout request payload                                                                  |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `xApiKey`                                                                            | *string*                                                                             | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `createCheckoutRequest`                                                              | [components.CreateCheckoutRequest](../../models/components/createcheckoutrequest.md) | :heavy_check_mark:                                                                   | Create checkout request payload                                                      |

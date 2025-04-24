@@ -14,7 +14,7 @@ export type CreateCheckoutRequest = {
   /**
    * Create checkout request payload
    */
-  createCheckoutRequestEntity: components.CreateCheckoutRequestEntity;
+  createCheckoutRequest: components.CreateCheckoutRequest;
 };
 
 /** @internal */
@@ -24,19 +24,18 @@ export const CreateCheckoutRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   "x-api-key": z.string(),
-  CreateCheckoutRequestEntity:
-    components.CreateCheckoutRequestEntity$inboundSchema,
+  CreateCheckoutRequest: components.CreateCheckoutRequest$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "x-api-key": "xApiKey",
-    "CreateCheckoutRequestEntity": "createCheckoutRequestEntity",
+    "CreateCheckoutRequest": "createCheckoutRequest",
   });
 });
 
 /** @internal */
 export type CreateCheckoutRequest$Outbound = {
   "x-api-key": string;
-  CreateCheckoutRequestEntity: components.CreateCheckoutRequestEntity$Outbound;
+  CreateCheckoutRequest: components.CreateCheckoutRequest$Outbound;
 };
 
 /** @internal */
@@ -46,12 +45,11 @@ export const CreateCheckoutRequest$outboundSchema: z.ZodType<
   CreateCheckoutRequest
 > = z.object({
   xApiKey: z.string(),
-  createCheckoutRequestEntity:
-    components.CreateCheckoutRequestEntity$outboundSchema,
+  createCheckoutRequest: components.CreateCheckoutRequest$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     xApiKey: "x-api-key",
-    createCheckoutRequestEntity: "CreateCheckoutRequestEntity",
+    createCheckoutRequest: "CreateCheckoutRequest",
   });
 });
 
