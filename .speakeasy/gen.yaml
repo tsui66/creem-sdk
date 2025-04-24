@@ -18,12 +18,18 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.2.0
+  version: 0.3.15
   additionalDependencies:
     dependencies: {}
-    devDependencies: {}
+    devDependencies:
+      '@jest/globals': ^29.7.0
+      '@types/jest': ^29.5.14
+      jest: ^29.7.0
+      ts-jest: ^29.3.2
     peerDependencies: {}
-  additionalPackageJSON: {}
+  additionalPackageJSON:
+    scripts:
+      test: npx jest
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   defaultErrorName: APIError

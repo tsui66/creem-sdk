@@ -1,6 +1,6 @@
 # OrderEntityType
 
-The type of order. This can specify whether it’s a regular purchase, subscription, etc.
+The type of order. This can specify whether it's a regular purchase, subscription, etc.
 
 ## Example Usage
 

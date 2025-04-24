@@ -13,12 +13,6 @@ import {
   CustomFieldRequestEntity$Outbound,
   CustomFieldRequestEntity$outboundSchema,
 } from "./customfieldrequestentity.js";
-import {
-  FeatureEntity,
-  FeatureEntity$inboundSchema,
-  FeatureEntity$Outbound,
-  FeatureEntity$outboundSchema,
-} from "./featureentity.js";
 
 export type CreateProductRequestEntity = {
   /**
@@ -50,10 +44,6 @@ export type CreateProductRequestEntity = {
    */
   billingPeriod?: string | undefined;
   /**
-   * A list of features fpr the product.
-   */
-  features?: Array<FeatureEntity> | undefined;
-  /**
    * Specifies the tax calculation mode for the transaction. If set to "inclusive," the tax is included in the price. If set to "exclusive," the tax is added on top of the price.
    */
   taxMode?: string | undefined;
@@ -84,7 +74,6 @@ export const CreateProductRequestEntity$inboundSchema: z.ZodType<
   currency: z.string(),
   billing_type: z.string(),
   billing_period: z.string().optional(),
-  features: z.array(FeatureEntity$inboundSchema).optional(),
   tax_mode: z.string().optional(),
   tax_category: z.string().optional(),
   default_success_url: z.string().optional(),
@@ -110,7 +99,6 @@ export type CreateProductRequestEntity$Outbound = {
   currency: string;
   billing_type: string;
   billing_period?: string | undefined;
-  features?: Array<FeatureEntity$Outbound> | undefined;
   tax_mode?: string | undefined;
   tax_category?: string | undefined;
   default_success_url?: string | undefined;
@@ -130,7 +118,6 @@ export const CreateProductRequestEntity$outboundSchema: z.ZodType<
   currency: z.string(),
   billingType: z.string(),
   billingPeriod: z.string().optional(),
-  features: z.array(FeatureEntity$outboundSchema).optional(),
   taxMode: z.string().optional(),
   taxCategory: z.string().optional(),
   defaultSuccessUrl: z.string().optional(),

@@ -15,17 +15,17 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
-  MetadataEntity,
-  MetadataEntity$inboundSchema,
-  MetadataEntity$Outbound,
-  MetadataEntity$outboundSchema,
-} from "./metadataentity.js";
-import {
   OrderEntity,
   OrderEntity$inboundSchema,
   OrderEntity$Outbound,
   OrderEntity$outboundSchema,
 } from "./orderentity.js";
+import {
+  ProductEntity,
+  ProductEntity$inboundSchema,
+  ProductEntity$Outbound,
+  ProductEntity$outboundSchema,
+} from "./productentity.js";
 import {
   ProductFeatureEntity,
   ProductFeatureEntity$inboundSchema,
@@ -49,12 +49,12 @@ export type CheckoutEntityMode = ClosedEnum<typeof CheckoutEntityMode>;
 /**
  * The product associated with the checkout session.
  */
-export type CheckoutEntityProduct = {};
+export type CheckoutEntityProduct = ProductEntity | string;
 
 /**
  * The subscription associated with the checkout session.
  */
-export type Subscription = {};
+export type CheckoutEntitySubscription = {};
 
 /**
  * The customer associated with the checkout session.
@@ -71,7 +71,7 @@ export type CheckoutEntity = {
    */
   mode: CheckoutEntityMode;
   /**
-   * String representing the object’s type. Objects of the same type share the same value.
+   * String representing the object's type. Objects of the same type share the same value.
    */
   object: string;
   /**
@@ -85,7 +85,7 @@ export type CheckoutEntity = {
   /**
    * The product associated with the checkout session.
    */
-  product: CheckoutEntityProduct;
+  product: ProductEntity | string;
   /**
    * The number of units for the of the product.
    */
@@ -97,7 +97,7 @@ export type CheckoutEntity = {
   /**
    * The subscription associated with the checkout session.
    */
-  subscription?: Subscription | undefined;
+  subscription?: CheckoutEntitySubscription | undefined;
   /**
    * The customer associated with the checkout session.
    */
@@ -113,15 +113,15 @@ export type CheckoutEntity = {
   /**
    * The URL to which the user will be redirected after the checkout process is completed.
    */
-  successUrl: string;
+  successUrl?: string | null | undefined;
   /**
    * Features issued for the order.
    */
   feature?: Array<ProductFeatureEntity> | undefined;
   /**
-   * A key-value pair where the key is a string, and the value can be a string, number, or null.
+   * Metadata for the checkout in the form of key-value pairs
    */
-  metadata?: Array<MetadataEntity> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -150,17 +150,17 @@ export const CheckoutEntityProduct$inboundSchema: z.ZodType<
   CheckoutEntityProduct,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([ProductEntity$inboundSchema, z.string()]);
 
 /** @internal */
-export type CheckoutEntityProduct$Outbound = {};
+export type CheckoutEntityProduct$Outbound = ProductEntity$Outbound | string;
 
 /** @internal */
 export const CheckoutEntityProduct$outboundSchema: z.ZodType<
   CheckoutEntityProduct$Outbound,
   z.ZodTypeDef,
   CheckoutEntityProduct
-> = z.object({});
+> = z.union([ProductEntity$outboundSchema, z.string()]);
 
 /**
  * @internal
@@ -194,46 +194,50 @@ export function checkoutEntityProductFromJSON(
 }
 
 /** @internal */
-export const Subscription$inboundSchema: z.ZodType<
-  Subscription,
+export const CheckoutEntitySubscription$inboundSchema: z.ZodType<
+  CheckoutEntitySubscription,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type Subscription$Outbound = {};
+export type CheckoutEntitySubscription$Outbound = {};
 
 /** @internal */
-export const Subscription$outboundSchema: z.ZodType<
-  Subscription$Outbound,
+export const CheckoutEntitySubscription$outboundSchema: z.ZodType<
+  CheckoutEntitySubscription$Outbound,
   z.ZodTypeDef,
-  Subscription
+  CheckoutEntitySubscription
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Subscription$ {
-  /** @deprecated use `Subscription$inboundSchema` instead. */
-  export const inboundSchema = Subscription$inboundSchema;
-  /** @deprecated use `Subscription$outboundSchema` instead. */
-  export const outboundSchema = Subscription$outboundSchema;
-  /** @deprecated use `Subscription$Outbound` instead. */
-  export type Outbound = Subscription$Outbound;
+export namespace CheckoutEntitySubscription$ {
+  /** @deprecated use `CheckoutEntitySubscription$inboundSchema` instead. */
+  export const inboundSchema = CheckoutEntitySubscription$inboundSchema;
+  /** @deprecated use `CheckoutEntitySubscription$outboundSchema` instead. */
+  export const outboundSchema = CheckoutEntitySubscription$outboundSchema;
+  /** @deprecated use `CheckoutEntitySubscription$Outbound` instead. */
+  export type Outbound = CheckoutEntitySubscription$Outbound;
 }
 
-export function subscriptionToJSON(subscription: Subscription): string {
-  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
+export function checkoutEntitySubscriptionToJSON(
+  checkoutEntitySubscription: CheckoutEntitySubscription,
+): string {
+  return JSON.stringify(
+    CheckoutEntitySubscription$outboundSchema.parse(checkoutEntitySubscription),
+  );
 }
 
-export function subscriptionFromJSON(
+export function checkoutEntitySubscriptionFromJSON(
   jsonString: string,
-): SafeParseResult<Subscription, SDKValidationError> {
+): SafeParseResult<CheckoutEntitySubscription, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Subscription$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Subscription' from JSON`,
+    (x) => CheckoutEntitySubscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CheckoutEntitySubscription' from JSON`,
   );
 }
 
@@ -296,16 +300,17 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   object: z.string(),
   status: z.string(),
   request_id: z.string().optional(),
-  product: z.lazy(() => CheckoutEntityProduct$inboundSchema),
-  units: z.number().optional(),
+  product: z.union([ProductEntity$inboundSchema, z.string()]),
+  units: z.number().default(1),
   order: OrderEntity$inboundSchema.optional(),
-  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
+  subscription: z.lazy(() => CheckoutEntitySubscription$inboundSchema)
+    .optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   checkout_url: z.string(),
-  success_url: z.string(),
+  success_url: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$inboundSchema).optional(),
-  metadata: z.array(MetadataEntity$inboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "request_id": "requestId",
@@ -322,16 +327,16 @@ export type CheckoutEntity$Outbound = {
   object: string;
   status: string;
   request_id?: string | undefined;
-  product: CheckoutEntityProduct$Outbound;
-  units?: number | undefined;
+  product: ProductEntity$Outbound | string;
+  units: number;
   order?: OrderEntity$Outbound | undefined;
-  subscription?: Subscription$Outbound | undefined;
+  subscription?: CheckoutEntitySubscription$Outbound | undefined;
   customer?: CheckoutEntityCustomer$Outbound | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   checkout_url: string;
-  success_url: string;
+  success_url?: string | null | undefined;
   feature?: Array<ProductFeatureEntity$Outbound> | undefined;
-  metadata?: Array<MetadataEntity$Outbound> | undefined;
+  metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -345,16 +350,17 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   object: z.string(),
   status: z.string(),
   requestId: z.string().optional(),
-  product: z.lazy(() => CheckoutEntityProduct$outboundSchema),
-  units: z.number().optional(),
+  product: z.union([ProductEntity$outboundSchema, z.string()]),
+  units: z.number().default(1),
   order: OrderEntity$outboundSchema.optional(),
-  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
+  subscription: z.lazy(() => CheckoutEntitySubscription$outboundSchema)
+    .optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   checkoutUrl: z.string(),
-  successUrl: z.string(),
+  successUrl: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$outboundSchema).optional(),
-  metadata: z.array(MetadataEntity$outboundSchema).optional(),
+  metadata: z.record(z.any()).optional(),
 }).transform((v) => {
   return remap$(v, {
     requestId: "request_id",

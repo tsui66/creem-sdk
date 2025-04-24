@@ -14,6 +14,21 @@ let value: SubscriptionEntity = {
   collectionMethod: "charge_automatically",
   status: "active",
   lastTransactionId: "tran_3e6Z6TzvHKdsjEgXnGDEp0",
+  lastTransaction: {
+    id: "<id>",
+    mode: "test",
+    object: "<value>",
+    amount: 2000,
+    amountPaid: 2000,
+    discountAmount: 2000,
+    currency: "EUR",
+    type: "<value>",
+    taxCountry: "US",
+    taxAmount: 2000,
+    status: "<value>",
+    refundedAmount: 2000,
+    createdAt: 8622.86,
+  },
   lastTransactionDate: new Date("2024-09-12T12:34:56Z"),
   nextTransactionDate: new Date("2024-09-12T12:34:56Z"),
   currentPeriodStartDate: new Date("2024-09-12T12:34:56Z"),
@@ -37,6 +52,7 @@ let value: SubscriptionEntity = {
 | `collectionMethod`                                                                            | *string*                                                                                      | :heavy_check_mark:                                                                            | The method used for collecting payments for the subscription.                                 | charge_automatically                                                                          |
 | `status`                                                                                      | [components.Status](../../models/components/status.md)                                        | :heavy_check_mark:                                                                            | The current status of the subscription.                                                       | active                                                                                        |
 | `lastTransactionId`                                                                           | *string*                                                                                      | :heavy_minus_sign:                                                                            | The ID of the last paid transaction.                                                          | tran_3e6Z6TzvHKdsjEgXnGDEp0                                                                   |
+| `lastTransaction`                                                                             | [components.TransactionEntity](../../models/components/transactionentity.md)                  | :heavy_minus_sign:                                                                            | The last paid transaction.                                                                    |                                                                                               |
 | `lastTransactionDate`                                                                         | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date of the last paid transaction.                                                        | 2024-09-12T12:34:56Z                                                                          |
 | `nextTransactionDate`                                                                         | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date when the next subscription transaction will be charged.                              | 2024-09-12T12:34:56Z                                                                          |
 | `currentPeriodStartDate`                                                                      | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The start date of the current subscription period.                                            | 2024-09-12T12:34:56Z                                                                          |

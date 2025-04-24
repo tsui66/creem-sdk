@@ -4,7 +4,7 @@
 
 export * from "./activatelicenserequestentity.js";
 export * from "./checkoutentity.js";
-export * from "./createcheckoutrequestentity.js";
+export * from "./createcheckoutrequest.js";
 export * from "./createcustomerportallinkrequestentity.js";
 export * from "./creatediscountrequestentity.js";
 export * from "./createproductrequestentity.js";
@@ -18,7 +18,6 @@ export * from "./discountentity.js";
 export * from "./featureentity.js";
 export * from "./licenseentity.js";
 export * from "./licenseinstanceentity.js";
-export * from "./metadataentity.js";
 export * from "./orderentity.js";
 export * from "./paginationentity.js";
 export * from "./productentity.js";
