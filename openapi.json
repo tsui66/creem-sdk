@@ -815,7 +815,7 @@
           },
           "object": {
             "type": "string",
-            "description": "String representing the object’s type. Objects of the same type share the same value."
+            "description": "String representing the object's type. Objects of the same type share the same value."
           },
           "name": {
             "type": "string",
@@ -880,7 +880,8 @@
           "default_success_url": {
             "type": "string",
             "description": "The URL to which the user will be redirected after successfull payment.",
-            "example": "https://example.com/?status=successful"
+            "example": "https://example.com/?status=successful",
+            "nullable": true
           },
           "created_at": {
             "format": "date-time",
@@ -1061,13 +1062,6 @@
             "type": "string",
             "description": "Billing period, required if billing_type is recurring",
             "example": "every-month"
-          },
-          "features": {
-            "description": "A list of features fpr the product.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FeatureEntity"
-            }
           },
           "tax_mode": {
             "type": "string",

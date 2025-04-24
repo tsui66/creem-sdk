@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 776fdce788213d300ba6b480ef2e306a
+  docChecksum: 9fabc94f6a02d7b17b8980bab59de958
   docVersion: v1
   speakeasyVersion: 1.538.0
   generationVersion: 2.591.1
-  releaseVersion: 0.3.12
-  configChecksum: 41d9111ccd0c4d9ec6c80aa92a5d1278
+  releaseVersion: 0.3.15
+  configChecksum: a74f407d5f401461ebaffe58ee2224b3
   published: true
 features:
   typescript:
@@ -467,13 +467,14 @@ examples:
         header:
           x-api-key: "<value>"
       requestBody:
-        application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "tax_mode": "inclusive", "tax_category": "saas", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}]}
+        application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "tax_mode": "inclusive", "tax_category": "saas", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}]}
       responses:
         "200":
           application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
   searchProducts:
     speakeasy-default-search-products:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -482,6 +483,7 @@ examples:
   retrieveCustomer:
     speakeasy-default-retrieve-customer:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -584,6 +586,7 @@ examples:
   retrieveDiscount:
     speakeasy-default-retrieve-discount:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:
@@ -612,6 +615,7 @@ examples:
   searchTransactions:
     speakeasy-default-search-transactions:
       parameters:
+        query: {}
         header:
           x-api-key: "<value>"
       responses:

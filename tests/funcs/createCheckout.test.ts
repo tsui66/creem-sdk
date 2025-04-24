@@ -18,7 +18,7 @@ describe("createCheckout", () => {
       // Attempt to call SDK method with test API key
       await creem.createCheckout({
         xApiKey: "fail",
-        createCheckoutRequestEntity: {
+        createCheckoutRequest: {
           productId: TEST_PRODUCT_ID,
         },
       });
@@ -35,7 +35,7 @@ describe("createCheckout", () => {
     // When using the SDK instance directly, it returns CheckoutEntity
     const result = await creem.createCheckout({
       xApiKey: TEST_API_KEY,
-      createCheckoutRequestEntity: {
+      createCheckoutRequest: {
         productId: TEST_PRODUCT_ID,
       },
     });
@@ -51,7 +51,7 @@ describe("createCheckout", () => {
       // Use invalid input to trigger validation error
       await creem.createCheckout({
         xApiKey: "",
-        createCheckoutRequestEntity: {
+        createCheckoutRequest: {
           productId: TEST_PRODUCT_ID,
         },
       });
@@ -65,7 +65,7 @@ describe("createCheckout", () => {
     try {
       await creem.createCheckout({
         xApiKey: TEST_API_KEY,
-        createCheckoutRequestEntity: {
+        createCheckoutRequest: {
           productId: "non-existent-product-id",
         },
       });
@@ -78,7 +78,7 @@ describe("createCheckout", () => {
   it("should create checkout with advanced options successfully", async () => {
     const result = await creem.createCheckout({
       xApiKey: TEST_API_KEY,
-      createCheckoutRequestEntity: {
+      createCheckoutRequest: {
         requestId: "test_request_id",
         productId: TEST_PRODUCT_ID,
         units: 2,

@@ -14,13 +14,6 @@ let value: CreateProductRequest = {
     currency: "EUR",
     billingType: "recurring",
     billingPeriod: "every-month",
-    features: [
-      {
-        id: "<id>",
-        type: "<value>",
-        description: "Get access to discord server.",
-      },
-    ],
     taxMode: "inclusive",
     taxCategory: "saas",
     defaultSuccessUrl: "https://example.com/?status=successful",

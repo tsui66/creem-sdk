@@ -38,7 +38,7 @@ export type ProductEntity = {
    */
   mode: Mode;
   /**
-   * String representing the object’s type. Objects of the same type share the same value.
+   * String representing the object's type. Objects of the same type share the same value.
    */
   object: string;
   /**
@@ -92,7 +92,7 @@ export type ProductEntity = {
   /**
    * The URL to which the user will be redirected after successfull payment.
    */
-  defaultSuccessUrl?: string | undefined;
+  defaultSuccessUrl?: string | null | undefined;
   /**
    * Creation date of the product
    */
@@ -144,7 +144,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
   tax_mode: z.string(),
   tax_category: z.string(),
   product_url: z.string(),
-  default_success_url: z.string().optional(),
+  default_success_url: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -178,7 +178,7 @@ export type ProductEntity$Outbound = {
   tax_mode: string;
   tax_category: string;
   product_url: string;
-  default_success_url?: string | undefined;
+  default_success_url?: string | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -204,7 +204,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
   taxMode: z.string(),
   taxCategory: z.string(),
   productUrl: z.string(),
-  defaultSuccessUrl: z.string().optional(),
+  defaultSuccessUrl: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
