@@ -54,7 +54,7 @@ export type CreateDiscountRequestEntity = {
   /**
    * The fixed value for the discount. Only applicable if the type is "fixed".
    */
-  amount: number;
+  amount?: number | undefined;
   /**
    * The currency of the discount. Only required if type is "fixed".
    */
@@ -82,7 +82,7 @@ export type CreateDiscountRequestEntity = {
   /**
    * The list of product IDs to which this discount applies.
    */
-  appliesToProducts?: Array<string> | undefined;
+  appliesToProducts: Array<string>;
 };
 
 /** @internal */
@@ -138,7 +138,7 @@ export const CreateDiscountRequestEntity$inboundSchema: z.ZodType<
   name: z.string(),
   code: z.string().optional(),
   type: CreateDiscountRequestEntityType$inboundSchema,
-  amount: z.number(),
+  amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),
   expiry_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
@@ -146,7 +146,7 @@ export const CreateDiscountRequestEntity$inboundSchema: z.ZodType<
   max_redemptions: z.number().optional(),
   duration: CreateDiscountRequestEntityDuration$inboundSchema,
   duration_in_months: z.number().optional(),
-  applies_to_products: z.array(z.string()).optional(),
+  applies_to_products: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
     "expiry_date": "expiryDate",
@@ -161,14 +161,14 @@ export type CreateDiscountRequestEntity$Outbound = {
   name: string;
   code?: string | undefined;
   type: string;
-  amount: number;
+  amount?: number | undefined;
   currency?: string | undefined;
   percentage?: number | undefined;
   expiry_date?: string | undefined;
   max_redemptions?: number | undefined;
   duration: string;
   duration_in_months?: number | undefined;
-  applies_to_products?: Array<string> | undefined;
+  applies_to_products: Array<string>;
 };
 
 /** @internal */
@@ -180,14 +180,14 @@ export const CreateDiscountRequestEntity$outboundSchema: z.ZodType<
   name: z.string(),
   code: z.string().optional(),
   type: CreateDiscountRequestEntityType$outboundSchema,
-  amount: z.number(),
+  amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),
   expiryDate: z.date().transform(v => v.toISOString()).optional(),
   maxRedemptions: z.number().optional(),
   duration: CreateDiscountRequestEntityDuration$outboundSchema,
   durationInMonths: z.number().optional(),
-  appliesToProducts: z.array(z.string()).optional(),
+  appliesToProducts: z.array(z.string()),
 }).transform((v) => {
   return remap$(v, {
     expiryDate: "expiry_date",

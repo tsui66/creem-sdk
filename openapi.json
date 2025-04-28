@@ -2126,6 +2126,11 @@
             "description": "The amount of the discount. Can be a percentage or a fixed amount.",
             "example": 20
           },
+          "currency": {
+            "type": "string",
+            "description": "The currency of the discount. Only required if type is \"fixed\".",
+            "example": "USD"
+          },
           "percentage": {
             "type": "number",
             "description": "The percentage of the discount. Only applicable if type is \"percentage\".",
@@ -2138,7 +2143,7 @@
             "example": "2024-12-31T23:59:59Z"
           },
           "max_redemptions": {
-            "type": "object",
+            "type": "number",
             "description": "The maximum number of redemptions allowed for the discount.",
             "example": 100
           },
@@ -2153,7 +2158,7 @@
             "example": "repeating"
           },
           "duration_in_months": {
-            "type": "object",
+            "type": "number",
             "description": "The number of months the discount is valid for. Only applicable if the duration is \"repeating\" and the product is a subscription.",
             "example": 6
           },
@@ -2176,8 +2181,7 @@
           "status",
           "name",
           "code",
-          "type",
-          "amount"
+          "type"
         ]
       },
       "CreateDiscountRequestEntity": {
@@ -2257,8 +2261,8 @@
         "required": [
           "name",
           "type",
-          "amount",
-          "duration"
+          "duration",
+          "applies_to_products"
         ]
       },
       "TransactionListEntity": {

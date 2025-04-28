@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: d4d0fc747aff569dcac4c20e9aee37b5
+  docChecksum: 0d2e2da8c367635b6a558279c73d48b0
   docVersion: v1
   speakeasyVersion: 1.540.1
   generationVersion: 2.593.4
-  releaseVersion: 0.3.24
-  configChecksum: 3ea03ff798456db1001667405de557a3
+  releaseVersion: 0.3.28
+  configChecksum: 7ab871c3ba83801d11ceb9a8f7daa68d
   published: true
 features:
   typescript:
@@ -60,7 +60,6 @@ generatedFiles:
   - docs/models/components/discountentitystatus.md
   - docs/models/components/discountentitytype.md
   - docs/models/components/duration.md
-  - docs/models/components/durationinmonths.md
   - docs/models/components/expiresat.md
   - docs/models/components/featureentity.md
   - docs/models/components/instance.md
@@ -69,7 +68,6 @@ generatedFiles:
   - docs/models/components/licenseentityinstancestatus.md
   - docs/models/components/licenseentitymode.md
   - docs/models/components/licenseentitystatus.md
-  - docs/models/components/maxredemptions.md
   - docs/models/components/mode.md
   - docs/models/components/orderentity.md
   - docs/models/components/orderentitymode.md
@@ -585,7 +583,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
   createDiscount:
     speakeasy-default-create-discount:
       parameters:
@@ -595,7 +593,7 @@ examples:
         application/json: {"name": "Holiday Sale", "code": "HOLIDAY2024", "type": "fixed", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
+          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
   deleteDiscount:
     speakeasy-default-delete-discount:
       parameters:
@@ -605,7 +603,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": {}, "duration": "repeating", "duration_in_months": {}, "applies_to_products": ["prod_123", "prod_456"]}
+          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
   searchTransactions:
     speakeasy-default-search-transactions:
       parameters:
