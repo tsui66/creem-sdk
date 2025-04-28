@@ -1430,10 +1430,11 @@
             "example": "2024-09-12T12:34:56Z"
           },
           "canceled_at": {
-            "format": "date-time",
             "type": "string",
             "description": "The date and time when the subscription was canceled, if applicable.",
-            "example": "2024-09-12T12:34:56Z"
+            "example": "2024-09-12T12:34:56Z",
+            "format": "date-time",
+            "nullable": true
           },
           "created_at": {
             "format": "date-time",
@@ -1442,10 +1443,10 @@
             "example": "2024-01-01T00:00:00Z"
           },
           "updated_at": {
-            "format": "date-time",
             "type": "string",
             "description": "The date and time when the subscription was last updated.",
-            "example": "2024-09-12T12:34:56Z"
+            "example": "2024-09-12T12:34:56Z",
+            "format": "date-time"
           }
         },
         "required": [

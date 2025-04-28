@@ -131,7 +131,7 @@ export type SubscriptionEntity = {
   /**
    * The date and time when the subscription was canceled, if applicable.
    */
-  canceledAt?: Date | undefined;
+  canceledAt?: Date | null | undefined;
   /**
    * The date and time when the subscription was created.
    */
@@ -295,8 +295,9 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   current_period_end_date: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-  canceled_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
+  canceled_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -330,7 +331,7 @@ export type SubscriptionEntity$Outbound = {
   next_transaction_date?: string | undefined;
   current_period_start_date?: string | undefined;
   current_period_end_date?: string | undefined;
-  canceled_at?: string | undefined;
+  canceled_at?: string | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -355,7 +356,7 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   nextTransactionDate: z.date().transform(v => v.toISOString()).optional(),
   currentPeriodStartDate: z.date().transform(v => v.toISOString()).optional(),
   currentPeriodEndDate: z.date().transform(v => v.toISOString()).optional(),
-  canceledAt: z.date().transform(v => v.toISOString()).optional(),
+  canceledAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
