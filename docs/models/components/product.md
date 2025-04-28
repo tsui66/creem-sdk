@@ -2,15 +2,43 @@
 
 The product associated with the subscription.
 
-## Example Usage
+
+## Supported Types
+
+### `components.ProductEntity`
 
 ```typescript
-import { Product } from "creem/models/components";
-
-let value: Product = {};
+const value: components.ProductEntity = {
+  id: "<id>",
+  mode: "test",
+  object: "<value>",
+  name: "<value>",
+  description: "This is a sample product description.",
+  imageUrl: "https://example.com/image.jpg",
+  features: [
+    {
+      id: "<id>",
+      type: "<value>",
+      description: "Get access to discord server.",
+    },
+  ],
+  price: 400,
+  currency: "EUR",
+  billingType: "recurring",
+  billingPeriod: "every-month",
+  status: "<value>",
+  taxMode: "inclusive",
+  taxCategory: "saas",
+  productUrl: "https://creem.io/product/prod_123123123123",
+  defaultSuccessUrl: "https://example.com/?status=successful",
+  createdAt: new Date("2023-01-01T00:00:00Z"),
+  updatedAt: new Date("2023-01-01T00:00:00Z"),
+};
 ```
 
-## Fields
+### `string`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: string = "<value>";
+```
+

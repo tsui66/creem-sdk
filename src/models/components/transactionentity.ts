@@ -22,21 +22,6 @@ export const TransactionEntityMode = {
  */
 export type TransactionEntityMode = ClosedEnum<typeof TransactionEntityMode>;
 
-/**
- * The order associated with the transaction.
- */
-export type Order = {};
-
-/**
- * The subscription associated with the transaction.
- */
-export type Subscription = {};
-
-/**
- * The customer associated with the transaction.
- */
-export type TransactionEntityCustomer = {};
-
 export type TransactionEntity = {
   /**
    * Unique identifier for the object.
@@ -47,7 +32,7 @@ export type TransactionEntity = {
    */
   mode: TransactionEntityMode;
   /**
-   * String representing the object’s type. Objects of the same type share the same value.
+   * String representing the object's type. Objects of the same type share the same value.
    */
   object: string;
   /**
@@ -57,7 +42,7 @@ export type TransactionEntity = {
   /**
    * The amount the customer paid in cents. 1000 = $10.00
    */
-  amountPaid: number;
+  amountPaid?: number | undefined;
   /**
    * The discount amount in cents. 1000 = $10.00
    */
@@ -73,11 +58,11 @@ export type TransactionEntity = {
   /**
    * The ISO alpha-2 country code where tax is collected.
    */
-  taxCountry: string;
+  taxCountry?: string | undefined;
   /**
    * The sale tax amount in cents. 1000 = $10.00
    */
-  taxAmount: number;
+  taxAmount?: number | undefined;
   /**
    * Status of the transaction.
    */
@@ -85,19 +70,19 @@ export type TransactionEntity = {
   /**
    * The amount that has been refunded in cents. 1000 = $10.00
    */
-  refundedAmount: number;
+  refundedAmount?: number | null | undefined;
   /**
    * The order associated with the transaction.
    */
-  order?: Order | undefined;
+  order?: string | undefined;
   /**
    * The subscription associated with the transaction.
    */
-  subscription?: Subscription | undefined;
+  subscription?: string | undefined;
   /**
    * The customer associated with the transaction.
    */
-  customer?: TransactionEntityCustomer | undefined;
+  customer?: string | null | undefined;
   /**
    * The description of the transaction.
    */
@@ -138,139 +123,6 @@ export namespace TransactionEntityMode$ {
 }
 
 /** @internal */
-export const Order$inboundSchema: z.ZodType<Order, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Order$Outbound = {};
-
-/** @internal */
-export const Order$outboundSchema: z.ZodType<
-  Order$Outbound,
-  z.ZodTypeDef,
-  Order
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Order$ {
-  /** @deprecated use `Order$inboundSchema` instead. */
-  export const inboundSchema = Order$inboundSchema;
-  /** @deprecated use `Order$outboundSchema` instead. */
-  export const outboundSchema = Order$outboundSchema;
-  /** @deprecated use `Order$Outbound` instead. */
-  export type Outbound = Order$Outbound;
-}
-
-export function orderToJSON(order: Order): string {
-  return JSON.stringify(Order$outboundSchema.parse(order));
-}
-
-export function orderFromJSON(
-  jsonString: string,
-): SafeParseResult<Order, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Order$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Order' from JSON`,
-  );
-}
-
-/** @internal */
-export const Subscription$inboundSchema: z.ZodType<
-  Subscription,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type Subscription$Outbound = {};
-
-/** @internal */
-export const Subscription$outboundSchema: z.ZodType<
-  Subscription$Outbound,
-  z.ZodTypeDef,
-  Subscription
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Subscription$ {
-  /** @deprecated use `Subscription$inboundSchema` instead. */
-  export const inboundSchema = Subscription$inboundSchema;
-  /** @deprecated use `Subscription$outboundSchema` instead. */
-  export const outboundSchema = Subscription$outboundSchema;
-  /** @deprecated use `Subscription$Outbound` instead. */
-  export type Outbound = Subscription$Outbound;
-}
-
-export function subscriptionToJSON(subscription: Subscription): string {
-  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
-}
-
-export function subscriptionFromJSON(
-  jsonString: string,
-): SafeParseResult<Subscription, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Subscription$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Subscription' from JSON`,
-  );
-}
-
-/** @internal */
-export const TransactionEntityCustomer$inboundSchema: z.ZodType<
-  TransactionEntityCustomer,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type TransactionEntityCustomer$Outbound = {};
-
-/** @internal */
-export const TransactionEntityCustomer$outboundSchema: z.ZodType<
-  TransactionEntityCustomer$Outbound,
-  z.ZodTypeDef,
-  TransactionEntityCustomer
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransactionEntityCustomer$ {
-  /** @deprecated use `TransactionEntityCustomer$inboundSchema` instead. */
-  export const inboundSchema = TransactionEntityCustomer$inboundSchema;
-  /** @deprecated use `TransactionEntityCustomer$outboundSchema` instead. */
-  export const outboundSchema = TransactionEntityCustomer$outboundSchema;
-  /** @deprecated use `TransactionEntityCustomer$Outbound` instead. */
-  export type Outbound = TransactionEntityCustomer$Outbound;
-}
-
-export function transactionEntityCustomerToJSON(
-  transactionEntityCustomer: TransactionEntityCustomer,
-): string {
-  return JSON.stringify(
-    TransactionEntityCustomer$outboundSchema.parse(transactionEntityCustomer),
-  );
-}
-
-export function transactionEntityCustomerFromJSON(
-  jsonString: string,
-): SafeParseResult<TransactionEntityCustomer, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TransactionEntityCustomer$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransactionEntityCustomer' from JSON`,
-  );
-}
-
-/** @internal */
 export const TransactionEntity$inboundSchema: z.ZodType<
   TransactionEntity,
   z.ZodTypeDef,
@@ -280,17 +132,17 @@ export const TransactionEntity$inboundSchema: z.ZodType<
   mode: TransactionEntityMode$inboundSchema,
   object: z.string(),
   amount: z.number(),
-  amount_paid: z.number(),
+  amount_paid: z.number().optional(),
   discount_amount: z.number().optional(),
   currency: z.string(),
   type: z.string(),
-  tax_country: z.string(),
-  tax_amount: z.number(),
+  tax_country: z.string().optional(),
+  tax_amount: z.number().optional(),
   status: z.string(),
-  refunded_amount: z.number(),
-  order: z.lazy(() => Order$inboundSchema).optional(),
-  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
-  customer: z.lazy(() => TransactionEntityCustomer$inboundSchema).optional(),
+  refunded_amount: z.nullable(z.number()).optional(),
+  order: z.string().optional(),
+  subscription: z.string().optional(),
+  customer: z.nullable(z.string()).optional(),
   description: z.string().optional(),
   period_start: z.number().optional(),
   period_end: z.number().optional(),
@@ -314,17 +166,17 @@ export type TransactionEntity$Outbound = {
   mode: string;
   object: string;
   amount: number;
-  amount_paid: number;
+  amount_paid?: number | undefined;
   discount_amount?: number | undefined;
   currency: string;
   type: string;
-  tax_country: string;
-  tax_amount: number;
+  tax_country?: string | undefined;
+  tax_amount?: number | undefined;
   status: string;
-  refunded_amount: number;
-  order?: Order$Outbound | undefined;
-  subscription?: Subscription$Outbound | undefined;
-  customer?: TransactionEntityCustomer$Outbound | undefined;
+  refunded_amount?: number | null | undefined;
+  order?: string | undefined;
+  subscription?: string | undefined;
+  customer?: string | null | undefined;
   description?: string | undefined;
   period_start?: number | undefined;
   period_end?: number | undefined;
@@ -341,17 +193,17 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   mode: TransactionEntityMode$outboundSchema,
   object: z.string(),
   amount: z.number(),
-  amountPaid: z.number(),
+  amountPaid: z.number().optional(),
   discountAmount: z.number().optional(),
   currency: z.string(),
   type: z.string(),
-  taxCountry: z.string(),
-  taxAmount: z.number(),
+  taxCountry: z.string().optional(),
+  taxAmount: z.number().optional(),
   status: z.string(),
-  refundedAmount: z.number(),
-  order: z.lazy(() => Order$outboundSchema).optional(),
-  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
-  customer: z.lazy(() => TransactionEntityCustomer$outboundSchema).optional(),
+  refundedAmount: z.nullable(z.number()).optional(),
+  order: z.string().optional(),
+  subscription: z.string().optional(),
+  customer: z.nullable(z.string()).optional(),
   description: z.string().optional(),
   periodStart: z.number().optional(),
   periodEnd: z.number().optional(),

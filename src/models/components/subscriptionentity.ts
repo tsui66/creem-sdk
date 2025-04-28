@@ -9,6 +9,18 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  CustomerEntity,
+  CustomerEntity$inboundSchema,
+  CustomerEntity$Outbound,
+  CustomerEntity$outboundSchema,
+} from "./customerentity.js";
+import {
+  ProductEntity,
+  ProductEntity$inboundSchema,
+  ProductEntity$Outbound,
+  ProductEntity$outboundSchema,
+} from "./productentity.js";
+import {
   SubscriptionItemEntity,
   SubscriptionItemEntity$inboundSchema,
   SubscriptionItemEntity$Outbound,
@@ -37,12 +49,12 @@ export type SubscriptionEntityMode = ClosedEnum<typeof SubscriptionEntityMode>;
 /**
  * The product associated with the subscription.
  */
-export type Product = {};
+export type Product = ProductEntity | string;
 
 /**
  * The customer who owns the subscription.
  */
-export type Customer = {};
+export type Customer = CustomerEntity | string;
 
 /**
  * The current status of the subscription.
@@ -69,17 +81,17 @@ export type SubscriptionEntity = {
    */
   mode: SubscriptionEntityMode;
   /**
-   * String representing the object’s type. Objects of the same type share the same value.
+   * String representing the object's type. Objects of the same type share the same value.
    */
   object: string;
   /**
    * The product associated with the subscription.
    */
-  product: Product;
+  product: ProductEntity | string;
   /**
    * The customer who owns the subscription.
    */
-  customer: Customer;
+  customer: CustomerEntity | string;
   /**
    * Subscription items.
    */
@@ -153,17 +165,17 @@ export namespace SubscriptionEntityMode$ {
 
 /** @internal */
 export const Product$inboundSchema: z.ZodType<Product, z.ZodTypeDef, unknown> =
-  z.object({});
+  z.union([ProductEntity$inboundSchema, z.string()]);
 
 /** @internal */
-export type Product$Outbound = {};
+export type Product$Outbound = ProductEntity$Outbound | string;
 
 /** @internal */
 export const Product$outboundSchema: z.ZodType<
   Product$Outbound,
   z.ZodTypeDef,
   Product
-> = z.object({});
+> = z.union([ProductEntity$outboundSchema, z.string()]);
 
 /**
  * @internal
@@ -197,17 +209,17 @@ export const Customer$inboundSchema: z.ZodType<
   Customer,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([CustomerEntity$inboundSchema, z.string()]);
 
 /** @internal */
-export type Customer$Outbound = {};
+export type Customer$Outbound = CustomerEntity$Outbound | string;
 
 /** @internal */
 export const Customer$outboundSchema: z.ZodType<
   Customer$Outbound,
   z.ZodTypeDef,
   Customer
-> = z.object({});
+> = z.union([CustomerEntity$outboundSchema, z.string()]);
 
 /**
  * @internal
@@ -264,8 +276,8 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: SubscriptionEntityMode$inboundSchema,
   object: z.string(),
-  product: z.lazy(() => Product$inboundSchema),
-  customer: z.lazy(() => Customer$inboundSchema),
+  product: z.union([ProductEntity$inboundSchema, z.string()]),
+  customer: z.union([CustomerEntity$inboundSchema, z.string()]),
   items: z.array(SubscriptionItemEntity$inboundSchema).optional(),
   collection_method: z.string(),
   status: Status$inboundSchema,
@@ -307,8 +319,8 @@ export type SubscriptionEntity$Outbound = {
   id: string;
   mode: string;
   object: string;
-  product: Product$Outbound;
-  customer: Customer$Outbound;
+  product: ProductEntity$Outbound | string;
+  customer: CustomerEntity$Outbound | string;
   items?: Array<SubscriptionItemEntity$Outbound> | undefined;
   collection_method: string;
   status: string;
@@ -332,8 +344,8 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: SubscriptionEntityMode$outboundSchema,
   object: z.string(),
-  product: z.lazy(() => Product$outboundSchema),
-  customer: z.lazy(() => Customer$outboundSchema),
+  product: z.union([ProductEntity$outboundSchema, z.string()]),
+  customer: z.union([CustomerEntity$outboundSchema, z.string()]),
   items: z.array(SubscriptionItemEntity$outboundSchema).optional(),
   collectionMethod: z.string(),
   status: Status$outboundSchema,

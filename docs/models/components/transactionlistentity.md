@@ -10,7 +10,7 @@ let value: TransactionListEntity = {
     {
       id: "<id>",
       mode: "sandbox",
-      object: "<value>",
+      object: "transaction",
       amount: 2000,
       amountPaid: 2000,
       discountAmount: 2000,

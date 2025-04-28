@@ -8,16 +8,41 @@ import { SubscriptionEntity } from "creem/models/components";
 let value: SubscriptionEntity = {
   id: "<id>",
   mode: "live",
-  object: "<value>",
-  product: {},
-  customer: {},
+  object: "subscription",
+  product: {
+    id: "<id>",
+    mode: "sandbox",
+    object: "<value>",
+    name: "<value>",
+    description: "This is a sample product description.",
+    imageUrl: "https://example.com/image.jpg",
+    features: [
+      {
+        id: "<id>",
+        type: "<value>",
+        description: "Get access to discord server.",
+      },
+    ],
+    price: 400,
+    currency: "EUR",
+    billingType: "recurring",
+    billingPeriod: "every-month",
+    status: "<value>",
+    taxMode: "inclusive",
+    taxCategory: "saas",
+    productUrl: "https://creem.io/product/prod_123123123123",
+    defaultSuccessUrl: "https://example.com/?status=successful",
+    createdAt: new Date("2023-01-01T00:00:00Z"),
+    updatedAt: new Date("2023-01-01T00:00:00Z"),
+  },
+  customer: "<value>",
   collectionMethod: "charge_automatically",
   status: "active",
   lastTransactionId: "tran_3e6Z6TzvHKdsjEgXnGDEp0",
   lastTransaction: {
     id: "<id>",
     mode: "test",
-    object: "<value>",
+    object: "transaction",
     amount: 2000,
     amountPaid: 2000,
     discountAmount: 2000,
@@ -27,7 +52,7 @@ let value: SubscriptionEntity = {
     taxAmount: 2000,
     status: "<value>",
     refundedAmount: 2000,
-    createdAt: 8622.86,
+    createdAt: 7643.29,
   },
   lastTransactionDate: new Date("2024-09-12T12:34:56Z"),
   nextTransactionDate: new Date("2024-09-12T12:34:56Z"),
@@ -45,9 +70,9 @@ let value: SubscriptionEntity = {
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | Unique identifier for the object.                                                             |                                                                                               |
 | `mode`                                                                                        | [components.SubscriptionEntityMode](../../models/components/subscriptionentitymode.md)        | :heavy_check_mark:                                                                            | String representing the environment.                                                          |                                                                                               |
-| `object`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | String representing the object’s type. Objects of the same type share the same value.         |                                                                                               |
-| `product`                                                                                     | [components.Product](../../models/components/product.md)                                      | :heavy_check_mark:                                                                            | The product associated with the subscription.                                                 |                                                                                               |
-| `customer`                                                                                    | [components.Customer](../../models/components/customer.md)                                    | :heavy_check_mark:                                                                            | The customer who owns the subscription.                                                       |                                                                                               |
+| `object`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | String representing the object's type. Objects of the same type share the same value.         | subscription                                                                                  |
+| `product`                                                                                     | *components.Product*                                                                          | :heavy_check_mark:                                                                            | The product associated with the subscription.                                                 |                                                                                               |
+| `customer`                                                                                    | *components.Customer*                                                                         | :heavy_check_mark:                                                                            | The customer who owns the subscription.                                                       |                                                                                               |
 | `items`                                                                                       | [components.SubscriptionItemEntity](../../models/components/subscriptionitementity.md)[]      | :heavy_minus_sign:                                                                            | Subscription items.                                                                           |                                                                                               |
 | `collectionMethod`                                                                            | *string*                                                                                      | :heavy_check_mark:                                                                            | The method used for collecting payments for the subscription.                                 | charge_automatically                                                                          |
 | `status`                                                                                      | [components.Status](../../models/components/status.md)                                        | :heavy_check_mark:                                                                            | The current status of the subscription.                                                       | active                                                                                        |

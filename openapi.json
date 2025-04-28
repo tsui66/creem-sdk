@@ -1236,7 +1236,8 @@
           },
           "object": {
             "type": "string",
-            "description": "String representing the object’s type. Objects of the same type share the same value."
+            "description": "String representing the object's type. Objects of the same type share the same value.",
+            "example": "transaction"
           },
           "amount": {
             "type": "number",
@@ -1280,19 +1281,21 @@
           "refunded_amount": {
             "type": "number",
             "description": "The amount that has been refunded in cents. 1000 = $10.00",
-            "example": 2000
+            "example": 2000,
+            "nullable": true
           },
           "order": {
-            "type": "object",
+            "type": "string",
             "description": "The order associated with the transaction."
           },
           "subscription": {
-            "type": "object",
+            "type": "string",
             "description": "The subscription associated with the transaction."
           },
           "customer": {
-            "type": "object",
-            "description": "The customer associated with the transaction."
+            "type": "string",
+            "description": "The customer associated with the transaction.",
+            "nullable": true
           },
           "description": {
             "type": "string",
@@ -1316,13 +1319,9 @@
           "mode",
           "object",
           "amount",
-          "amount_paid",
           "currency",
           "type",
-          "tax_country",
-          "tax_amount",
           "status",
-          "refunded_amount",
           "created_at"
         ]
       },
@@ -1344,15 +1343,30 @@
           },
           "object": {
             "type": "string",
-            "description": "String representing the object’s type. Objects of the same type share the same value."
+            "description": "String representing the object's type. Objects of the same type share the same value.",
+            "example": "subscription"
           },
           "product": {
-            "type": "object",
-            "description": "The product associated with the subscription."
+            "description": "The product associated with the subscription.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProductEntity"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "customer": {
-            "type": "object",
-            "description": "The customer who owns the subscription."
+            "description": "The customer who owns the subscription.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CustomerEntity"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "items": {
             "description": "Subscription items.",
