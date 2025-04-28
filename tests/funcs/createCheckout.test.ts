@@ -2,14 +2,16 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-
-// Global test variables
-const TEST_PRODUCT_ID = "prod_1IdKAUM3UpTXdNEsDGH04C";
-const TEST_API_KEY = "creem_4ls1t0PXf7YBAkwIx5Qj5n";
+import {
+  TEST_API_KEY,
+  TEST_PRODUCT_SUBSCRIPTION_ID,
+  TEST_SERVER_IDX,
+  TEST_MODE,
+} from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("createCheckout", () => {
@@ -19,7 +21,7 @@ describe("createCheckout", () => {
       await creem.createCheckout({
         xApiKey: "fail",
         createCheckoutRequest: {
-          productId: TEST_PRODUCT_ID,
+          productId: TEST_PRODUCT_SUBSCRIPTION_ID,
         },
       });
       // If it succeeds, fail the test (we expect it to throw)
@@ -36,7 +38,7 @@ describe("createCheckout", () => {
     const result = await creem.createCheckout({
       xApiKey: TEST_API_KEY,
       createCheckoutRequest: {
-        productId: TEST_PRODUCT_ID,
+        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
       },
     });
 
@@ -44,6 +46,7 @@ describe("createCheckout", () => {
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("checkoutUrl");
     expect(result).toHaveProperty("status");
+    expect(result).toHaveProperty("mode", TEST_MODE);
   });
 
   it("should handle validation errors", async () => {
@@ -52,7 +55,7 @@ describe("createCheckout", () => {
       await creem.createCheckout({
         xApiKey: "",
         createCheckoutRequest: {
-          productId: TEST_PRODUCT_ID,
+          productId: TEST_PRODUCT_SUBSCRIPTION_ID,
         },
       });
       fail("Expected validation error but none was thrown");
@@ -80,7 +83,7 @@ describe("createCheckout", () => {
       xApiKey: TEST_API_KEY,
       createCheckoutRequest: {
         requestId: "test_request_id",
-        productId: TEST_PRODUCT_ID,
+        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
         units: 2,
         customer: {
           email: "test@example.com",
@@ -107,11 +110,13 @@ describe("createCheckout", () => {
     // Verify the response structure and content
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("object", "checkout");
-    expect(result).toHaveProperty("product", TEST_PRODUCT_ID);
+    expect(result).toHaveProperty("product", TEST_PRODUCT_SUBSCRIPTION_ID);
     expect(result).toHaveProperty("units", 2);
     expect(result).toHaveProperty("status", "pending");
     expect(result).toHaveProperty("checkoutUrl");
-    expect(result.checkoutUrl).toContain(`checkout/${TEST_PRODUCT_ID}/`);
+    expect(result.checkoutUrl).toContain(
+      `checkout/${TEST_PRODUCT_SUBSCRIPTION_ID}/`
+    );
     expect(result).toHaveProperty("successUrl", "https://google.com");
     expect(result).toHaveProperty("metadata");
     expect(result.metadata).toEqual({ userId: "myUserId" });

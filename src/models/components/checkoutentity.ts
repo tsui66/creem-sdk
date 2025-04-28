@@ -54,7 +54,7 @@ export type CheckoutEntityProduct = ProductEntity | string;
 /**
  * The subscription associated with the checkout session.
  */
-export type CheckoutEntitySubscription = {};
+export type Subscription = {};
 
 /**
  * The customer associated with the checkout session.
@@ -97,7 +97,7 @@ export type CheckoutEntity = {
   /**
    * The subscription associated with the checkout session.
    */
-  subscription?: CheckoutEntitySubscription | undefined;
+  subscription?: Subscription | undefined;
   /**
    * The customer associated with the checkout session.
    */
@@ -194,50 +194,46 @@ export function checkoutEntityProductFromJSON(
 }
 
 /** @internal */
-export const CheckoutEntitySubscription$inboundSchema: z.ZodType<
-  CheckoutEntitySubscription,
+export const Subscription$inboundSchema: z.ZodType<
+  Subscription,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type CheckoutEntitySubscription$Outbound = {};
+export type Subscription$Outbound = {};
 
 /** @internal */
-export const CheckoutEntitySubscription$outboundSchema: z.ZodType<
-  CheckoutEntitySubscription$Outbound,
+export const Subscription$outboundSchema: z.ZodType<
+  Subscription$Outbound,
   z.ZodTypeDef,
-  CheckoutEntitySubscription
+  Subscription
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace CheckoutEntitySubscription$ {
-  /** @deprecated use `CheckoutEntitySubscription$inboundSchema` instead. */
-  export const inboundSchema = CheckoutEntitySubscription$inboundSchema;
-  /** @deprecated use `CheckoutEntitySubscription$outboundSchema` instead. */
-  export const outboundSchema = CheckoutEntitySubscription$outboundSchema;
-  /** @deprecated use `CheckoutEntitySubscription$Outbound` instead. */
-  export type Outbound = CheckoutEntitySubscription$Outbound;
+export namespace Subscription$ {
+  /** @deprecated use `Subscription$inboundSchema` instead. */
+  export const inboundSchema = Subscription$inboundSchema;
+  /** @deprecated use `Subscription$outboundSchema` instead. */
+  export const outboundSchema = Subscription$outboundSchema;
+  /** @deprecated use `Subscription$Outbound` instead. */
+  export type Outbound = Subscription$Outbound;
 }
 
-export function checkoutEntitySubscriptionToJSON(
-  checkoutEntitySubscription: CheckoutEntitySubscription,
-): string {
-  return JSON.stringify(
-    CheckoutEntitySubscription$outboundSchema.parse(checkoutEntitySubscription),
-  );
+export function subscriptionToJSON(subscription: Subscription): string {
+  return JSON.stringify(Subscription$outboundSchema.parse(subscription));
 }
 
-export function checkoutEntitySubscriptionFromJSON(
+export function subscriptionFromJSON(
   jsonString: string,
-): SafeParseResult<CheckoutEntitySubscription, SDKValidationError> {
+): SafeParseResult<Subscription, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => CheckoutEntitySubscription$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CheckoutEntitySubscription' from JSON`,
+    (x) => Subscription$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Subscription' from JSON`,
   );
 }
 
@@ -303,8 +299,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   units: z.number().default(1),
   order: OrderEntity$inboundSchema.optional(),
-  subscription: z.lazy(() => CheckoutEntitySubscription$inboundSchema)
-    .optional(),
+  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   checkout_url: z.string(),
@@ -330,7 +325,7 @@ export type CheckoutEntity$Outbound = {
   product: ProductEntity$Outbound | string;
   units: number;
   order?: OrderEntity$Outbound | undefined;
-  subscription?: CheckoutEntitySubscription$Outbound | undefined;
+  subscription?: Subscription$Outbound | undefined;
   customer?: CheckoutEntityCustomer$Outbound | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   checkout_url: string;
@@ -353,8 +348,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   units: z.number().default(1),
   order: OrderEntity$outboundSchema.optional(),
-  subscription: z.lazy(() => CheckoutEntitySubscription$outboundSchema)
-    .optional(),
+  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   checkoutUrl: z.string(),

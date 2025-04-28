@@ -49,11 +49,6 @@ export const DiscountEntityType = {
 export type DiscountEntityType = ClosedEnum<typeof DiscountEntityType>;
 
 /**
- * The maximum number of redemptions allowed for the discount.
- */
-export type MaxRedemptions = {};
-
-/**
  * The duration type for the discount.
  */
 export const Duration = {
@@ -65,11 +60,6 @@ export const Duration = {
  * The duration type for the discount.
  */
 export type Duration = ClosedEnum<typeof Duration>;
-
-/**
- * The number of months the discount is valid for. Only applicable if the duration is "repeating" and the product is a subscription.
- */
-export type DurationInMonths = {};
 
 export type DiscountEntity = {
   /**
@@ -103,7 +93,11 @@ export type DiscountEntity = {
   /**
    * The amount of the discount. Can be a percentage or a fixed amount.
    */
-  amount: number;
+  amount?: number | undefined;
+  /**
+   * The currency of the discount. Only required if type is "fixed".
+   */
+  currency?: string | undefined;
   /**
    * The percentage of the discount. Only applicable if type is "percentage".
    */
@@ -115,7 +109,7 @@ export type DiscountEntity = {
   /**
    * The maximum number of redemptions allowed for the discount.
    */
-  maxRedemptions?: MaxRedemptions | undefined;
+  maxRedemptions?: number | undefined;
   /**
    * The duration type for the discount.
    */
@@ -123,7 +117,7 @@ export type DiscountEntity = {
   /**
    * The number of months the discount is valid for. Only applicable if the duration is "repeating" and the product is a subscription.
    */
-  durationInMonths?: DurationInMonths | undefined;
+  durationInMonths?: number | undefined;
   /**
    * The list of product IDs to which this discount applies.
    */
@@ -194,50 +188,6 @@ export namespace DiscountEntityType$ {
 }
 
 /** @internal */
-export const MaxRedemptions$inboundSchema: z.ZodType<
-  MaxRedemptions,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type MaxRedemptions$Outbound = {};
-
-/** @internal */
-export const MaxRedemptions$outboundSchema: z.ZodType<
-  MaxRedemptions$Outbound,
-  z.ZodTypeDef,
-  MaxRedemptions
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MaxRedemptions$ {
-  /** @deprecated use `MaxRedemptions$inboundSchema` instead. */
-  export const inboundSchema = MaxRedemptions$inboundSchema;
-  /** @deprecated use `MaxRedemptions$outboundSchema` instead. */
-  export const outboundSchema = MaxRedemptions$outboundSchema;
-  /** @deprecated use `MaxRedemptions$Outbound` instead. */
-  export type Outbound = MaxRedemptions$Outbound;
-}
-
-export function maxRedemptionsToJSON(maxRedemptions: MaxRedemptions): string {
-  return JSON.stringify(MaxRedemptions$outboundSchema.parse(maxRedemptions));
-}
-
-export function maxRedemptionsFromJSON(
-  jsonString: string,
-): SafeParseResult<MaxRedemptions, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => MaxRedemptions$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'MaxRedemptions' from JSON`,
-  );
-}
-
-/** @internal */
 export const Duration$inboundSchema: z.ZodNativeEnum<typeof Duration> = z
   .nativeEnum(Duration);
 
@@ -257,54 +207,6 @@ export namespace Duration$ {
 }
 
 /** @internal */
-export const DurationInMonths$inboundSchema: z.ZodType<
-  DurationInMonths,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type DurationInMonths$Outbound = {};
-
-/** @internal */
-export const DurationInMonths$outboundSchema: z.ZodType<
-  DurationInMonths$Outbound,
-  z.ZodTypeDef,
-  DurationInMonths
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DurationInMonths$ {
-  /** @deprecated use `DurationInMonths$inboundSchema` instead. */
-  export const inboundSchema = DurationInMonths$inboundSchema;
-  /** @deprecated use `DurationInMonths$outboundSchema` instead. */
-  export const outboundSchema = DurationInMonths$outboundSchema;
-  /** @deprecated use `DurationInMonths$Outbound` instead. */
-  export type Outbound = DurationInMonths$Outbound;
-}
-
-export function durationInMonthsToJSON(
-  durationInMonths: DurationInMonths,
-): string {
-  return JSON.stringify(
-    DurationInMonths$outboundSchema.parse(durationInMonths),
-  );
-}
-
-export function durationInMonthsFromJSON(
-  jsonString: string,
-): SafeParseResult<DurationInMonths, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DurationInMonths$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DurationInMonths' from JSON`,
-  );
-}
-
-/** @internal */
 export const DiscountEntity$inboundSchema: z.ZodType<
   DiscountEntity,
   z.ZodTypeDef,
@@ -317,13 +219,14 @@ export const DiscountEntity$inboundSchema: z.ZodType<
   name: z.string(),
   code: z.string(),
   type: DiscountEntityType$inboundSchema,
-  amount: z.number(),
+  amount: z.number().optional(),
+  currency: z.string().optional(),
   percentage: z.number().optional(),
   expiry_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  max_redemptions: z.lazy(() => MaxRedemptions$inboundSchema).optional(),
+  max_redemptions: z.number().optional(),
   duration: Duration$inboundSchema.optional(),
-  duration_in_months: z.lazy(() => DurationInMonths$inboundSchema).optional(),
+  duration_in_months: z.number().optional(),
   applies_to_products: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -343,12 +246,13 @@ export type DiscountEntity$Outbound = {
   name: string;
   code: string;
   type: string;
-  amount: number;
+  amount?: number | undefined;
+  currency?: string | undefined;
   percentage?: number | undefined;
   expiry_date?: string | undefined;
-  max_redemptions?: MaxRedemptions$Outbound | undefined;
+  max_redemptions?: number | undefined;
   duration?: string | undefined;
-  duration_in_months?: DurationInMonths$Outbound | undefined;
+  duration_in_months?: number | undefined;
   applies_to_products?: Array<string> | undefined;
 };
 
@@ -365,12 +269,13 @@ export const DiscountEntity$outboundSchema: z.ZodType<
   name: z.string(),
   code: z.string(),
   type: DiscountEntityType$outboundSchema,
-  amount: z.number(),
+  amount: z.number().optional(),
+  currency: z.string().optional(),
   percentage: z.number().optional(),
   expiryDate: z.date().transform(v => v.toISOString()).optional(),
-  maxRedemptions: z.lazy(() => MaxRedemptions$outboundSchema).optional(),
+  maxRedemptions: z.number().optional(),
   duration: Duration$outboundSchema.optional(),
-  durationInMonths: z.lazy(() => DurationInMonths$outboundSchema).optional(),
+  durationInMonths: z.number().optional(),
   appliesToProducts: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {

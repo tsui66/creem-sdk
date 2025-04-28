@@ -2,9 +2,11 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-
-// Global test variables
-const TEST_API_KEY = "creem_4ls1t0PXf7YBAkwIx5Qj5n";
+import {
+  TEST_API_KEY,
+  TEST_SERVER_IDX,
+  TEST_MODE,
+} from "../fixtures/testValues.js";
 
 // Sample product data
 const SAMPLE_PRODUCT = {
@@ -33,7 +35,7 @@ const SAMPLE_PRODUCT = {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("createProduct", () => {
@@ -88,7 +90,7 @@ describe("createProduct", () => {
 
     expect(result).toHaveProperty("createdAt");
     expect(result).toHaveProperty("updatedAt");
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("mode", TEST_MODE);
   });
 
   it("should handle validation errors", async () => {

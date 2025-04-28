@@ -1,4 +1,8 @@
+/** @type {import('jest').Config} */
 export default {
+  preset: "ts-jest",
+  testEnvironment: "node",
+  setupFiles: ["<rootDir>/tests/setup.ts"],
   extensionsToTreatAsEsm: [".ts"],
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
@@ -11,6 +15,5 @@ export default {
       },
     ],
   },
-  testEnvironment: "node",
   testMatch: ["**/*.test.ts"],
 };

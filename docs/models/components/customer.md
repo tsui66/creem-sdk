@@ -2,15 +2,27 @@
 
 The customer who owns the subscription.
 
-## Example Usage
+
+## Supported Types
+
+### `components.CustomerEntity`
 
 ```typescript
-import { Customer } from "creem/models/components";
-
-let value: Customer = {};
+const value: components.CustomerEntity = {
+  id: "<id>",
+  mode: "sandbox",
+  object: "<value>",
+  email: "user@example.com",
+  name: "John Doe",
+  country: "US",
+  createdAt: new Date("2023-01-01T00:00:00Z"),
+  updatedAt: new Date("2023-01-01T00:00:00Z"),
+};
 ```
 
-## Fields
+### `string`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: string = "<value>";
+```
+

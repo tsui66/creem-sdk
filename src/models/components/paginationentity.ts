@@ -8,16 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-/**
- * The next page number, or null if there is no next page
- */
-export type NextPage = {};
-
-/**
- * The previous page number, or null if there is no previous page
- */
-export type PrevPage = {};
-
 export type PaginationEntity = {
   /**
    * Total number of records in the list
@@ -34,100 +24,12 @@ export type PaginationEntity = {
   /**
    * The next page number, or null if there is no next page
    */
-  nextPage?: NextPage | undefined;
+  nextPage: number | null;
   /**
    * The previous page number, or null if there is no previous page
    */
-  prevPage?: PrevPage | undefined;
+  prevPage: number | null;
 };
-
-/** @internal */
-export const NextPage$inboundSchema: z.ZodType<
-  NextPage,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type NextPage$Outbound = {};
-
-/** @internal */
-export const NextPage$outboundSchema: z.ZodType<
-  NextPage$Outbound,
-  z.ZodTypeDef,
-  NextPage
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NextPage$ {
-  /** @deprecated use `NextPage$inboundSchema` instead. */
-  export const inboundSchema = NextPage$inboundSchema;
-  /** @deprecated use `NextPage$outboundSchema` instead. */
-  export const outboundSchema = NextPage$outboundSchema;
-  /** @deprecated use `NextPage$Outbound` instead. */
-  export type Outbound = NextPage$Outbound;
-}
-
-export function nextPageToJSON(nextPage: NextPage): string {
-  return JSON.stringify(NextPage$outboundSchema.parse(nextPage));
-}
-
-export function nextPageFromJSON(
-  jsonString: string,
-): SafeParseResult<NextPage, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => NextPage$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'NextPage' from JSON`,
-  );
-}
-
-/** @internal */
-export const PrevPage$inboundSchema: z.ZodType<
-  PrevPage,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-/** @internal */
-export type PrevPage$Outbound = {};
-
-/** @internal */
-export const PrevPage$outboundSchema: z.ZodType<
-  PrevPage$Outbound,
-  z.ZodTypeDef,
-  PrevPage
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrevPage$ {
-  /** @deprecated use `PrevPage$inboundSchema` instead. */
-  export const inboundSchema = PrevPage$inboundSchema;
-  /** @deprecated use `PrevPage$outboundSchema` instead. */
-  export const outboundSchema = PrevPage$outboundSchema;
-  /** @deprecated use `PrevPage$Outbound` instead. */
-  export type Outbound = PrevPage$Outbound;
-}
-
-export function prevPageToJSON(prevPage: PrevPage): string {
-  return JSON.stringify(PrevPage$outboundSchema.parse(prevPage));
-}
-
-export function prevPageFromJSON(
-  jsonString: string,
-): SafeParseResult<PrevPage, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PrevPage$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PrevPage' from JSON`,
-  );
-}
 
 /** @internal */
 export const PaginationEntity$inboundSchema: z.ZodType<
@@ -138,8 +40,8 @@ export const PaginationEntity$inboundSchema: z.ZodType<
   total_records: z.number(),
   total_pages: z.number(),
   current_page: z.number(),
-  next_page: z.lazy(() => NextPage$inboundSchema).optional(),
-  prev_page: z.lazy(() => PrevPage$inboundSchema).optional(),
+  next_page: z.nullable(z.number()),
+  prev_page: z.nullable(z.number()),
 }).transform((v) => {
   return remap$(v, {
     "total_records": "totalRecords",
@@ -155,8 +57,8 @@ export type PaginationEntity$Outbound = {
   total_records: number;
   total_pages: number;
   current_page: number;
-  next_page?: NextPage$Outbound | undefined;
-  prev_page?: PrevPage$Outbound | undefined;
+  next_page: number | null;
+  prev_page: number | null;
 };
 
 /** @internal */
@@ -168,8 +70,8 @@ export const PaginationEntity$outboundSchema: z.ZodType<
   totalRecords: z.number(),
   totalPages: z.number(),
   currentPage: z.number(),
-  nextPage: z.lazy(() => NextPage$outboundSchema).optional(),
-  prevPage: z.lazy(() => PrevPage$outboundSchema).optional(),
+  nextPage: z.nullable(z.number()),
+  prevPage: z.nullable(z.number()),
 }).transform((v) => {
   return remap$(v, {
     totalRecords: "total_records",
