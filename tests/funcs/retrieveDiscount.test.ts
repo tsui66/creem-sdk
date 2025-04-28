@@ -8,9 +8,7 @@ import {
   createdFixedDiscountId,
   createdFixedDiscountCode,
 } from "./createDiscount.test.js";
-
-// Global test variables
-const TEST_API_KEY = "creem_4ls1t0PXf7YBAkwIx5Qj5n";
+import { TEST_API_KEY } from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({

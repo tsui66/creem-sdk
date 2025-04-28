@@ -3,10 +3,9 @@ import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
 import * as components from "../../src/models/components/index.js";
+import { TEST_API_KEY, TEST_PRODUCT_ID } from "../fixtures/testValues.js";
 
 // Global test variables
-const TEST_API_KEY = "creem_4ls1t0PXf7YBAkwIx5Qj5n";
-const TEST_PRODUCT_ID = "prod_1IdKAUM3UpTXdNEsDGH04C";
 // Sample percentage discount data
 const SAMPLE_PERCENTAGE_DISCOUNT: components.CreateDiscountRequestEntity = {
   name: "Test Percentage Discount",

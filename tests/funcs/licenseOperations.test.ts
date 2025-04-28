@@ -2,11 +2,11 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-
-// Global test variables
-const TEST_API_KEY = "creem_4ls1t0PXf7YBAkwIx5Qj5n";
-const TEST_LICENSE_KEY = "D78E9-J4OF4-FCA70-WX4GJ-OBUE0";
-const TEST_INSTANCE_NAME = "Test Instance";
+import {
+  TEST_API_KEY,
+  TEST_LICENSE_KEY,
+  TEST_INSTANCE_NAME,
+} from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
