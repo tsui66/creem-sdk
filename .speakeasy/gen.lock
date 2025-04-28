@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 9fabc94f6a02d7b17b8980bab59de958
+  docChecksum: 75d0b7f8e804f3634940ad6d8c765134
   docVersion: v1
-  speakeasyVersion: 1.538.0
-  generationVersion: 2.591.1
-  releaseVersion: 0.3.15
-  configChecksum: a74f407d5f401461ebaffe58ee2224b3
+  speakeasyVersion: 1.540.0
+  generationVersion: 2.593.3
+  releaseVersion: 0.3.19
+  configChecksum: 83468f05682eda74c4a35c856464b44d
   published: true
 features:
   typescript:
@@ -72,14 +72,12 @@ generatedFiles:
   - docs/models/components/licenseinstanceentitystatus.md
   - docs/models/components/maxredemptions.md
   - docs/models/components/mode.md
-  - docs/models/components/nextpage.md
   - docs/models/components/order.md
   - docs/models/components/orderentity.md
   - docs/models/components/orderentitymode.md
   - docs/models/components/orderentitystatus.md
   - docs/models/components/orderentitytype.md
   - docs/models/components/paginationentity.md
-  - docs/models/components/prevpage.md
   - docs/models/components/product.md
   - docs/models/components/productentity.md
   - docs/models/components/productfeatureentity.md
@@ -479,7 +477,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
+          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
   retrieveCustomer:
     speakeasy-default-retrieve-customer:
       parameters:
@@ -620,6 +618,6 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"items": [{"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 618.34}, {"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9438.92}, {"id": "<id>", "mode": "test", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3723.22}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": {}}}
+          application/json: {"items": [{"id": "<id>", "mode": "live", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 618.34}, {"id": "<id>", "mode": "sandbox", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9438.92}, {"id": "<id>", "mode": "test", "object": "<value>", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3723.22}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
 examplesVersion: 1.0.1
 generatedTests: {}

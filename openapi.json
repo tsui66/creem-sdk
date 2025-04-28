@@ -909,7 +909,6 @@
           "status",
           "tax_mode",
           "tax_category",
-          "product_url",
           "created_at",
           "updated_at"
         ]
@@ -933,20 +932,24 @@
             "example": 1
           },
           "next_page": {
-            "type": "object",
+            "type": "number",
             "description": "The next page number, or null if there is no next page",
-            "example": 2
+            "example": 2,
+            "nullable": true
           },
           "prev_page": {
-            "type": "object",
+            "type": "number",
             "description": "The previous page number, or null if there is no previous page",
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "required": [
           "total_records",
           "total_pages",
-          "current_page"
+          "current_page",
+          "next_page",
+          "prev_page"
         ]
       },
       "ProductListEntity": {

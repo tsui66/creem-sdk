@@ -27,7 +27,7 @@ let value: TransactionListEntity = {
     totalRecords: 0,
     totalPages: 0,
     currentPage: 1,
-    nextPage: {},
+    nextPage: 2,
     prevPage: null,
   },
 };

@@ -88,7 +88,7 @@ export type ProductEntity = {
   /**
    * The product page you can redirect your customers to for express checkout.
    */
-  productUrl: string;
+  productUrl?: string | undefined;
   /**
    * The URL to which the user will be redirected after successfull payment.
    */
@@ -143,7 +143,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
   status: z.string(),
   tax_mode: z.string(),
   tax_category: z.string(),
-  product_url: z.string(),
+  product_url: z.string().optional(),
   default_success_url: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -177,7 +177,7 @@ export type ProductEntity$Outbound = {
   status: string;
   tax_mode: string;
   tax_category: string;
-  product_url: string;
+  product_url?: string | undefined;
   default_success_url?: string | null | undefined;
   created_at: string;
   updated_at: string;
@@ -203,7 +203,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
   status: z.string(),
   taxMode: z.string(),
   taxCategory: z.string(),
-  productUrl: z.string(),
+  productUrl: z.string().optional(),
   defaultSuccessUrl: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),

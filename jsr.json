@@ -2,7 +2,7 @@
 
 {
   "name": "creem",
-  "version": "0.3.15",
+  "version": "0.3.19",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
