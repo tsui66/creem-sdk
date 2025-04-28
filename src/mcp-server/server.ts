@@ -41,7 +41,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.3.28",
+    version: "0.3.31",
   });
 
   const client = new CreemCore({
