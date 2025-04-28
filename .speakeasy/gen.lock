@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 7a00933d718566c7d3c725f69e1645d3
+  docChecksum: d4d0fc747aff569dcac4c20e9aee37b5
   docVersion: v1
-  speakeasyVersion: 1.540.0
-  generationVersion: 2.593.3
-  releaseVersion: 0.3.23
-  configChecksum: f24bbcfd23b0d301569577953972ebb1
+  speakeasyVersion: 1.540.1
+  generationVersion: 2.593.4
+  releaseVersion: 0.3.24
+  configChecksum: 3ea03ff798456db1001667405de557a3
   published: true
 features:
   typescript:
@@ -63,12 +63,12 @@ generatedFiles:
   - docs/models/components/durationinmonths.md
   - docs/models/components/expiresat.md
   - docs/models/components/featureentity.md
+  - docs/models/components/instance.md
   - docs/models/components/licenseentity.md
+  - docs/models/components/licenseentityinstancemode.md
+  - docs/models/components/licenseentityinstancestatus.md
   - docs/models/components/licenseentitymode.md
   - docs/models/components/licenseentitystatus.md
-  - docs/models/components/licenseinstanceentity.md
-  - docs/models/components/licenseinstanceentitymode.md
-  - docs/models/components/licenseinstanceentitystatus.md
   - docs/models/components/maxredemptions.md
   - docs/models/components/mode.md
   - docs/models/components/orderentity.md
@@ -205,7 +205,6 @@ generatedFiles:
   - src/models/components/featureentity.ts
   - src/models/components/index.ts
   - src/models/components/licenseentity.ts
-  - src/models/components/licenseinstanceentity.ts
   - src/models/components/orderentity.ts
   - src/models/components/paginationentity.ts
   - src/models/components/productentity.ts
@@ -445,7 +444,7 @@ examples:
         application/json: {"product_id": "prod_1234567890", "units": 1, "discount_code": "SUMMER2024", "customer": {"id": "cust_1234567890", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Rustic Cotton Mouse", "units": 0, "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": "Rustic Cotton Hat", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://overcooked-inspection.name/", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}, {"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Rustic Cotton Mouse", "units": 0, "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": "Rustic Cotton Hat", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://overcooked-inspection.name/", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}, {"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
   retrieveProduct:
     speakeasy-default-retrieve-product:
       parameters:
@@ -547,7 +546,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Unbranded Bronze Towels", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Small Steel Table", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://skeletal-atrium.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Unbranded Bronze Towels", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Small Steel Table", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "subscription", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://skeletal-atrium.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
   activateLicense:
     speakeasy-default-activate-license:
       parameters:
@@ -557,7 +556,7 @@ examples:
         application/json: {"key": "<key>", "instance_name": "<value>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
+          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
   deactivateLicense:
     speakeasy-default-deactivate-license:
       parameters:
@@ -567,7 +566,7 @@ examples:
         application/json: {"key": "<key>", "instance_id": "<id>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
   validateLicense:
     speakeasy-default-validate-license:
       parameters:
@@ -577,7 +576,7 @@ examples:
         application/json: {"key": "<key>", "instance_id": "<id>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": [{"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}, {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}]}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
   retrieveDiscount:
     speakeasy-default-retrieve-discount:
       parameters:

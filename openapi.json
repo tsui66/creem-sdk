@@ -1811,10 +1811,11 @@
           "instance": {
             "description": "Associated license instances.",
             "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LicenseInstanceEntity"
-            }
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseInstanceEntity"
+              }
+            ]
           }
         },
         "required": [

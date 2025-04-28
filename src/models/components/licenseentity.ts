@@ -8,12 +8,6 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  LicenseInstanceEntity,
-  LicenseInstanceEntity$inboundSchema,
-  LicenseInstanceEntity$Outbound,
-  LicenseInstanceEntity$outboundSchema,
-} from "./licenseinstanceentity.js";
 
 /**
  * String representing the environment.
@@ -51,6 +45,65 @@ export type ActivationLimit = {};
  * The date the license key expires. Null if it does not have an expiration date.
  */
 export type ExpiresAt = {};
+
+/**
+ * String representing the environment.
+ */
+export const LicenseEntityInstanceMode = {
+  Test: "test",
+  Live: "live",
+  Sandbox: "sandbox",
+} as const;
+/**
+ * String representing the environment.
+ */
+export type LicenseEntityInstanceMode = ClosedEnum<
+  typeof LicenseEntityInstanceMode
+>;
+
+/**
+ * The status of the license instance.
+ */
+export const LicenseEntityInstanceStatus = {
+  Active: "active",
+  Deactivated: "deactivated",
+} as const;
+/**
+ * The status of the license instance.
+ */
+export type LicenseEntityInstanceStatus = ClosedEnum<
+  typeof LicenseEntityInstanceStatus
+>;
+
+/**
+ * Associated license instances.
+ */
+export type Instance = {
+  /**
+   * Unique identifier for the object.
+   */
+  id: string;
+  /**
+   * String representing the environment.
+   */
+  mode: LicenseEntityInstanceMode;
+  /**
+   * A string representing the object’s type. Objects of the same type share the same value.
+   */
+  object: string;
+  /**
+   * The name of the license instance.
+   */
+  name: string;
+  /**
+   * The status of the license instance.
+   */
+  status: LicenseEntityInstanceStatus;
+  /**
+   * The creation date of the license instance.
+   */
+  createdAt: Date;
+};
 
 export type LicenseEntity = {
   /**
@@ -92,7 +145,7 @@ export type LicenseEntity = {
   /**
    * Associated license instances.
    */
-  instance?: Array<LicenseInstanceEntity> | null | undefined;
+  instance?: Instance | null | undefined;
 };
 
 /** @internal */
@@ -228,6 +281,121 @@ export function expiresAtFromJSON(
 }
 
 /** @internal */
+export const LicenseEntityInstanceMode$inboundSchema: z.ZodNativeEnum<
+  typeof LicenseEntityInstanceMode
+> = z.nativeEnum(LicenseEntityInstanceMode);
+
+/** @internal */
+export const LicenseEntityInstanceMode$outboundSchema: z.ZodNativeEnum<
+  typeof LicenseEntityInstanceMode
+> = LicenseEntityInstanceMode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace LicenseEntityInstanceMode$ {
+  /** @deprecated use `LicenseEntityInstanceMode$inboundSchema` instead. */
+  export const inboundSchema = LicenseEntityInstanceMode$inboundSchema;
+  /** @deprecated use `LicenseEntityInstanceMode$outboundSchema` instead. */
+  export const outboundSchema = LicenseEntityInstanceMode$outboundSchema;
+}
+
+/** @internal */
+export const LicenseEntityInstanceStatus$inboundSchema: z.ZodNativeEnum<
+  typeof LicenseEntityInstanceStatus
+> = z.nativeEnum(LicenseEntityInstanceStatus);
+
+/** @internal */
+export const LicenseEntityInstanceStatus$outboundSchema: z.ZodNativeEnum<
+  typeof LicenseEntityInstanceStatus
+> = LicenseEntityInstanceStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace LicenseEntityInstanceStatus$ {
+  /** @deprecated use `LicenseEntityInstanceStatus$inboundSchema` instead. */
+  export const inboundSchema = LicenseEntityInstanceStatus$inboundSchema;
+  /** @deprecated use `LicenseEntityInstanceStatus$outboundSchema` instead. */
+  export const outboundSchema = LicenseEntityInstanceStatus$outboundSchema;
+}
+
+/** @internal */
+export const Instance$inboundSchema: z.ZodType<
+  Instance,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  mode: LicenseEntityInstanceMode$inboundSchema,
+  object: z.string(),
+  name: z.string(),
+  status: LicenseEntityInstanceStatus$inboundSchema,
+  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+}).transform((v) => {
+  return remap$(v, {
+    "created_at": "createdAt",
+  });
+});
+
+/** @internal */
+export type Instance$Outbound = {
+  id: string;
+  mode: string;
+  object: string;
+  name: string;
+  status: string;
+  created_at: string;
+};
+
+/** @internal */
+export const Instance$outboundSchema: z.ZodType<
+  Instance$Outbound,
+  z.ZodTypeDef,
+  Instance
+> = z.object({
+  id: z.string(),
+  mode: LicenseEntityInstanceMode$outboundSchema,
+  object: z.string(),
+  name: z.string(),
+  status: LicenseEntityInstanceStatus$outboundSchema,
+  createdAt: z.date().transform(v => v.toISOString()),
+}).transform((v) => {
+  return remap$(v, {
+    createdAt: "created_at",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Instance$ {
+  /** @deprecated use `Instance$inboundSchema` instead. */
+  export const inboundSchema = Instance$inboundSchema;
+  /** @deprecated use `Instance$outboundSchema` instead. */
+  export const outboundSchema = Instance$outboundSchema;
+  /** @deprecated use `Instance$Outbound` instead. */
+  export type Outbound = Instance$Outbound;
+}
+
+export function instanceToJSON(instance: Instance): string {
+  return JSON.stringify(Instance$outboundSchema.parse(instance));
+}
+
+export function instanceFromJSON(
+  jsonString: string,
+): SafeParseResult<Instance, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Instance$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Instance' from JSON`,
+  );
+}
+
+/** @internal */
 export const LicenseEntity$inboundSchema: z.ZodType<
   LicenseEntity,
   z.ZodTypeDef,
@@ -243,7 +411,7 @@ export const LicenseEntity$inboundSchema: z.ZodType<
     .optional(),
   expires_at: z.nullable(z.lazy(() => ExpiresAt$inboundSchema)).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  instance: z.nullable(z.array(LicenseInstanceEntity$inboundSchema)).optional(),
+  instance: z.nullable(z.lazy(() => Instance$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     "activation_limit": "activationLimit",
@@ -263,7 +431,7 @@ export type LicenseEntity$Outbound = {
   activation_limit?: ActivationLimit$Outbound | null | undefined;
   expires_at?: ExpiresAt$Outbound | null | undefined;
   created_at: string;
-  instance?: Array<LicenseInstanceEntity$Outbound> | null | undefined;
+  instance?: Instance$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -282,8 +450,7 @@ export const LicenseEntity$outboundSchema: z.ZodType<
     .optional(),
   expiresAt: z.nullable(z.lazy(() => ExpiresAt$outboundSchema)).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
-  instance: z.nullable(z.array(LicenseInstanceEntity$outboundSchema))
-    .optional(),
+  instance: z.nullable(z.lazy(() => Instance$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     activationLimit: "activation_limit",

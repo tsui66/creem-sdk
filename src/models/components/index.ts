@@ -17,7 +17,6 @@ export * from "./deactivatelicenserequestentity.js";
 export * from "./discountentity.js";
 export * from "./featureentity.js";
 export * from "./licenseentity.js";
-export * from "./licenseinstanceentity.js";
 export * from "./orderentity.js";
 export * from "./paginationentity.js";
 export * from "./productentity.js";

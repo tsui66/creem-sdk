@@ -15,16 +15,14 @@ let value: LicenseEntity = {
   activationLimit: {},
   expiresAt: {},
   createdAt: new Date("2023-09-13T00:00:00Z"),
-  instance: [
-    {
-      id: "<id>",
-      mode: "test",
-      object: "license-instance",
-      name: "My Customer License Instance",
-      status: "active",
-      createdAt: new Date("2023-09-13T00:00:00Z"),
-    },
-  ],
+  instance: {
+    id: "<id>",
+    mode: "test",
+    object: "license-instance",
+    name: "My Customer License Instance",
+    status: "active",
+    createdAt: new Date("2023-09-13T00:00:00Z"),
+  },
 };
 ```
 
@@ -41,4 +39,4 @@ let value: LicenseEntity = {
 | `activationLimit`                                                                             | [components.ActivationLimit](../../models/components/activationlimit.md)                      | :heavy_minus_sign:                                                                            | The activation limit. Null if activations are unlimited.                                      | 1                                                                                             |
 | `expiresAt`                                                                                   | [components.ExpiresAt](../../models/components/expiresat.md)                                  | :heavy_minus_sign:                                                                            | The date the license key expires. Null if it does not have an expiration date.                | 2023-09-13T00:00:00Z                                                                          |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | The creation date of the license key.                                                         | 2023-09-13T00:00:00Z                                                                          |
-| `instance`                                                                                    | [components.LicenseInstanceEntity](../../models/components/licenseinstanceentity.md)[]        | :heavy_minus_sign:                                                                            | Associated license instances.                                                                 |                                                                                               |
+| `instance`                                                                                    | [components.Instance](../../models/components/instance.md)                                    | :heavy_minus_sign:                                                                            | Associated license instances.                                                                 |                                                                                               |

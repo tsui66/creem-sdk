@@ -16,16 +16,14 @@ let value: ProductFeatureEntity = {
     activationLimit: {},
     expiresAt: {},
     createdAt: new Date("2023-09-13T00:00:00Z"),
-    instance: [
-      {
-        id: "<id>",
-        mode: "live",
-        object: "license-instance",
-        name: "My Customer License Instance",
-        status: "active",
-        createdAt: new Date("2023-09-13T00:00:00Z"),
-      },
-    ],
+    instance: {
+      id: "<id>",
+      mode: "live",
+      object: "license-instance",
+      name: "My Customer License Instance",
+      status: "active",
+      createdAt: new Date("2023-09-13T00:00:00Z"),
+    },
   },
 };
 ```
