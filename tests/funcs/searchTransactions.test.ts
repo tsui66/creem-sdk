@@ -6,12 +6,14 @@ import {
   TEST_API_KEY,
   TEST_CUSTOMER_ID,
   TEST_ORDER_ID,
-  TEST_PRODUCT_ID,
+  TEST_PRODUCT_SUBSCRIPTION_ID,
+  TEST_SERVER_IDX,
+  TEST_MODE,
 } from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("searchTransactions", () => {
@@ -41,6 +43,11 @@ describe("searchTransactions", () => {
     expect(result.pagination).toHaveProperty("currentPage");
     expect(result.pagination).toHaveProperty("nextPage");
     expect(result.pagination).toHaveProperty("prevPage");
+
+    // If there are any items, verify they have the correct mode
+    if (result.items.length > 0) {
+      expect(result.items[0]).toHaveProperty("mode", TEST_MODE);
+    }
   });
 
   it("should search transactions by customer ID successfully", async () => {
@@ -82,7 +89,7 @@ describe("searchTransactions", () => {
   it("should search transactions by product ID successfully", async () => {
     const result = await creem.searchTransactions({
       xApiKey: TEST_API_KEY,
-      productId: TEST_PRODUCT_ID,
+      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
     });
 
     // Test the response structure
@@ -116,7 +123,7 @@ describe("searchTransactions", () => {
       xApiKey: TEST_API_KEY,
       customerId: TEST_CUSTOMER_ID,
       orderId: TEST_ORDER_ID,
-      productId: TEST_PRODUCT_ID,
+      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
       pageSize: 5,
       pageNumber: 1,
     });
@@ -138,7 +145,7 @@ describe("searchTransactions", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
-      serverIdx: 2,
+      serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 

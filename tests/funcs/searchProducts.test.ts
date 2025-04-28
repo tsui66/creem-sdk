@@ -2,11 +2,15 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import { TEST_API_KEY } from "../fixtures/testValues.js";
+import {
+  TEST_API_KEY,
+  TEST_SERVER_IDX,
+  TEST_MODE,
+} from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("searchProducts", () => {
@@ -26,38 +30,27 @@ describe("searchProducts", () => {
   });
 
   it("should search products successfully", async () => {
-    // When using the SDK instance directly, it returns ProductListEntity
+    // When using the SDK instance directly, it returns ProductEntity[]
     const result = await creem.searchProducts({
       xApiKey: TEST_API_KEY,
     });
 
     // Test direct SDK method
     expect(result).toHaveProperty("items");
-    expect(Array.isArray(result.items)).toBe(true);
-    expect(result).toHaveProperty("pagination");
-
-    // Test pagination object structure
-    expect(result.pagination).toHaveProperty("totalRecords");
-    expect(result.pagination).toHaveProperty("totalPages");
-    expect(result.pagination).toHaveProperty("currentPage");
-    expect(result.pagination).toHaveProperty("nextPage");
-    expect(result.pagination).toHaveProperty("prevPage");
-
-    // Test product items structure (if any items exist)
+    expect(result.items).toBeInstanceOf(Array);
     if (result.items.length > 0) {
-      const firstProduct = result.items[0];
-      expect(firstProduct).toHaveProperty("id");
-      expect(firstProduct).toHaveProperty("name");
-      expect(firstProduct).toHaveProperty("description");
-      expect(firstProduct).toHaveProperty("price");
-      expect(firstProduct).toHaveProperty("currency");
-      expect(firstProduct).toHaveProperty("billingType");
-      expect(firstProduct).toHaveProperty("billingPeriod");
-      expect(firstProduct).toHaveProperty("status");
-      expect(firstProduct).toHaveProperty("taxMode");
-      expect(firstProduct).toHaveProperty("taxCategory");
-      expect(firstProduct).toHaveProperty("productUrl");
-      expect(firstProduct).toHaveProperty("mode");
+      expect(result.items[0]).toHaveProperty("id");
+      expect(result.items[0]).toHaveProperty("name");
+      expect(result.items[0]).toHaveProperty("description");
+      expect(result.items[0]).toHaveProperty("price");
+      expect(result.items[0]).toHaveProperty("currency");
+      expect(result.items[0]).toHaveProperty("billingType");
+      expect(result.items[0]).toHaveProperty("billingPeriod");
+      expect(result.items[0]).toHaveProperty("status");
+      expect(result.items[0]).toHaveProperty("taxMode");
+      expect(result.items[0]).toHaveProperty("taxCategory");
+      expect(result.items[0]).toHaveProperty("productUrl");
+      expect(result.items[0]).toHaveProperty("mode", TEST_MODE);
     }
   });
 

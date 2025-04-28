@@ -22,3 +22,4 @@
 /.tshy-*
 /__tests__
 /.speakeasy/reports
+.env

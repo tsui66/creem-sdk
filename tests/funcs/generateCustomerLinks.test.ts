@@ -2,11 +2,16 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import { TEST_API_KEY, TEST_CUSTOMER_ID } from "../fixtures/testValues.js";
+import {
+  TEST_API_KEY,
+  TEST_CUSTOMER_ID,
+  TEST_SERVER_IDX,
+  TEST_MODE,
+} from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("generateCustomerLinks", () => {
@@ -47,7 +52,7 @@ describe("generateCustomerLinks", () => {
       await creem.generateCustomerLinks({
         xApiKey: TEST_API_KEY,
         createCustomerPortalLinkRequestEntity: {
-          // Missing customerId
+          customerId: "",
         },
       });
       fail("Expected validation error but none was thrown");

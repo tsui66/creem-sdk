@@ -6,11 +6,13 @@ import {
   TEST_API_KEY,
   TEST_CUSTOMER_ID,
   TEST_CUSTOMER_EMAIL,
+  TEST_SERVER_IDX,
+  TEST_MODE,
 } from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("retrieveCustomer", () => {
@@ -38,7 +40,7 @@ describe("retrieveCustomer", () => {
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("email");
     expect(result).toHaveProperty("country");

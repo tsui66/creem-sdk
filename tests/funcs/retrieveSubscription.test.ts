@@ -2,11 +2,15 @@ import { Creem } from "../../src/index.js";
 import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import { TEST_API_KEY, TEST_SUBSCRIPTION_ID } from "../fixtures/testValues.js";
+import {
+  TEST_API_KEY,
+  TEST_SUBSCRIPTION_ID,
+  TEST_SERVER_IDX,
+} from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("retrieveSubscription", () => {
@@ -67,7 +71,7 @@ describe("retrieveSubscription", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
-      serverIdx: 2,
+      serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 

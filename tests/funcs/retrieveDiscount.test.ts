@@ -8,11 +8,11 @@ import {
   createdFixedDiscountId,
   createdFixedDiscountCode,
 } from "./createDiscount.test.js";
-import { TEST_API_KEY } from "../fixtures/testValues.js";
+import { TEST_API_KEY, TEST_SERVER_IDX } from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("retrieveDiscount", () => {
@@ -154,7 +154,7 @@ describe("retrieveDiscount", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
-      serverIdx: 2,
+      serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 

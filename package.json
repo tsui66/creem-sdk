@@ -7,7 +7,7 @@
     "build:mcp": "bun src/mcp-server/build.mts",
     "build": "npm run build:mcp && tshy",
     "prepublishOnly": "npm run build",
-     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "type": "module",
   "bin": {
@@ -47,6 +47,7 @@
     "@types/jest": "^29.5.14",
     "bun": "^1.2.2",
     "bun-types": "^1.2.2",
+    "dotenv": "^16.5.0",
     "eslint": "^9.19.0",
     "express": "^4.21.2",
     "globals": "^15.14.0",
@@ -57,7 +58,6 @@
     "typescript-eslint": "^8.22.0",
     "zod": "^3.23.4"
   },
-  "dependencies": {},
   "exports": {
     ".": {
       "import": {

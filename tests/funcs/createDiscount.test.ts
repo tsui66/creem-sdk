@@ -3,7 +3,12 @@ import { describe, it, expect } from "@jest/globals";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
 import * as components from "../../src/models/components/index.js";
-import { TEST_API_KEY, TEST_PRODUCT_ID } from "../fixtures/testValues.js";
+import {
+  TEST_API_KEY,
+  TEST_PRODUCT_SUBSCRIPTION_ID,
+  TEST_SERVER_IDX,
+  TEST_MODE,
+} from "../fixtures/testValues.js";
 
 // Global test variables
 // Sample percentage discount data
@@ -12,7 +17,7 @@ const SAMPLE_PERCENTAGE_DISCOUNT: components.CreateDiscountRequestEntity = {
   type: components.CreateDiscountRequestEntityType.Percentage,
   percentage: 20,
   duration: components.CreateDiscountRequestEntityDuration.Forever,
-  appliesToProducts: [TEST_PRODUCT_ID],
+  appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
 };
 
 // Sample fixed discount data
@@ -22,12 +27,12 @@ const SAMPLE_FIXED_DISCOUNT: components.CreateDiscountRequestEntity = {
   amount: 1000,
   currency: "EUR",
   duration: components.CreateDiscountRequestEntityDuration.Once,
-  appliesToProducts: [TEST_PRODUCT_ID],
+  appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
 };
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 // Store created discount IDs and codes for use in retrieve tests
@@ -61,7 +66,7 @@ describe("createDiscount - Percentage Discounts", () => {
     createdPercentageDiscountCode = result.code;
 
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status", "active");
     expect(result).toHaveProperty("name", SAMPLE_PERCENTAGE_DISCOUNT.name);
@@ -86,7 +91,7 @@ describe("createDiscount - Percentage Discounts", () => {
       durationInMonths: 3,
       maxRedemptions: 100,
       expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      appliesToProducts: [TEST_PRODUCT_ID],
+      appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
     };
 
     const result = await creem.createDiscount({
@@ -167,7 +172,7 @@ describe("createDiscount - Fixed Amount Discounts", () => {
       durationInMonths: 3,
       maxRedemptions: 100,
       expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      appliesToProducts: [TEST_PRODUCT_ID],
+      appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
     };
 
     const result = await creem.createDiscount({

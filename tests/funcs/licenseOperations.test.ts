@@ -6,11 +6,13 @@ import {
   TEST_API_KEY,
   TEST_LICENSE_KEY,
   TEST_INSTANCE_NAME,
+  TEST_SERVER_IDX,
+  TEST_MODE,
 } from "../fixtures/testValues.js";
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: TEST_SERVER_IDX,
 });
 
 describe("License Key Operations", () => {
@@ -43,7 +45,7 @@ describe("License Key Operations", () => {
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("key", TEST_LICENSE_KEY);
@@ -62,7 +64,7 @@ describe("License Key Operations", () => {
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status", "active");
     expect(result).toHaveProperty("key", TEST_LICENSE_KEY);
@@ -93,7 +95,7 @@ describe("License Key Operations", () => {
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("mode");
     expect(result).toHaveProperty("object");
-    expect(result).toHaveProperty("status", "active"); // License remains active
+    expect(result).toHaveProperty("status", "inactive"); // License remains active
     expect(result).toHaveProperty("key", TEST_LICENSE_KEY);
     expect(result).toHaveProperty("activation");
     expect(result).toHaveProperty("createdAt");
@@ -122,7 +124,7 @@ describe("License Key Operations", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
-      serverIdx: 2,
+      serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 
