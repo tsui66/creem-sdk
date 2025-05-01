@@ -74,11 +74,11 @@ export type TransactionEntity = {
   /**
    * The order associated with the transaction.
    */
-  order?: string | undefined;
+  order?: string | null | undefined;
   /**
    * The subscription associated with the transaction.
    */
-  subscription?: string | undefined;
+  subscription?: string | null | undefined;
   /**
    * The customer associated with the transaction.
    */
@@ -140,8 +140,8 @@ export const TransactionEntity$inboundSchema: z.ZodType<
   tax_amount: z.number().optional(),
   status: z.string(),
   refunded_amount: z.nullable(z.number()).optional(),
-  order: z.string().optional(),
-  subscription: z.string().optional(),
+  order: z.nullable(z.string()).optional(),
+  subscription: z.nullable(z.string()).optional(),
   customer: z.nullable(z.string()).optional(),
   description: z.string().optional(),
   period_start: z.number().optional(),
@@ -174,8 +174,8 @@ export type TransactionEntity$Outbound = {
   tax_amount?: number | undefined;
   status: string;
   refunded_amount?: number | null | undefined;
-  order?: string | undefined;
-  subscription?: string | undefined;
+  order?: string | null | undefined;
+  subscription?: string | null | undefined;
   customer?: string | null | undefined;
   description?: string | undefined;
   period_start?: number | undefined;
@@ -201,8 +201,8 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   taxAmount: z.number().optional(),
   status: z.string(),
   refundedAmount: z.nullable(z.number()).optional(),
-  order: z.string().optional(),
-  subscription: z.string().optional(),
+  order: z.nullable(z.string()).optional(),
+  subscription: z.nullable(z.string()).optional(),
   customer: z.nullable(z.string()).optional(),
   description: z.string().optional(),
   periodStart: z.number().optional(),

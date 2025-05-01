@@ -423,7 +423,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "title": "CreateCheckoutRequest",
                 "$ref": "#/components/schemas/CreateCheckoutRequest"
               }
             }
@@ -431,9 +430,6 @@
         },
         "responses": {
           "200": {
-            "schema": {
-              "title": "Checkout"
-            },
             "description": "Successfully created a checkout session",
             "content": {
               "application/json": {
@@ -767,9 +763,6 @@
     },
     {
       "url": "https://test-api.creem.io"
-    },
-    {
-      "url": "http://localhost:8000"
     }
   ],
   "components": {
@@ -1286,11 +1279,13 @@
           },
           "order": {
             "type": "string",
-            "description": "The order associated with the transaction."
+            "description": "The order associated with the transaction.",
+            "nullable": true
           },
           "subscription": {
             "type": "string",
-            "description": "The subscription associated with the transaction."
+            "description": "The subscription associated with the transaction.",
+            "nullable": true
           },
           "customer": {
             "type": "string",
