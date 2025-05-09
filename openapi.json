@@ -1622,10 +1622,10 @@
           "type": {
             "type": "string",
             "description": "The type of order. This can specify whether it's a regular purchase, subscription, etc.",
-            "example": "subscription",
+            "example": "recurring",
             "enum": [
-              "subscription",
-              "purchase"
+              "recurring",
+              "onetime"
             ]
           },
           "affiliate": {
@@ -1940,8 +1940,7 @@
           "mode",
           "object",
           "status",
-          "product",
-          "checkout_url"
+          "product"
         ]
       },
       "CustomerRequestEntity": {
