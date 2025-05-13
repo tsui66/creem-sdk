@@ -9,6 +9,12 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  CustomerEntity,
+  CustomerEntity$inboundSchema,
+  CustomerEntity$Outbound,
+  CustomerEntity$outboundSchema,
+} from "./customerentity.js";
+import {
   CustomField,
   CustomField$inboundSchema,
   CustomField$Outbound,
@@ -32,6 +38,12 @@ import {
   ProductFeatureEntity$Outbound,
   ProductFeatureEntity$outboundSchema,
 } from "./productfeatureentity.js";
+import {
+  SubscriptionEntity,
+  SubscriptionEntity$inboundSchema,
+  SubscriptionEntity$Outbound,
+  SubscriptionEntity$outboundSchema,
+} from "./subscriptionentity.js";
 
 /**
  * String representing the environment.
@@ -54,12 +66,12 @@ export type CheckoutEntityProduct = ProductEntity | string;
 /**
  * The subscription associated with the checkout session.
  */
-export type Subscription = {};
+export type Subscription = SubscriptionEntity | string;
 
 /**
  * The customer associated with the checkout session.
  */
-export type CheckoutEntityCustomer = {};
+export type CheckoutEntityCustomer = CustomerEntity | string;
 
 export type CheckoutEntity = {
   /**
@@ -97,11 +109,11 @@ export type CheckoutEntity = {
   /**
    * The subscription associated with the checkout session.
    */
-  subscription?: Subscription | undefined;
+  subscription?: SubscriptionEntity | string | undefined;
   /**
    * The customer associated with the checkout session.
    */
-  customer?: CheckoutEntityCustomer | undefined;
+  customer?: CustomerEntity | string | undefined;
   /**
    * Additional information collected from your customer during the checkout process.
    */
@@ -198,17 +210,17 @@ export const Subscription$inboundSchema: z.ZodType<
   Subscription,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([SubscriptionEntity$inboundSchema, z.string()]);
 
 /** @internal */
-export type Subscription$Outbound = {};
+export type Subscription$Outbound = SubscriptionEntity$Outbound | string;
 
 /** @internal */
 export const Subscription$outboundSchema: z.ZodType<
   Subscription$Outbound,
   z.ZodTypeDef,
   Subscription
-> = z.object({});
+> = z.union([SubscriptionEntity$outboundSchema, z.string()]);
 
 /**
  * @internal
@@ -242,17 +254,17 @@ export const CheckoutEntityCustomer$inboundSchema: z.ZodType<
   CheckoutEntityCustomer,
   z.ZodTypeDef,
   unknown
-> = z.object({});
+> = z.union([CustomerEntity$inboundSchema, z.string()]);
 
 /** @internal */
-export type CheckoutEntityCustomer$Outbound = {};
+export type CheckoutEntityCustomer$Outbound = CustomerEntity$Outbound | string;
 
 /** @internal */
 export const CheckoutEntityCustomer$outboundSchema: z.ZodType<
   CheckoutEntityCustomer$Outbound,
   z.ZodTypeDef,
   CheckoutEntityCustomer
-> = z.object({});
+> = z.union([CustomerEntity$outboundSchema, z.string()]);
 
 /**
  * @internal
@@ -299,8 +311,9 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   units: z.number().default(1),
   order: OrderEntity$inboundSchema.optional(),
-  subscription: z.lazy(() => Subscription$inboundSchema).optional(),
-  customer: z.lazy(() => CheckoutEntityCustomer$inboundSchema).optional(),
+  subscription: z.union([SubscriptionEntity$inboundSchema, z.string()])
+    .optional(),
+  customer: z.union([CustomerEntity$inboundSchema, z.string()]).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   checkout_url: z.string().optional(),
   success_url: z.nullable(z.string()).optional(),
@@ -325,8 +338,8 @@ export type CheckoutEntity$Outbound = {
   product: ProductEntity$Outbound | string;
   units: number;
   order?: OrderEntity$Outbound | undefined;
-  subscription?: Subscription$Outbound | undefined;
-  customer?: CheckoutEntityCustomer$Outbound | undefined;
+  subscription?: SubscriptionEntity$Outbound | string | undefined;
+  customer?: CustomerEntity$Outbound | string | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
   checkout_url?: string | undefined;
   success_url?: string | null | undefined;
@@ -348,8 +361,9 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   units: z.number().default(1),
   order: OrderEntity$outboundSchema.optional(),
-  subscription: z.lazy(() => Subscription$outboundSchema).optional(),
-  customer: z.lazy(() => CheckoutEntityCustomer$outboundSchema).optional(),
+  subscription: z.union([SubscriptionEntity$outboundSchema, z.string()])
+    .optional(),
+  customer: z.union([CustomerEntity$outboundSchema, z.string()]).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
   checkoutUrl: z.string().optional(),
   successUrl: z.nullable(z.string()).optional(),

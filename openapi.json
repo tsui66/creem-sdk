@@ -1893,12 +1893,26 @@
             ]
           },
           "subscription": {
-            "type": "object",
-            "description": "The subscription associated with the checkout session."
+            "description": "The subscription associated with the checkout session.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/SubscriptionEntity"
+              }
+            ]
           },
           "customer": {
-            "type": "object",
-            "description": "The customer associated with the checkout session."
+            "description": "The customer associated with the checkout session.",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/CustomerEntity"
+              }
+            ]
           },
           "custom_fields": {
             "description": "Additional information collected from your customer during the checkout process.",

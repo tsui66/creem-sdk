@@ -2,15 +2,27 @@
 
 The customer associated with the checkout session.
 
-## Example Usage
+
+## Supported Types
+
+### `string`
 
 ```typescript
-import { CheckoutEntityCustomer } from "creem/models/components";
-
-let value: CheckoutEntityCustomer = {};
+const value: string = "<value>";
 ```
 
-## Fields
+### `components.CustomerEntity`
 
-| Field       | Type        | Required    | Description |
-| ----------- | ----------- | ----------- | ----------- |
+```typescript
+const value: components.CustomerEntity = {
+  id: "<id>",
+  mode: "sandbox",
+  object: "<value>",
+  email: "user@example.com",
+  name: "John Doe",
+  country: "US",
+  createdAt: new Date("2023-01-01T00:00:00Z"),
+  updatedAt: new Date("2023-01-01T00:00:00Z"),
+};
+```
+
